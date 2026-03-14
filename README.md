@@ -58,6 +58,19 @@ python bot_restaurant.py
 | `READERS_PUB_URL` | URL сайта для кнопок бота (по умолчанию https://readerspub.ru) |
 | `PORT` | Порт сервера (по умолчанию 8081) |
 
+## Деплой на Vercel
+
+1. Импортируйте репозиторий в [Vercel](https://vercel.com)
+2. **Важно:** в настройках проекта укажите **Root Directory** = `readers-pub`
+3. Framework Preset: **Other**
+4. Build Command: оставьте пустым
+5. Output Directory: `.`
+6. Добавьте переменные окружения:
+   - `TELEGRAM_RESTAURANT_BOT_TOKEN` — токен бота
+   - `OWNER_IDS` — ID получателей заявок (через запятую)
+
+После деплоя сайт будет доступен по вашему Vercel-домену. API бронирования (`/api/booking`, `/api/banquet`) работает через serverless-функции.
+
 ## Лицензия
 
 MIT
