@@ -1,0 +1,19 @@
+# Python
+venv/
+.venv*/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+.env.bot
+.env.local
+*.env
+
+# Персональные данные (брони)
+readers-pub/bookings.json
+
+# OS
+.DS_Store
+Thumbs.db

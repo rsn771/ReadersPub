@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Забронировать стол — Readers Pub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <a href="index.html" class="logo">Readers Pub</a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">О нас</a>
+                <a href="menu.html" class="nav-link">Меню</a>
+                <a href="standup.html" class="nav-link">Стенд-ап</a>
+                <a href="index.html#services" class="nav-link">Услуги</a>
+                <a href="index.html#contacts" class="nav-link">Контакты</a>
+                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать стол</a>
+            </nav>
+            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">ВКонтакте</a>
+        </div>
+    </header>
+
+    <section class="page-booking">
+        <div class="hero-bg" style="position: fixed; z-index: -1;"></div>
+        <div class="booking-form">
+            <h1>Забронировать стол</h1>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" name="phone" placeholder="Введите номер телефона" required>
+                </div>
+                <div class="form-group">
+                    <label>Дата</label>
+                    <input type="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Время</label>
+                    <input type="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label>Выберите кол-во гостей</label>
+                    <select name="guests" required style="width: 100%; padding: 14px 16px; background: var(--color-dark); border: 1px solid var(--color-green-light); color: var(--color-text); font-family: inherit; border-radius: 4px; font-size: 1rem;">
+                        <option value="">Количество гостей</option>
+                        <option value="2">2 гостя</option>
+                        <option value="3">3 гостя</option>
+                        <option value="4">4 гостя</option>
+                        <option value="5">5 гостей</option>
+                        <option value="6">6 гостей</option>
+                        <option value="7">7 гостей</option>
+                        <option value="8">8 гостей</option>
+                        <option value="9">9 гостей</option>
+                        <option value="10">10+ гостей</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
