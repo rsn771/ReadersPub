@@ -29,14 +29,15 @@ class handler(BaseHTTPRequestHandler):
         data = json.loads(body.decode("utf-8") or "{}")
 
         event_type = data.get("event_type", "-")
+        phone = data.get("phone", "-")
         comments = data.get("comments", "-")
 
         text = (
             "🎉 <b>Заявка на банкет (Readers Pub)</b>\n\n"
-            f"Тип: {event_type}\nКомментарии: {comments or '-'}"
+            f"Тип: {event_type}\nТелефон: {phone}\nКомментарии: {comments or '-'}"
         )
         ok, _ = send_to_telegram(text)
-        _save_booking({"type": "banquet", "event_type": event_type, "comments": comments})
+        _save_booking({"type": "banquet", "event_type": event_type, "phone": phone, "comments": comments})
 
         if ok:
             msg = "Заявка отправлена!"

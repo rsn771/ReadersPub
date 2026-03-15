@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const data = {
                     event_type: banquetForm.querySelector('[name="event_type"]').value,
+                    phone: banquetForm.querySelector('[name="phone"]').value,
                     comments: banquetForm.querySelector('[name="comments"]').value
                 };
                 await submitForm(api + '/api/banquet', data);
