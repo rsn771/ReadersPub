@@ -521,12 +521,11 @@ h1, h2, h3 {
     border-color: var(--color-gold);
 }
 
-/* обёртка для полей дата/время — тот же размер, что имя и телефон */
+/* обёртка для полей дата/время — та же ширина, что у поля имя (без обрезки) */
 .booking-form .input-wrap {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    overflow: hidden;
 }
 
 .booking-form .input-wrap input {
@@ -831,12 +830,11 @@ h1, h2, h3 {
         flex: 0 1 auto;
     }
     
-    /* дата и время — тот же размер, что имя и телефон */
+    /* дата и время — та же ширина, что поле имя */
     .booking-form .form-group .input-wrap {
         min-width: 0;
         width: 100%;
         max-width: 100%;
-        overflow: hidden;
     }
     
     .booking-form .form-group input[type="date"],
