@@ -18,6 +18,12 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -166,7 +172,17 @@ h1, h2, h3 {
 }
 
 .hero-content .btn-primary {
+    display: block;
     margin-top: 48px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-content .hero-btn-menu {
+    display: block;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Welcome Section */
@@ -522,12 +538,63 @@ h1, h2, h3 {
     margin-bottom: 48px;
 }
 
+.menu-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding: 8px 0;
+}
+
+.menu-nav-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 168, 75, 0.4);
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.menu-nav-btn:hover {
+    background: rgba(212, 168, 75, 0.25);
+    border-color: var(--color-gold);
+}
+
+@media (max-width: 768px) {
+    .menu-nav {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 12px;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .menu-nav-btn {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+        padding: 8px 14px;
+    }
+}
+
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 32px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.menu-category {
+    scroll-margin-top: 100px;
 }
 
 .menu-category h2 {
@@ -573,7 +640,7 @@ h1, h2, h3 {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Responsive */
+/* Responsive — мобильные (телефон) */
 @media (max-width: 768px) {
     .nav {
         display: none;
@@ -581,13 +648,221 @@ h1, h2, h3 {
     
     .header-top {
         justify-content: center;
+        padding: 12px 16px;
     }
     
+    .container {
+        padding: 0 16px;
+    }
+    
+    /* Заголовки оставляем читаемыми, слегка уменьшаем */
     .hero-tagline {
-        font-size: 1.8rem;
+        font-size: clamp(1.5rem, 5vw, 1.9rem);
     }
     
     .section-title {
+        font-size: clamp(1.35rem, 4vw, 1.6rem);
+    }
+    
+    .section-title.accent {
+        margin-bottom: 24px;
+    }
+    
+    .section-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+    }
+    
+    /* Текст (не заголовки) — меньше на телефоне */
+    .section-text,
+    .interior-text,
+    .menu-text,
+    .veranda-text,
+    .services-intro {
+        font-size: 0.85rem;
+        line-height: 1.65;
+    }
+    
+    .interior .section-subtitle,
+    .menu-section .section-subtitle {
+        font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    }
+    
+    .services-title {
+        font-size: 0.95rem;
+    }
+    
+    .form-group label,
+    .form-title {
+        font-size: 0.85rem;
+    }
+    
+    .contacts-content p,
+    .footer-content,
+    .footer-content p {
+        font-size: 0.85rem;
+    }
+    
+    .footer-content a {
+        margin: 0 10px;
+    }
+    
+    .privacy-link {
+        font-size: 0.8rem;
+    }
+    
+    /* Меню страница */
+    .menu-page {
+        padding: 80px 16px 60px;
+    }
+    
+    .menu-page h1 {
+        margin-bottom: 28px;
+        font-size: 1.6rem;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .menu-category h2 {
+        font-size: 1.15rem;
+        margin-bottom: 14px;
+    }
+    
+    .menu-item-name {
+        font-size: 0.9rem;
+    }
+    
+    .menu-item-desc {
+        font-size: 0.8rem;
+    }
+    
+    .menu-item-weight {
+        font-size: 0.75rem;
+    }
+    
+    .menu-item-price {
+        font-size: 0.9rem;
+    }
+    
+    /* Бронирование */
+    .page-booking {
+        padding: 100px 16px 60px;
+    }
+    
+    .booking-form {
+        padding: 28px 20px;
+    }
+    
+    .booking-form h1 {
         font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+    
+    .booking-form .form-group input,
+    .booking-form .form-group select {
+        font-size: 0.9rem;
+        padding: 12px 14px;
+    }
+    
+    .opening-hint {
+        font-size: 0.8rem !important;
+        margin-bottom: 16px !important;
+    }
+    
+    /* Секции — меньше отступы */
+    .hero {
+        padding: 100px 16px 60px;
+        min-height: 60vh;
+    }
+    
+    .welcome,
+    .interior,
+    .menu-section,
+    .services,
+    .contacts {
+        padding: 60px 16px;
+    }
+    
+    .veranda {
+        padding: 60px 16px;
+        min-height: 50vh;
+    }
+    
+    .footer {
+        padding: 32px 16px;
+    }
+    
+    /* Фоновые изображения — адаптация под мобильный */
+    .hero-bg,
+    .veranda-bg {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    
+    .hero-bg {
+        min-height: 60vh;
+    }
+    
+    .veranda-bg {
+        min-height: 50vh;
+    }
+    
+    .welcome-bg,
+    .interior-bg,
+    .menu-bg {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+    
+    .service-item {
+        padding: 18px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    .section-text,
+    .interior-text,
+    .menu-text,
+    .veranda-text,
+    .services-intro {
+        font-size: 0.8rem;
+    }
+    
+    .hero-tagline {
+        font-size: 1.4rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .menu-item-desc {
+        font-size: 0.75rem;
+    }
+    
+    .menu-item-weight {
+        font-size: 0.7rem;
+    }
+    
+    .contacts-content p,
+    .footer-content,
+    .footer-content p {
+        font-size: 0.8rem;
+    }
+    
+    .booking-form h1 {
+        font-size: 1.35rem;
     }
 }

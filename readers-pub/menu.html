@@ -28,13 +28,38 @@
     <section class="menu-page">
         <div class="container">
             <h1>Меню Readers Pub</h1>
-            <p class="section-text" style="text-align: center; margin-bottom: 48px;">
+            <p class="section-text" style="text-align: center; margin-bottom: 24px;">
                 Европейская и удмуртская кухня. Полная барная карта.
             </p>
             
+            <nav class="menu-nav" aria-label="Разделы меню">
+                <a href="#zakuski" class="menu-nav-btn">Закуски к пиву</a>
+                <a href="#salaty" class="menu-nav-btn">Салаты</a>
+                <a href="#samolepye" class="menu-nav-btn">Самолепье</a>
+                <a href="#supy" class="menu-nav-btn">Супы</a>
+                <a href="#burgery" class="menu-nav-btn">Бургеры</a>
+                <a href="#gorachee" class="menu-nav-btn">Горячее</a>
+                <a href="#holodnye-zakuski" class="menu-nav-btn">Холодные закуски</a>
+                <a href="#smoker" class="menu-nav-btn">Смокер</a>
+                <a href="#pasty" class="menu-nav-btn">Пасты</a>
+                <a href="#picca" class="menu-nav-btn">Пицца</a>
+                <a href="#razlivnoe-pivo" class="menu-nav-btn">Разливное пиво</a>
+                <a href="#butylochnoe-pivo" class="menu-nav-btn">Бутылочное пиво</a>
+                <a href="#kokteyli" class="menu-nav-btn">Коктейли</a>
+                <a href="#avtorskie" class="menu-nav-btn">Авторские</a>
+                <a href="#fresh" class="menu-nav-btn">Фреш</a>
+                <a href="#molochnye-kokteyli" class="menu-nav-btn">Молочные коктейли</a>
+                <a href="#ba-kokteyli" class="menu-nav-btn">Б/а коктейли</a>
+                <a href="#kofe" class="menu-nav-btn">Кофе</a>
+                <a href="#chay" class="menu-nav-btn">Чай</a>
+                <a href="#deserty" class="menu-nav-btn">Десерты</a>
+                <a href="#vino" class="menu-nav-btn">Вино</a>
+                <a href="#napitki" class="menu-nav-btn">Напитки</a>
+            </nav>
+            
             <div class="menu-grid">
                 <!-- ЗАКУСКИ К ПИВУ -->
-                <div class="menu-category">
+                <div class="menu-category" id="zakuski">
                     <h2>Закуски к пиву</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -109,8 +134,15 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Ореховое соление: Миндаль / Арахис</span>
-                            <span class="menu-item-price">410 / 200 ₽</span>
+                            <span class="menu-item-name">Ореховое соление: Миндаль</span>
+                            <span class="menu-item-price">410 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">100 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ореховое соление: Арахис</span>
+                            <span class="menu-item-price">200 ₽</span>
                         </div>
                         <span class="menu-item-weight">100 г</span>
                     </div>
@@ -132,7 +164,7 @@
                 </div>
 
                 <!-- САЛАТЫ -->
-                <div class="menu-category">
+                <div class="menu-category" id="salaty">
                     <h2>Салаты</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -185,7 +217,7 @@
                 </div>
 
                 <!-- САМОЛЕПЬЕ -->
-                <div class="menu-category">
+                <div class="menu-category" id="samolepye">
                     <h2>Самолепье</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -214,7 +246,7 @@
                 </div>
 
                 <!-- СУПЫ -->
-                <div class="menu-category">
+                <div class="menu-category" id="supy">
                     <h2>Супы</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -259,7 +291,7 @@
                 </div>
 
                 <!-- БУРГЕРЫ и ХОТ-ДОГИ -->
-                <div class="menu-category">
+                <div class="menu-category" id="burgery">
                     <h2>Бургеры и хот-доги</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -295,7 +327,7 @@
                 </div>
 
                 <!-- ГОРЯЧЕЕ -->
-                <div class="menu-category">
+                <div class="menu-category" id="gorachee">
                     <h2>Горячее</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -332,7 +364,7 @@
                 </div>
 
                 <!-- ХОЛОДНЫЕ ЗАКУСКИ -->
-                <div class="menu-category">
+                <div class="menu-category" id="holodnye-zakuski">
                     <h2>Холодные закуски</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -359,10 +391,17 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Овощное ассорти / Мясное ассорти</span>
-                            <span class="menu-item-price">275 / 760 ₽</span>
+                            <span class="menu-item-name">Овощное ассорти</span>
+                            <span class="menu-item-price">275 ₽</span>
                         </div>
-                        <span class="menu-item-weight">240 / 170 г</span>
+                        <span class="menu-item-weight">240 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Мясное ассорти</span>
+                            <span class="menu-item-price">760 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">170 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -374,7 +413,7 @@
                 </div>
 
                 <!-- СМОКЕР -->
-                <div class="menu-category">
+                <div class="menu-category" id="smoker">
                     <h2>Смокер</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -400,7 +439,7 @@
                 </div>
 
                 <!-- ПАСТЫ -->
-                <div class="menu-category">
+                <div class="menu-category" id="pasty">
                     <h2>Пасты</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -429,51 +468,114 @@
                 </div>
 
                 <!-- ПИЦЦА -->
-                <div class="menu-category">
+                <div class="menu-category" id="picca">
                     <h2>Пицца (римская/неаполитанская)</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Пепперони</span>
-                            <span class="menu-item-price">715 / 610 ₽</span>
+                            <span class="menu-item-name">Пепперони (римская)</span>
+                            <span class="menu-item-price">715 ₽</span>
                         </div>
-                        <span class="menu-item-weight">400 / 390 г</span>
+                        <span class="menu-item-weight">400 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Ветчина и грибы</span>
-                            <span class="menu-item-price">685 / 580 ₽</span>
+                            <span class="menu-item-name">Пепперони (неаполитанская)</span>
+                            <span class="menu-item-price">610 ₽</span>
                         </div>
-                        <span class="menu-item-weight">360 / 414 г</span>
+                        <span class="menu-item-weight">390 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Четыре сыра</span>
-                            <span class="menu-item-price">840 / 790 ₽</span>
+                            <span class="menu-item-name">Ветчина и грибы (римская)</span>
+                            <span class="menu-item-price">685 ₽</span>
                         </div>
-                        <span class="menu-item-weight">340 / 355 г</span>
+                        <span class="menu-item-weight">360 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Маргарита</span>
-                            <span class="menu-item-price">715 / 610 ₽</span>
+                            <span class="menu-item-name">Ветчина и грибы (неаполитанская)</span>
+                            <span class="menu-item-price">580 ₽</span>
                         </div>
-                        <span class="menu-item-weight">370 / 414 г</span>
+                        <span class="menu-item-weight">414 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">По-Гавайски</span>
-                            <span class="menu-item-price">690 / 735 ₽</span>
+                            <span class="menu-item-name">Четыре сыра (римская)</span>
+                            <span class="menu-item-price">840 ₽</span>
                         </div>
-                        <span class="menu-item-weight">340 / 455 г</span>
+                        <span class="menu-item-weight">340 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Четыре сыра (неаполитанская)</span>
+                            <span class="menu-item-price">790 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">355 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Маргарита (римская)</span>
+                            <span class="menu-item-price">715 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">370 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Маргарита (неаполитанская)</span>
+                            <span class="menu-item-price">610 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">414 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">По-Гавайски (римская)</span>
+                            <span class="menu-item-price">690 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">340 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">По-Гавайски (неаполитанская)</span>
+                            <span class="menu-item-price">735 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">455 г</span>
                     </div>
                 </div>
 
                 <!-- РАЗЛИВНОЕ ПИВО -->
-                <div class="menu-category">
+                <div class="menu-category" id="razlivnoe-pivo">
                     <h2>Разливное пиво</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">ABBE Brune / ABBE Blonde / Spaten Hell / Hoegaarden / AmberWeiss</span>
+                            <span class="menu-item-name">ABBE Brune</span>
+                            <span class="menu-item-price">290 / 390 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">330 / 500 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">ABBE Blonde</span>
+                            <span class="menu-item-price">290 / 390 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">330 / 500 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Spaten Hell</span>
+                            <span class="menu-item-price">290 / 390 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">330 / 500 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Hoegaarden</span>
+                            <span class="menu-item-price">290 / 390 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">330 / 500 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">AmberWeiss</span>
                             <span class="menu-item-price">290 / 390 ₽</span>
                         </div>
                         <span class="menu-item-weight">330 / 500 мл</span>
@@ -482,11 +584,39 @@
                 </div>
 
                 <!-- БУТЫЛОЧНОЕ ПИВО -->
-                <div class="menu-category">
+                <div class="menu-category" id="butylochnoe-pivo">
                     <h2>Бутылочное пиво</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Hoegaarden / Kozel / El Capulco / Stella Artois / Bud</span>
+                            <span class="menu-item-name">Hoegaarden</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">440–450 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Kozel</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">440–450 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">El Capulco</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">440–450 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Stella Artois</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">440–450 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bud</span>
                             <span class="menu-item-price">260 ₽</span>
                         </div>
                         <span class="menu-item-weight">440–450 мл</span>
@@ -494,11 +624,18 @@
                 </div>
 
                 <!-- АЛКОГОЛЬНЫЕ КОКТЕЙЛИ -->
-                <div class="menu-category">
+                <div class="menu-category" id="kokteyli">
                     <h2>Алкогольные коктейли</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Мохито / Клубничный мохито</span>
+                            <span class="menu-item-name">Мохито</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">270 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Клубничный мохито</span>
                             <span class="menu-item-price">550 ₽</span>
                         </div>
                         <span class="menu-item-weight">270 мл</span>
@@ -512,14 +649,42 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Негрони / Огуречный Джинтоник / Вишневый Дайкири / Пинный Сауэр</span>
+                            <span class="menu-item-name">Негрони</span>
                             <span class="menu-item-price">550 ₽</span>
                         </div>
                         <span class="menu-item-weight">100–200 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Вишневый Грог / Глинтвейн</span>
+                            <span class="menu-item-name">Огуречный Джинтоник</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">100–200 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Вишневый Дайкири</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">100–200 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Пинный Сауэр</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">100–200 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Вишневый Грог</span>
+                            <span class="menu-item-price">470 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Глинтвейн</span>
                             <span class="menu-item-price">470 ₽</span>
                         </div>
                         <span class="menu-item-weight">300 мл</span>
@@ -527,18 +692,53 @@
                 </div>
 
                 <!-- АВТОРСКИЕ НАПИТКИ -->
-                <div class="menu-category">
+                <div class="menu-category" id="avtorskie">
                     <h2>Авторские напитки</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Глинтвейн б/а / Раф миндальная соль / Карамельный какао</span>
-                            <span class="menu-item-price">250 / 370 / 260 ₽</span>
+                            <span class="menu-item-name">Глинтвейн б/а</span>
+                            <span class="menu-item-price">250 ₽</span>
                         </div>
                         <span class="menu-item-weight">300 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Облепиховый / Пряный чай / Клюквенный с тимьяном / Клубничный с базиликом</span>
+                            <span class="menu-item-name">Раф миндальная соль</span>
+                            <span class="menu-item-price">370 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Карамельный какао</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Облепиховый</span>
+                            <span class="menu-item-price">375 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">400 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Пряный чай</span>
+                            <span class="menu-item-price">375 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">400 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Клюквенный с тимьяном</span>
+                            <span class="menu-item-price">375 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">400 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Клубничный с базиликом</span>
                             <span class="menu-item-price">375 ₽</span>
                         </div>
                         <span class="menu-item-weight">400 мл</span>
@@ -546,18 +746,60 @@
                 </div>
 
                 <!-- ФРЕШ И ЛИМОНАД -->
-                <div class="menu-category">
+                <div class="menu-category" id="fresh">
                     <h2>Фреш и лимонады</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Апельсиновый / Морковный со сливками / Яблочный фреш</span>
-                            <span class="menu-item-price">360 / 310 / 310 ₽</span>
+                            <span class="menu-item-name">Апельсиновый фреш</span>
+                            <span class="menu-item-price">360 ₽</span>
                         </div>
                         <span class="menu-item-weight">200 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Лимонады: Классический / Клубника-базилик / Грушевый / Вишневый / Манговый</span>
+                            <span class="menu-item-name">Морковный со сливками</span>
+                            <span class="menu-item-price">310 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">200 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Яблочный фреш</span>
+                            <span class="menu-item-price">310 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">200 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Лимонады: Классический</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">800 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Лимонады: Клубника-базилик</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">800 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Лимонады: Грушевый</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">800 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Лимонады: Вишневый</span>
+                            <span class="menu-item-price">550 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">800 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Лимонады: Манговый</span>
                             <span class="menu-item-price">550 ₽</span>
                         </div>
                         <span class="menu-item-weight">800 мл</span>
@@ -565,21 +807,56 @@
                 </div>
 
                 <!-- МОЛОЧНЫЕ КОКТЕЙЛИ И Б/А -->
-                <div class="menu-category">
+                <div class="menu-category" id="molochnye-kokteyli">
                     <h2>Молочные коктейли</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Классический / Шоколадный / Клубничный</span>
+                            <span class="menu-item-name">Классический</span>
+                            <span class="menu-item-price">385 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Шоколадный</span>
+                            <span class="menu-item-price">385 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Клубничный</span>
                             <span class="menu-item-price">385 ₽</span>
                         </div>
                         <span class="menu-item-weight">300 мл</span>
                     </div>
                 </div>
-                <div class="menu-category">
+                <div class="menu-category" id="ba-kokteyli">
                     <h2>Б/а коктейли</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Мохито / Клубничный мохито / Тропический Сауэр / Ягодный Санрайз</span>
+                            <span class="menu-item-name">Мохито</span>
+                            <span class="menu-item-price">350 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">220–300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Клубничный мохито</span>
+                            <span class="menu-item-price">350 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">220–300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Тропический Сауэр</span>
+                            <span class="menu-item-price">350 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">220–300 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ягодный Санрайз</span>
                             <span class="menu-item-price">350 ₽</span>
                         </div>
                         <span class="menu-item-weight">220–300 мл</span>
@@ -587,28 +864,105 @@
                 </div>
 
                 <!-- КОФЕ И ЧАЙ -->
-                <div class="menu-category">
+                <div class="menu-category" id="kofe">
                     <h2>Кофе</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Эспрессо / Доппио / Американо</span>
-                            <span class="menu-item-price">140 / 200 / 210 ₽</span>
+                            <span class="menu-item-name">Эспрессо</span>
+                            <span class="menu-item-price">140 ₽</span>
                         </div>
-                        <span class="menu-item-weight">40 / 120 мл</span>
+                        <span class="menu-item-weight">40 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Флэт Уайт / Капучино / Латте / Раф</span>
-                            <span class="menu-item-price">260 / 230 / 240 / 310 ₽</span>
+                            <span class="menu-item-name">Доппио</span>
+                            <span class="menu-item-price">200 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">120 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Американо</span>
+                            <span class="menu-item-price">210 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">120 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Флэт Уайт</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">170–350 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Капучино</span>
+                            <span class="menu-item-price">230 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">170–350 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Латте</span>
+                            <span class="menu-item-price">240 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">170–350 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Раф</span>
+                            <span class="menu-item-price">310 ₽</span>
                         </div>
                         <span class="menu-item-weight">170–350 мл</span>
                     </div>
                 </div>
-                <div class="menu-category">
+                <div class="menu-category" id="chay">
                     <h2>Чай</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Удмуртский / Гречишный / Зеленый / Черный / Эрл грей / Чабрец / Молочный улун</span>
+                            <span class="menu-item-name">Удмуртский</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Гречишный</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Зеленый</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Черный</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Эрл грей</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Чабрец</span>
+                            <span class="menu-item-price">260 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">600 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Молочный улун</span>
                             <span class="menu-item-price">260 ₽</span>
                         </div>
                         <span class="menu-item-weight">600 мл</span>
@@ -616,7 +970,7 @@
                 </div>
 
                 <!-- ДЕСЕРТЫ -->
-                <div class="menu-category">
+                <div class="menu-category" id="deserty">
                     <h2>Десерты</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -636,14 +990,28 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Меренговый рулет / Малиновый Наполеон</span>
+                            <span class="menu-item-name">Меренговый рулет</span>
                             <span class="menu-item-price">340 ₽</span>
                         </div>
                         <span class="menu-item-weight">130–155 г</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Брусничный / Морковный торт</span>
+                            <span class="menu-item-name">Малиновый Наполеон</span>
+                            <span class="menu-item-price">340 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">130–155 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Брусничный торт</span>
+                            <span class="menu-item-price">515 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">130 г</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Морковный торт</span>
                             <span class="menu-item-price">515 ₽</span>
                         </div>
                         <span class="menu-item-weight">130 г</span>
@@ -658,7 +1026,7 @@
                 </div>
 
                 <!-- ВИНО И КРЕПКИЙ АЛКОГОЛЬ -->
-                <div class="menu-category">
+                <div class="menu-category" id="vino">
                     <h2>Вино и крепкий алкоголь</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
@@ -691,21 +1059,42 @@
                 </div>
 
                 <!-- НАПИТКИ -->
-                <div class="menu-category">
+                <div class="menu-category" id="napitki">
                     <h2>Напитки</h2>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Минеральная вода Боржоми / БонАква / Добрый кола</span>
-                            <span class="menu-item-price">315 / 165 / 170 ₽</span>
+                            <span class="menu-item-name">Минеральная вода Боржоми</span>
+                            <span class="menu-item-price">315 ₽</span>
                         </div>
                         <span class="menu-item-weight">250–330 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Морс клюквенный/облепиховый / Тоник Рич</span>
-                            <span class="menu-item-price">420 / 250 ₽</span>
+                            <span class="menu-item-name">БонАква</span>
+                            <span class="menu-item-price">165 ₽</span>
                         </div>
-                        <span class="menu-item-weight">1000 / 230 мл</span>
+                        <span class="menu-item-weight">250–330 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Добрый кола</span>
+                            <span class="menu-item-price">170 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">250–330 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Морс клюквенный/облепиховый</span>
+                            <span class="menu-item-price">420 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">1000 мл</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Тоник Рич</span>
+                            <span class="menu-item-price">250 ₽</span>
+                        </div>
+                        <span class="menu-item-weight">230 мл</span>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-header">
