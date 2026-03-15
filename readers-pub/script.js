@@ -4,9 +4,8 @@ function getApiBase() {
     return window.location.origin;
 }
 
-// График мероприятий: дни с играми/квизами — в это время брони не принимаются.
-// Вс (2 игры): блок 14:00–22:30. Остальные дни (1 игра): блок 18:00–22:30.
-// Формат: 'YYYY-MM-DD' -> { sunday: true|false }
+// График мероприятий: во время игр брони не принимаются. После 22:30 — можно.
+// Вс (2 игры): блок 14:00–22:29. Остальные дни: блок 18:00–22:29. С 22:30 брони доступны.
 const EVENT_DAYS_2026_03 = {
     '2026-03-01': { sunday: true },  '2026-03-03': { sunday: false }, '2026-03-04': { sunday: false },
     '2026-03-05': { sunday: false },  '2026-03-06': { sunday: false }, '2026-03-07': { sunday: false },
@@ -23,8 +22,8 @@ function getEventBlockForDate(dateStr) {
     const event = EVENT_DAYS_2026_03[dateStr];
     if (!event) return null;
     return event.sunday
-        ? { start: '14:00', end: '22:30', label: 'На этот день запланировано мероприятие (2 игры). Брони доступны до 14:00.' }
-        : { start: '18:00', end: '22:30', label: 'На этот день запланировано мероприятие. Брони доступны до 18:00.' };
+        ? { start: '14:00', end: '22:29', label: 'На этот день запланировано мероприятие (2 игры). Брони доступны до 14:00 и с 22:30.' }
+        : { start: '18:00', end: '22:29', label: 'На этот день запланировано мероприятие. Брони доступны до 18:00 и с 22:30.' };
 }
 
 function timeToMinutes(t) {
@@ -32,19 +31,37 @@ function timeToMinutes(t) {
     return (h || 0) * 60 + (m || 0);
 }
 
+// Режим работы: Пн–Чт, Вс 12:00–00:00; Пт–Сб 12:00–02:00
+function isWithinOpeningHours(dateStr, timeStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    const day = d.getDay(); // 0 Вс, 1 Пн, ..., 6 Сб
+    const t = timeToMinutes(timeStr);
+    const fromNoon = 12 * 60;   // 720
+    const twoAM = 2 * 60;      // 120
+    if (day >= 1 && day <= 4 || day === 0) {
+        return t >= fromNoon || t === 0;
+    }
+    return t >= fromNoon || t <= twoAM;
+}
+
+function getOpeningHoursHint(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    const day = d.getDay();
+    if (day === 5 || day === 6) return 'В этот день ресторан работает 12:00–02:00.';
+    return 'В этот день ресторан работает 12:00–00:00.';
+}
+
 function isTimeInBlockedRange(timeStr, block) {
     if (!block) return false;
-    const min = timeToMinutes(timeStr);
+    const t = timeToMinutes(timeStr);
     const start = timeToMinutes(block.start);
     const end = timeToMinutes(block.end);
-    return min >= start && min <= end;
+    return t >= start && t <= end;
 }
 
 function getNearestAvailableSlot(dateStr, block) {
     if (!block) return null;
-    const d = new Date(dateStr + 'T12:00:00');
-    const isSunday = d.getDay() === 0;
-    return { date: dateStr, time: isSunday ? '13:30' : '17:30' };
+    return { date: dateStr, time: '22:30' };
 }
 
 function formatDateForDisplay(dateStr) {
@@ -114,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const block = getEventBlockForDate(dateStr);
             if (block) {
-                timeInput.setAttribute('min', '12:00');
-                timeInput.setAttribute('max', block.start === '14:00' ? '13:30' : '17:30');
+                timeInput.removeAttribute('min');
+                timeInput.removeAttribute('max');
                 if (!eventHintEl) {
                     eventHintEl = document.createElement('p');
                     eventHintEl.className = 'event-hint';
@@ -139,11 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeStr = bookingForm.querySelector('[name="time"]').value;
             const block = getEventBlockForDate(dateStr);
 
+            if (!isWithinOpeningHours(dateStr, timeStr)) {
+                alert('Ресторан в этот день закрыт в выбранное время. Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.');
+                return;
+            }
             if (block && isTimeInBlockedRange(timeStr, block)) {
                 const slot = getNearestAvailableSlot(dateStr, block);
                 const msg = slot
                     ? `На выбранное время запланировано мероприятие. Пожалуйста, выберите другое время или дату.\n\nБлижайшее доступное: ${formatDateForDisplay(slot.date)} в ${slot.time}`
-                    : 'На выбранное время запланировано мероприятие. Выберите время до ' + (block.start === '14:00' ? '14:00' : '18:00') + ' или другую дату.';
+                    : 'На выбранное время запланировано мероприятие. Выберите время до ' + (block.start === '14:00' ? '14:00' : '18:00') + ' или с 22:30.';
                 alert(msg);
                 if (slot) {
                     bookingForm.querySelector('[name="time"]').value = slot.time;

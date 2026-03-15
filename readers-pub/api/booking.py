@@ -9,7 +9,7 @@ from lib_telegram import send_to_telegram
 
 BOOKINGS_FILE = Path("/tmp/bookings.json")
 
-# Дни с мероприятиями (март 2026): True = воскресенье (блок 14:00–22:30), False = 18:00–22:30
+# Дни с мероприятиями (март 2026): с 22:30 брони разрешены. True = Вс (блок 14:00–22:29), False = 18:00–22:29
 EVENT_DAYS_2026_03 = {
     "2026-03-01": True, "2026-03-03": False, "2026-03-04": False, "2026-03-05": False,
     "2026-03-06": False, "2026-03-07": False, "2026-03-08": True, "2026-03-09": False,
@@ -28,14 +28,30 @@ def _time_minutes(s):
     return h * 60 + m
 
 
+def _is_outside_opening_hours(date_str, time_str):
+    """Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00."""
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+        day = dt.weekday()  # 0 Mon .. 5 Sat, 6 Sun
+        t = _time_minutes(time_str)
+        from_noon = 12 * 60
+        two_am = 2 * 60
+        if day in (0, 1, 2, 3, 6):  # Пн–Чт, Вс
+            return t != 0 and t < from_noon
+        return t > two_am and t < from_noon
+    except Exception:
+        return False
+
+
 def _is_booking_blocked(date_str, time_str):
     is_sunday = EVENT_DAYS_2026_03.get(date_str)
     if is_sunday is None:
         return False
     t = _time_minutes(time_str)
+    end_block = 22 * 60 + 29  # 22:30 разрешено
     if is_sunday:
-        return 14 * 60 <= t <= 22 * 60 + 30
-    return 18 * 60 <= t <= 22 * 60 + 30
+        return 14 * 60 <= t <= end_block
+    return 18 * 60 <= t <= end_block
 
 
 def _save_booking(record: dict) -> None:
@@ -62,6 +78,16 @@ class handler(BaseHTTPRequestHandler):
         time = data.get("time", "-")
         guests = data.get("guests", "-")
 
+        if _is_outside_opening_hours(date, time):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                "ok": False,
+                "message": "Ресторан в этот день закрыт в выбранное время. Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.",
+            }).encode())
+            return
         if _is_booking_blocked(date, time):
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -69,7 +95,7 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({
                 "ok": False,
-                "message": "На выбранное время запланировано мероприятие. Выберите время до 18:00 (по воскресеньям с двумя играми — до 14:00) или другую дату.",
+                "message": "На выбранное время запланировано мероприятие. Выберите время до 18:00 (по воскресеньям — до 14:00) или с 22:30.",
             }).encode())
             return
 
