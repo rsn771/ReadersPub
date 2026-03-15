@@ -521,10 +521,12 @@ h1, h2, h3 {
     border-color: var(--color-gold);
 }
 
-/* обёртка для полей дата/время — удерживает в границах панели */
+/* обёртка для полей дата/время — тот же размер, что имя и телефон */
 .booking-form .input-wrap {
     width: 100%;
     min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .booking-form .input-wrap input {
@@ -532,6 +534,16 @@ h1, h2, h3 {
     min-width: 0 !important;
     max-width: 100% !important;
     box-sizing: border-box;
+    /* те же отступы и стиль, что у остальных полей формы */
+    padding: 14px 16px;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .booking-form .input-wrap input {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
 }
 
 .booking-form .btn-primary {
@@ -819,10 +831,12 @@ h1, h2, h3 {
         flex: 0 1 auto;
     }
     
-    /* принудительно умещаем дата/время в панель */
+    /* дата и время — тот же размер, что имя и телефон */
     .booking-form .form-group .input-wrap {
         min-width: 0;
         width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
     
     .booking-form .form-group input[type="date"],
