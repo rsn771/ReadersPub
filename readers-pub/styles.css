@@ -806,12 +806,12 @@ h1, h2, h3 {
         flex: 0 1 auto;
     }
     
-    /* дата и время — те же правила, что имя и телефон (min-width: 0 чтобы не вылезали) */
+    /* дата и время — на мобильной в 2 раза короче, в рамках панели (обводка и скругления как у остальных) */
     .booking-form .form-group input[type="date"],
     .booking-form .form-group input[type="time"] {
+        width: 50% !important;
+        max-width: 50% !important;
         min-width: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
     }
     
     .booking-form .btn-primary {
