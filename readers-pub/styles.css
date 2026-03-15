@@ -486,6 +486,8 @@ h1, h2, h3 {
     padding: 48px;
     border-radius: 8px;
     border: 1px solid rgba(212, 168, 75, 0.25);
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .booking-form h1 {
@@ -497,6 +499,8 @@ h1, h2, h3 {
 
 .booking-form .form-group input {
     width: 100%;
+    min-width: 0; /* дата/время не вылезают за панель */
+    max-width: 100%;
     padding: 14px 16px;
     background: var(--color-dark);
     border: 1px solid var(--color-green-light);
@@ -504,6 +508,7 @@ h1, h2, h3 {
     font-family: inherit;
     border-radius: 4px;
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .booking-form .form-group input:focus {
@@ -759,6 +764,11 @@ h1, h2, h3 {
         padding: 20px 16px;
         margin: 0 auto;
         box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .booking-form form {
+        min-width: 0;
     }
     
     .booking-form h1 {
@@ -779,8 +789,21 @@ h1, h2, h3 {
     .booking-form .form-group select {
         font-size: 16px; /* убирает зум на iOS */
         padding: 10px 12px;
+        width: 100%;
+        min-width: 0;
         max-width: 100%;
         box-sizing: border-box;
+    }
+    
+    .booking-form .form-group {
+        min-width: 0;
+    }
+    
+    .booking-form .form-group input[type="date"],
+    .booking-form .form-group input[type="time"] {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
     }
     
     .booking-form .btn-primary {
