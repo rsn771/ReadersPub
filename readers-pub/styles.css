@@ -521,30 +521,6 @@ h1, h2, h3 {
     border-color: var(--color-gold);
 }
 
-/* обёртка для полей дата/время — та же ширина, что у поля имя (без обрезки) */
-.booking-form .input-wrap {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-}
-
-.booking-form .input-wrap input {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
-    /* те же отступы и стиль, что у остальных полей формы */
-    padding: 14px 16px;
-    font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-    .booking-form .input-wrap input {
-        padding: 10px 12px;
-        font-size: 16px;
-    }
-}
-
 .booking-form .btn-primary {
     width: 100%;
     padding: 16px;
@@ -830,13 +806,7 @@ h1, h2, h3 {
         flex: 0 1 auto;
     }
     
-    /* дата и время — та же ширина, что поле имя */
-    .booking-form .form-group .input-wrap {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-    
+    /* дата и время — те же правила, что имя и телефон (min-width: 0 чтобы не вылезали) */
     .booking-form .form-group input[type="date"],
     .booking-form .form-group input[type="time"] {
         min-width: 0 !important;
