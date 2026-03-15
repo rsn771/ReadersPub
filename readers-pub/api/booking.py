@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 import json
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -8,7 +7,35 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib_telegram import send_to_telegram
 
-BOOKINGS_FILE = Path("/tmp/bookings.json")  # Vercel: только /tmp доступен для записи
+BOOKINGS_FILE = Path("/tmp/bookings.json")
+
+# Дни с мероприятиями (март 2026): True = воскресенье (блок 14:00–22:30), False = 18:00–22:30
+EVENT_DAYS_2026_03 = {
+    "2026-03-01": True, "2026-03-03": False, "2026-03-04": False, "2026-03-05": False,
+    "2026-03-06": False, "2026-03-07": False, "2026-03-08": True, "2026-03-09": False,
+    "2026-03-10": False, "2026-03-11": False, "2026-03-12": False, "2026-03-13": False,
+    "2026-03-15": True, "2026-03-16": False, "2026-03-17": False, "2026-03-18": False,
+    "2026-03-19": False, "2026-03-20": False, "2026-03-22": True, "2026-03-23": False,
+    "2026-03-24": False, "2026-03-25": False, "2026-03-26": False, "2026-03-27": False,
+    "2026-03-29": True, "2026-03-30": False, "2026-03-31": False,
+}
+
+
+def _time_minutes(s):
+    parts = (s or "0:0").strip().split(":")
+    h = int(parts[0]) if parts else 0
+    m = int(parts[1]) if len(parts) > 1 else 0
+    return h * 60 + m
+
+
+def _is_booking_blocked(date_str, time_str):
+    is_sunday = EVENT_DAYS_2026_03.get(date_str)
+    if is_sunday is None:
+        return False
+    t = _time_minutes(time_str)
+    if is_sunday:
+        return 14 * 60 <= t <= 22 * 60 + 30
+    return 18 * 60 <= t <= 22 * 60 + 30
 
 
 def _save_booking(record: dict) -> None:
@@ -34,6 +61,17 @@ class handler(BaseHTTPRequestHandler):
         date = data.get("date", "-")
         time = data.get("time", "-")
         guests = data.get("guests", "-")
+
+        if _is_booking_blocked(date, time):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                "ok": False,
+                "message": "На выбранное время запланировано мероприятие. Выберите время до 18:00 (по воскресеньям с двумя играми — до 14:00) или другую дату.",
+            }).encode())
+            return
 
         text = (
             "🪑 <b>Новая бронь стола (Readers Pub)</b>\n\n"
