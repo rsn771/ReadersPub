@@ -1765,16 +1765,17 @@ main {
 
     .gallery-photo-main {
         min-height: 210px;
-        margin-bottom: 0;
+        margin-bottom: 6px;
     }
 
     .gallery-section .mobile-section-panel {
-        gap: 22px;
+        gap: 24px;
     }
 
     .gallery-stack {
         gap: 12px;
-        margin-bottom: 2px;
+        margin-top: -8px;
+        margin-bottom: 14px;
     }
 
     .event-card .text-link {
