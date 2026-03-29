@@ -1463,6 +1463,7 @@ main {
 
     .gallery-photo {
         min-height: 180px;
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.2);
     }
 
     .menu-nav {
@@ -1753,21 +1754,27 @@ main {
         order: 2;
         position: relative;
         z-index: 1;
-        margin-top: 4px;
+        margin-top: 0;
     }
 
     .gallery-points {
         grid-template-columns: 1fr;
         margin-top: 0;
+        gap: 10px;
     }
 
     .gallery-photo-main {
         min-height: 210px;
-        margin-bottom: 6px;
+        margin-bottom: 0;
     }
 
     .gallery-section .mobile-section-panel {
-        gap: 18px;
+        gap: 22px;
+    }
+
+    .gallery-stack {
+        gap: 12px;
+        margin-bottom: 2px;
     }
 
     .event-card .text-link {
