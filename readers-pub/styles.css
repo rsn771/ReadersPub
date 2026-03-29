@@ -1763,10 +1763,11 @@ main {
 
     .gallery-photo-main {
         min-height: 210px;
+        margin-bottom: 6px;
     }
 
     .gallery-section .mobile-section-panel {
-        gap: 16px;
+        gap: 18px;
     }
 
     .event-card .text-link {
