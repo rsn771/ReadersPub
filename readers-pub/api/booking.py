@@ -5,53 +5,10 @@ from pathlib import Path
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from lib_availability import build_availability_response
 from lib_telegram import send_to_telegram
 
 BOOKINGS_FILE = Path("/tmp/bookings.json")
-
-# Дни с мероприятиями (март 2026): с 22:30 брони разрешены. True = Вс (блок 14:00–22:29), False = 18:00–22:29
-EVENT_DAYS_2026_03 = {
-    "2026-03-01": True, "2026-03-03": False, "2026-03-04": False, "2026-03-05": False,
-    "2026-03-06": False, "2026-03-07": False, "2026-03-08": True, "2026-03-09": False,
-    "2026-03-10": False, "2026-03-11": False, "2026-03-12": False, "2026-03-13": False,
-    "2026-03-15": True, "2026-03-16": False, "2026-03-17": False, "2026-03-18": False,
-    "2026-03-19": False, "2026-03-20": False, "2026-03-22": True, "2026-03-23": False,
-    "2026-03-24": False, "2026-03-25": False, "2026-03-26": False, "2026-03-27": False,
-    "2026-03-29": True, "2026-03-30": False, "2026-03-31": False,
-}
-
-
-def _time_minutes(s):
-    parts = (s or "0:0").strip().split(":")
-    h = int(parts[0]) if parts else 0
-    m = int(parts[1]) if len(parts) > 1 else 0
-    return h * 60 + m
-
-
-def _is_outside_opening_hours(date_str, time_str):
-    """Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00."""
-    try:
-        dt = datetime.strptime(date_str, "%Y-%m-%d")
-        day = dt.weekday()  # 0 Mon .. 5 Sat, 6 Sun
-        t = _time_minutes(time_str)
-        from_noon = 12 * 60
-        two_am = 2 * 60
-        if day in (0, 1, 2, 3, 6):  # Пн–Чт, Вс
-            return t != 0 and t < from_noon
-        return t > two_am and t < from_noon
-    except Exception:
-        return False
-
-
-def _is_booking_blocked(date_str, time_str):
-    is_sunday = EVENT_DAYS_2026_03.get(date_str)
-    if is_sunday is None:
-        return False
-    t = _time_minutes(time_str)
-    end_block = 22 * 60 + 29  # 22:30 разрешено
-    if is_sunday:
-        return 14 * 60 <= t <= end_block
-    return 18 * 60 <= t <= end_block
 
 
 def _save_booking(record: dict) -> None:
@@ -78,41 +35,57 @@ class handler(BaseHTTPRequestHandler):
         time = data.get("time", "-")
         guests = data.get("guests", "-")
 
-        if _is_outside_opening_hours(date, time):
+        availability = build_availability_response(date, time)
+        if not availability.get("ok"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(json.dumps({
                 "ok": False,
-                "message": "Ресторан в этот день закрыт в выбранное время. Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.",
-            }).encode())
+                "message": availability.get("message", "Некорректные данные."),
+            }, ensure_ascii=False).encode("utf-8"))
             return
-        if _is_booking_blocked(date, time):
+        if not availability.get("available"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(json.dumps({
                 "ok": False,
-                "message": "На выбранное время запланировано мероприятие. Выберите время до 18:00 (по воскресеньям — до 14:00) или с 22:30.",
-            }).encode())
+                "message": availability.get("message", "На это время бронь недоступна."),
+                "next_available": availability.get("next_available"),
+                "opening_hours_hint": availability.get("opening_hours_hint"),
+            }, ensure_ascii=False).encode("utf-8"))
             return
 
         text = (
             "🪑 <b>Новая бронь стола (Readers Pub)</b>\n\n"
-            f"Имя: {name}\nТелефон: {phone}\nДата: {date}\nВремя: {time}\nГостей: {guests}"
+            f"Имя: {name}\n"
+            f"Телефон: {phone}\n"
+            f"Дата: {date}\n"
+            f"Время: {time}\n"
+            f"Гостей: {guests}\n"
+            f"Статус: ожидает подтверждения"
         )
         ok, _ = send_to_telegram(text)
-        _save_booking({"type": "booking", "name": name, "phone": phone, "date": date, "time": time, "guests": guests})
+        _save_booking({
+            "type": "booking",
+            "status": "pending_confirmation",
+            "name": name,
+            "phone": phone,
+            "date": date,
+            "time": time,
+            "guests": guests,
+        })
 
         if ok:
-            msg = "Бронирование отправлено!"
+            msg = "Заявка на бронь отправлена. Мы подтвердим её по телефону, если всё в порядке по посадке."
         else:
-            msg = "Заявка принята! Мы свяжемся с вами. (Уведомление в Telegram временно недоступно — напишите боту /start)"
+            msg = "Заявка принята! Мы свяжемся с вами для подтверждения. (Уведомление в Telegram временно недоступно — напишите боту /start)"
 
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
-        self.wfile.write(json.dumps({"ok": True, "message": msg}).encode())
+        self.wfile.write(json.dumps({"ok": True, "message": msg}, ensure_ascii=False).encode("utf-8"))

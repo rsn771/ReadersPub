@@ -122,6 +122,12 @@ main {
     display: none;
 }
 
+.story-grid > .mobile-section-panel,
+.gallery-grid > .mobile-section-panel,
+.banquet-grid > .mobile-section-panel {
+    display: contents;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .has-motion [data-reveal] {
         opacity: 0;
@@ -318,6 +324,18 @@ main {
     text-decoration: none;
     color: var(--accent-soft);
     font-size: 0.9rem;
+}
+
+.header-side {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-address {
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    white-space: nowrap;
 }
 
 .vk-link:hover {
@@ -788,6 +806,8 @@ main {
 .form-group select,
 .form-group textarea {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     padding: 14px 16px;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -795,6 +815,31 @@ main {
     color: var(--text-main);
     font-family: inherit;
     font-size: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    line-height: 1.2;
+}
+
+.form-group input[type="date"]::-webkit-date-and-time-value,
+.form-group input[type="time"]::-webkit-date-and-time-value {
+    text-align: left;
+}
+
+.form-group input[type="date"]::-webkit-datetime-edit,
+.form-group input[type="time"]::-webkit-datetime-edit {
+    padding: 0;
+    white-space: nowrap;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator,
+.form-group input[type="time"]::-webkit-calendar-picker-indicator {
+    margin: 0;
+    opacity: 0.88;
 }
 
 .form-group input::placeholder,
@@ -1212,7 +1257,8 @@ main {
 
     .header-top {
         width: calc(100% - 32px);
-        padding: 14px 0;
+        padding: 11px 0;
+        gap: 14px;
     }
 
     .container {
@@ -1227,8 +1273,9 @@ main {
 
     .hero {
         min-height: auto;
-        padding-top: 102px;
-        padding-bottom: 42px;
+        padding-top: 74px;
+        padding-bottom: 52px;
+        align-items: flex-start;
     }
 
     .hero-title {
@@ -1265,6 +1312,18 @@ main {
 
     .footer {
         padding-bottom: 110px;
+    }
+
+    .header-side {
+        gap: 10px;
+    }
+
+    .header-address {
+        max-width: 126px;
+        font-size: 0.76rem;
+        line-height: 1.2;
+        text-align: right;
+        white-space: normal;
     }
 
     .mobile-dock {
@@ -1367,6 +1426,7 @@ main {
     .hero-highlights {
         margin-top: 18px;
         gap: 8px;
+        margin-bottom: 10px;
     }
 
     .highlight-chip,
@@ -1417,8 +1477,8 @@ main {
     }
 
     .trust-strip {
-        margin-top: 8px;
-        padding-top: 4px;
+        margin-top: 14px;
+        padding-top: 0;
         padding-bottom: 10px;
     }
 
@@ -1638,6 +1698,7 @@ main {
     }
 
     .mobile-section-panel {
+        display: block;
         margin-top: 0;
         padding-top: 2px;
     }
@@ -1726,11 +1787,28 @@ main {
 
 @media (max-width: 480px) {
     .logo {
-        font-size: 1.3rem;
+        font-size: 1.22rem;
     }
 
     .vk-link {
-        font-size: 0.84rem;
+        font-size: 0.8rem;
+    }
+
+    .header-top {
+        padding: 9px 0;
+        align-items: flex-start;
+    }
+
+    .header-side {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+    }
+
+    .header-address {
+        max-width: 112px;
+        font-size: 0.68rem;
+        line-height: 1.15;
     }
 
     .hero-title {
@@ -1760,16 +1838,22 @@ main {
     }
 
     .hero {
-        padding-top: 94px;
-        padding-bottom: 16px;
+        padding-top: 54px;
+        padding-bottom: 26px;
+        align-items: flex-start;
     }
 
     .hero-copy {
         max-width: none;
     }
 
+    .hero-grid {
+        gap: 18px;
+        align-items: start;
+    }
+
     .hero-kicker {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         font-size: 0.72rem;
     }
 
@@ -1797,8 +1881,8 @@ main {
     }
 
     .trust-strip {
-        margin-top: 10px;
-        padding-top: 2px;
+        margin-top: 16px;
+        padding-top: 0;
         padding-bottom: 8px;
     }
 

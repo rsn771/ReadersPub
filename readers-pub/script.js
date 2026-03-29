@@ -25,8 +25,13 @@ async function submitForm(url, data) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    const json = await res.json();
-    if (!res.ok) throw new Error(json.message || 'Ошибка отправки');
+    let json = null;
+    try {
+        json = await res.json();
+    } catch (_) {
+        throw new Error('Сервис временно недоступен. Попробуйте ещё раз чуть позже.');
+    }
+    if (!res.ok) throw new Error((json && json.message) || 'Ошибка отправки');
     if (json.ok === false && json.message) throw new Error(json.message);
     return json;
 }
@@ -38,7 +43,12 @@ async function fetchAvailability(api, dateStr, timeStr = '') {
     if (timeStr) params.set('time', timeStr);
 
     const res = await fetch(api + '/api/availability?' + params.toString());
-    const json = await res.json();
+    let json = null;
+    try {
+        json = await res.json();
+    } catch (_) {
+        throw new Error('Сервис проверки брони временно недоступен.');
+    }
     if (!res.ok && !json.ok) {
         throw new Error(json.message || 'Не удалось получить доступность.');
     }
