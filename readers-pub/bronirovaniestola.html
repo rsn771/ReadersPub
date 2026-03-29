@@ -4,69 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Забронировать стол — Readers Pub</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Онлайн-бронирование столов в Readers Pub. Выберите дату и время, а мы подтвердим ваш вечер.">
+    <link rel="stylesheet" href="styles.css?v=20260329-6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="header-top">
             <a href="index.html" class="logo">Readers Pub</a>
             <nav class="nav">
-                <a href="index.html" class="nav-link">О нас</a>
+                <a href="index.html#story" class="nav-link">О нас</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="standup.html" class="nav-link">Стенд-ап</a>
-                <a href="index.html#services" class="nav-link">Услуги</a>
+                <a href="index.html#events" class="nav-link">Форматы вечера</a>
+                <a href="index.html#services" class="nav-link">Банкеты</a>
                 <a href="index.html#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать стол</a>
+                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
             </nav>
-            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">ВКонтакте</a>
+            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
         </div>
     </header>
 
-    <section class="page-booking">
-        <div class="hero-bg" style="position: fixed; z-index: -1;"></div>
-        <div class="booking-form">
-            <h1>Забронировать стол</h1>
-            <p class="opening-hint" style="margin-bottom:20px;font-size:0.9rem;color:rgba(255,255,255,0.9);">Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.</p>
-            <form id="bookingForm">
-                <div class="form-group">
-                    <label>Ваше имя</label>
-                    <input type="text" name="name" placeholder="Введите ваше имя" required>
+    <main class="page-booking">
+        <div class="booking-page-bg"></div>
+        <div class="container booking-layout">
+            <section class="booking-info surface-card">
+                <p class="section-eyebrow">Бронирование</p>
+                <h1>Забронируйте вечер, а не просто стол.</h1>
+                <p>
+                    Оставьте заявку онлайн, и Readers Pub подготовит комфортную посадку для встречи, свидания,
+                    шумной компании или вечера после работы.
+                </p>
+                <div class="booking-meta">
+                    <div>Вс–Чт: 12:00–00:00</div>
+                    <div>Пт–Сб: 12:00–02:00</div>
+                    <div>Пушкинская, 223, Ижевск</div>
+                    <div><a href="tel:+73412693001" class="text-link">+7 3412 693-001</a></div>
                 </div>
-                <div class="form-group">
-                    <label>Телефон</label>
-                    <input type="tel" name="phone" placeholder="Введите номер телефона" required>
-                </div>
-                <div class="form-group">
-                    <label>Дата</label>
-                    <input type="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label>Время</label>
-                    <input type="time" name="time" required>
-                </div>
-                <div class="form-group">
-                    <label>Выберите кол-во гостей</label>
-                    <select name="guests" required style="width: 100%; padding: 14px 16px; background: var(--color-dark); border: 1px solid var(--color-green-light); color: var(--color-text); font-family: inherit; border-radius: 4px; font-size: 1rem;">
-                        <option value="">Количество гостей</option>
-                        <option value="2">2 гостя</option>
-                        <option value="3">3 гостя</option>
-                        <option value="4">4 гостя</option>
-                        <option value="5">5 гостей</option>
-                        <option value="6">6 гостей</option>
-                        <option value="7">7 гостей</option>
-                        <option value="8">8 гостей</option>
-                        <option value="9">9 гостей</option>
-                        <option value="10">10+ гостей</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-primary">Отправить</button>
-            </form>
-        </div>
-    </section>
+            </section>
 
-    <script src="script.js"></script>
+            <section class="booking-form surface-card">
+                <h2>Оставить бронь</h2>
+                <p class="opening-hint">Если на выбранное время идёт мероприятие, сайт сразу подскажет ближайшее доступное окно.</p>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="booking_name">Ваше имя</label>
+                        <input id="booking_name" type="text" name="name" placeholder="Как к вам обращаться" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking_phone">Телефон</label>
+                        <input id="booking_phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking_date">Дата</label>
+                        <input id="booking_date" type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking_time">Время</label>
+                        <input id="booking_time" type="time" name="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking_guests">Количество гостей</label>
+                        <select id="booking_guests" name="guests" required>
+                            <option value="">Выберите количество</option>
+                            <option value="2">2 гостя</option>
+                            <option value="3">3 гостя</option>
+                            <option value="4">4 гостя</option>
+                            <option value="5">5 гостей</option>
+                            <option value="6">6 гостей</option>
+                            <option value="7">7 гостей</option>
+                            <option value="8">8 гостей</option>
+                            <option value="9">9 гостей</option>
+                            <option value="10">10+ гостей</option>
+                        </select>
+                    </div>
+                    <div class="form-status" id="bookingFormStatus" aria-live="polite"></div>
+                    <button type="submit" class="btn-primary">Отправить бронь</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <div class="mobile-dock">
+        <a href="tel:+73412693001">Позвонить</a>
+        <a href="bronirovaniestola.html" class="mobile-dock-primary">Бронь</a>
+        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
+    </div>
+
+    <script src="script.js?v=20260329-6"></script>
 </body>
 </html>

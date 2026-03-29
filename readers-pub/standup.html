@@ -3,45 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стенд-ап — Readers Pub</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Особые вечера — Readers Pub</title>
+    <meta name="description" content="Readers Pub — атмосфера для особых вечеров, частных встреч и уютных событий в центре Ижевска.">
+    <link rel="stylesheet" href="styles.css?v=20260329-6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="header-top">
             <a href="index.html" class="logo">Readers Pub</a>
             <nav class="nav">
-                <a href="index.html" class="nav-link">О нас</a>
+                <a href="index.html#story" class="nav-link">О нас</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="standup.html" class="nav-link">Стенд-ап</a>
-                <a href="index.html#services" class="nav-link">Услуги</a>
+                <a href="index.html#events" class="nav-link">Форматы вечера</a>
+                <a href="index.html#services" class="nav-link">Банкеты</a>
                 <a href="index.html#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать стол</a>
+                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
             </nav>
-            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">ВКонтакте</a>
+            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
         </div>
     </header>
 
-    <section class="page-booking" style="min-height: 70vh;">
-        <div class="hero-bg" style="position: fixed; z-index: -1;"></div>
-        <div class="container" style="text-align: center;">
-            <h1 style="color: var(--color-gold); margin-bottom: 24px;">Стенд-ап</h1>
-            <p class="section-text">
-                Следите за нашими анонсами в социальных сетях —<br>
-                мы регулярно проводим вечера стенд-ап комедии.
-            </p>
-            <a href="https://vk.com/rspub" class="btn-primary" target="_blank" rel="noopener">ВКонтакте</a>
-        </div>
-    </section>
+    <main class="page-booking">
+        <div class="booking-page-bg"></div>
+        <div class="container booking-layout">
+            <section class="booking-info surface-card">
+                <p class="section-eyebrow">Особые вечера</p>
+                <h1>Пространство для редких, но тёплых поводов.</h1>
+                <p>
+                    Иногда в Readers Pub проходят специальные форматы вечера. Но главное здесь всегда остаётся прежним:
+                    уютная посадка, хорошая кухня, напитки и комфортная атмосфера в центре города.
+                </p>
+                <div class="booking-meta">
+                    <div>Подходит для камерных встреч и редких спецформатов</div>
+                    <div>Основной фокус всё равно на кухне, атмосфере и гостях</div>
+                    <div>Актуальную информацию можно уточнить по телефону</div>
+                </div>
+            </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <a href="index.html#contacts">Контакты</a>
-            <a href="menu.html">Меню</a>
+            <section class="booking-form surface-card">
+                <h2>Если нужен стол на вечер</h2>
+                <p class="opening-hint">Проще всего сразу оформить бронь или позвонить, если нужен быстрый ответ.</p>
+                <div class="contact-actions">
+                    <a href="bronirovaniestola.html" class="btn-primary">Перейти к брони</a>
+                    <a href="tel:+73412693001" class="btn-secondary">Позвонить</a>
+                </div>
+            </section>
         </div>
-    </footer>
+    </main>
+
+    <div class="mobile-dock">
+        <a href="tel:+73412693001">Позвонить</a>
+        <a href="bronirovaniestola.html" class="mobile-dock-primary">Бронь</a>
+        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
+    </div>
 </body>
 </html>

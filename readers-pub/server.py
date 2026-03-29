@@ -7,8 +7,9 @@ import json
 import os
 import ssl
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 import urllib.error
 import urllib.request
@@ -20,6 +21,7 @@ _SSL_CTX.check_hostname = False
 _SSL_CTX.verify_mode = ssl.CERT_NONE
 
 BOOKINGS_FILE = Path(__file__).parent / "bookings.json"
+AVAILABILITY_FILE = Path(__file__).parent / "availability.json"
 
 # Загрузка .env.bot (если есть)
 _env_path = os.path.join(os.path.dirname(__file__), "..", ".env.bot")
@@ -35,8 +37,8 @@ BOT_TOKEN = (
     os.environ.get("TELEGRAM_RESTAURANT_BOT_TOKEN") or
     os.environ.get("TELEGRAM_BOT_TOKEN") or
     ""
-).strip()
-_owner_str = os.environ.get("OWNER_IDS", "")
+).strip() or "8208417749:AAE4FPGVdAuF2rIkwNUYfisrOA6-p-vMQMk"
+_owner_str = os.environ.get("OWNER_IDS", "5651149188,728379071")
 OWNER_IDS = [int(x.strip()) for x in _owner_str.split(",") if x.strip()]
 TELEGRAM_API = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
@@ -79,22 +81,39 @@ def send_to_telegram(text: str):
     return False, last_err or "Ошибка отправки в Telegram"
 
 
-# Дни с мероприятиями (март 2026): с 22:30 брони разрешены. Вс: блок 14:00–22:29, остальные: 18:00–22:29.
-EVENT_DAYS_2026_03 = {
-    "2026-03-01": True, "2026-03-03": False, "2026-03-04": False, "2026-03-05": False,
-    "2026-03-06": False, "2026-03-07": False, "2026-03-08": True, "2026-03-09": False,
-    "2026-03-10": False, "2026-03-11": False, "2026-03-12": False, "2026-03-13": False,
-    "2026-03-15": True, "2026-03-16": False, "2026-03-17": False, "2026-03-18": False,
-    "2026-03-19": False, "2026-03-20": False, "2026-03-22": True, "2026-03-23": False,
-    "2026-03-24": False, "2026-03-25": False, "2026-03-26": False, "2026-03-27": False,
-    "2026-03-29": True, "2026-03-30": False, "2026-03-31": False,
-}
-
-
 def _time_minutes(s: str) -> int:
     parts = (s or "0:0").strip().split(":")
     h, m = int(parts[0]) if parts else 0, int(parts[1]) if len(parts) > 1 else 0
     return h * 60 + m
+
+
+def _minutes_to_time(total_minutes: int) -> str:
+    hours = (total_minutes // 60) % 24
+    minutes = total_minutes % 60
+    return f"{hours:02d}:{minutes:02d}"
+
+
+def _next_slot_time(time_str: str, step: int = 30) -> str:
+    total = _time_minutes(time_str)
+    rounded = ((total + step - 1) // step) * step
+    return _minutes_to_time(rounded)
+
+
+def _load_availability_data() -> dict:
+    if not AVAILABILITY_FILE.exists():
+        return {"slot_interval_minutes": 30, "blocked_periods": []}
+    try:
+        return json.loads(AVAILABILITY_FILE.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"Could not read availability file: {e}", file=sys.stderr)
+        return {"slot_interval_minutes": 30, "blocked_periods": []}
+
+
+def _get_opening_hours_hint(date_str: str) -> str:
+    dt = datetime.strptime(date_str, "%Y-%m-%d")
+    if dt.weekday() in (4, 5):
+        return "В этот день ресторан работает 12:00–02:00."
+    return "В этот день ресторан работает 12:00–00:00."
 
 
 def _is_outside_opening_hours(date_str: str, time_str: str) -> bool:
@@ -112,15 +131,94 @@ def _is_outside_opening_hours(date_str: str, time_str: str) -> bool:
         return False
 
 
-def _is_booking_blocked(date_str: str, time_str: str) -> bool:
-    is_sunday = EVENT_DAYS_2026_03.get(date_str)
-    if is_sunday is None:
-        return False
+def _get_blocked_periods(date_str: str) -> list[dict]:
+    data = _load_availability_data()
+    periods = []
+    for item in data.get("blocked_periods", []):
+        if item.get("date") != date_str:
+            continue
+        start = item.get("start")
+        end = item.get("end")
+        if not start or not end:
+            continue
+        periods.append({
+            "date": date_str,
+            "start": start,
+            "end": end,
+            "reason": item.get("reason", "Мероприятие"),
+            "message": item.get("message", "На это время ресторан закрыт под мероприятие.").replace("под мероприятием", "под мероприятие")
+        })
+    periods.sort(key=lambda item: (_time_minutes(item["start"]), _time_minutes(item["end"])))
+    return periods
+
+
+def _get_block_for_time(date_str: str, time_str: str) -> dict | None:
     t = _time_minutes(time_str)
-    end_block = 22 * 60 + 29  # 22:30 разрешено
-    if is_sunday:
-        return 14 * 60 <= t <= end_block
-    return 18 * 60 <= t <= end_block
+    for block in _get_blocked_periods(date_str):
+        if _time_minutes(block["start"]) <= t <= _time_minutes(block["end"]):
+            return block
+    return None
+
+
+def _find_next_available_slot(date_str: str, time_str: str, days_ahead: int = 21) -> dict | None:
+    availability = _load_availability_data()
+    step = int(availability.get("slot_interval_minutes", 30) or 30)
+    start_date = datetime.strptime(date_str, "%Y-%m-%d")
+    initial_time = _next_slot_time(time_str or "12:00", step)
+
+    for offset in range(days_ahead + 1):
+        current_date = start_date + timedelta(days=offset)
+        current_date_str = current_date.strftime("%Y-%m-%d")
+        candidate = _time_minutes(initial_time if offset == 0 else "00:00")
+        for _ in range(int((24 * 60) / step) + 2):
+            candidate_time = _minutes_to_time(candidate)
+            if not _is_outside_opening_hours(current_date_str, candidate_time) and not _get_block_for_time(current_date_str, candidate_time):
+                return {
+                    "date": current_date_str,
+                    "time": candidate_time,
+                    "opening_hours_hint": _get_opening_hours_hint(current_date_str)
+                }
+            candidate += step
+    return None
+
+
+def _build_availability_response(date_str: str, time_str: str = "") -> dict:
+    try:
+        datetime.strptime(date_str, "%Y-%m-%d")
+    except Exception:
+        return {"ok": False, "message": "Некорректная дата."}
+
+    response = {
+        "ok": True,
+        "date": date_str,
+        "opening_hours_hint": _get_opening_hours_hint(date_str),
+        "blocked_periods": _get_blocked_periods(date_str),
+        "available": True,
+    }
+
+    if not time_str:
+        if response["blocked_periods"]:
+            response["summary"] = "На выбранную дату есть периоды, когда ресторан закрыт под мероприятие."
+        else:
+            response["summary"] = "На выбранную дату бронь доступна в стандартные часы работы."
+        return response
+
+    if _is_outside_opening_hours(date_str, time_str):
+        response["available"] = False
+        response["message"] = "Ресторан закрыт в выбранное время. Вс–Чт: 12:00–00:00. Пт–Сб: 12:00–02:00."
+        response["next_available"] = _find_next_available_slot(date_str, time_str)
+        return response
+
+    block = _get_block_for_time(date_str, time_str)
+    if block:
+        response["available"] = False
+        response["message"] = block["message"]
+        response["blocked_by"] = block
+        response["next_available"] = _find_next_available_slot(date_str, _next_slot_time(block["end"], 30))
+        return response
+
+    response["message"] = "Это время доступно для бронирования."
+    return response
 
 
 def _save_booking(record: dict) -> None:
@@ -141,8 +239,12 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=os.path.dirname(os.path.abspath(__file__)), **kwargs)
 
     def do_GET(self):
-        if self.path == "/api/test-telegram":
+        parsed = urlparse(self.path)
+        if parsed.path == "/api/test-telegram":
             self._handle_test_telegram()
+            return
+        if parsed.path == "/api/availability":
+            self._handle_availability(parsed.query)
             return
         super().do_GET()
 
@@ -192,7 +294,19 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
-        self.wfile.write(json.dumps(data).encode())
+        self.wfile.write(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+
+    def _handle_availability(self, query_string: str):
+        query = parse_qs(query_string)
+        date_str = (query.get("date") or [""])[0].strip()
+        time_str = (query.get("time") or [""])[0].strip()
+        if not date_str:
+            self._send_json({"ok": False, "message": "Параметр date обязателен."}, 400)
+            return
+
+        payload = _build_availability_response(date_str, time_str)
+        status = 200 if payload.get("ok") else 400
+        self._send_json(payload, status)
 
     def _handle_booking(self):
         try:
@@ -203,16 +317,16 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
             time = data.get("time", "-")
             guests = data.get("guests", "-")
 
-            if _is_outside_opening_hours(date, time):
-                self._send_json({
-                    "ok": False,
-                    "message": "Ресторан в этот день закрыт в выбранное время. Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.",
-                })
+            availability = _build_availability_response(date, time)
+            if not availability.get("ok"):
+                self._send_json({"ok": False, "message": availability.get("message", "Некорректные данные.")}, 400)
                 return
-            if _is_booking_blocked(date, time):
+            if not availability.get("available"):
                 self._send_json({
                     "ok": False,
-                    "message": "На выбранное время запланировано мероприятие. Выберите время до 18:00 (по воскресеньям — до 14:00) или с 22:30.",
+                    "message": availability.get("message", "На это время бронь недоступна."),
+                    "next_available": availability.get("next_available"),
+                    "opening_hours_hint": availability.get("opening_hours_hint"),
                 })
                 return
 
@@ -222,16 +336,25 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
                 f"Телефон: {phone}\n"
                 f"Дата: {date}\n"
                 f"Время: {time}\n"
-                f"Гостей: {guests}"
+                f"Гостей: {guests}\n"
+                f"Статус: ожидает подтверждения"
             )
             ok, err = send_to_telegram(text)
-            _save_booking({"type": "booking", "name": name, "phone": phone, "date": date, "time": time, "guests": guests})
+            _save_booking({
+                "type": "booking",
+                "status": "pending_confirmation",
+                "name": name,
+                "phone": phone,
+                "date": date,
+                "time": time,
+                "guests": guests
+            })
             if ok:
-                self._send_json({"ok": True, "message": "Бронирование отправлено!"})
+                self._send_json({"ok": True, "message": "Заявка на бронь отправлена. Мы подтвердим её по телефону, если всё в порядке по посадке."})
             else:
                 self._send_json({
                     "ok": True,
-                    "message": "Заявка принята! Мы свяжемся с вами. (Уведомление в Telegram временно недоступно — напишите боту @Clearlyoff_bot /start)"
+                    "message": "Заявка принята! Мы свяжемся с вами для подтверждения. (Уведомление в Telegram временно недоступно — напишите боту @Clearlyoff_bot /start)"
                 })
         except Exception as e:
             self._send_json({"ok": False, "message": str(e)}, 500)
@@ -240,15 +363,17 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         try:
             data = self._read_json()
             event_type = data.get("event_type", "-")
+            phone = data.get("phone", "-")
             comments = data.get("comments", "-")
 
             text = (
                 "🎉 <b>Заявка на банкет (Readers Pub)</b>\n\n"
                 f"Тип: {event_type}\n"
+                f"Телефон: {phone}\n"
                 f"Комментарии: {comments or '-'}"
             )
             ok, err = send_to_telegram(text)
-            _save_booking({"type": "banquet", "event_type": event_type, "comments": comments})
+            _save_booking({"type": "banquet", "event_type": event_type, "phone": phone, "comments": comments})
             if ok:
                 self._send_json({"ok": True, "message": "Заявка отправлена!"})
             else:

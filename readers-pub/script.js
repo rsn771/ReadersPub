@@ -1,67 +1,5 @@
-// Readers Pub - Script (брони уходят в Telegram через server.py)
-
 function getApiBase() {
     return window.location.origin;
-}
-
-// График мероприятий: во время игр брони не принимаются. После 22:30 — можно.
-// Вс (2 игры): блок 14:00–22:29. Остальные дни: блок 18:00–22:29. С 22:30 брони доступны.
-const EVENT_DAYS_2026_03 = {
-    '2026-03-01': { sunday: true },  '2026-03-03': { sunday: false }, '2026-03-04': { sunday: false },
-    '2026-03-05': { sunday: false },  '2026-03-06': { sunday: false }, '2026-03-07': { sunday: false },
-    '2026-03-08': { sunday: true },  '2026-03-09': { sunday: false }, '2026-03-10': { sunday: false },
-    '2026-03-11': { sunday: false }, '2026-03-12': { sunday: false }, '2026-03-13': { sunday: false },
-    '2026-03-15': { sunday: true },  '2026-03-16': { sunday: false }, '2026-03-17': { sunday: false },
-    '2026-03-18': { sunday: false }, '2026-03-19': { sunday: false }, '2026-03-20': { sunday: false },
-    '2026-03-22': { sunday: true },  '2026-03-23': { sunday: false }, '2026-03-24': { sunday: false },
-    '2026-03-25': { sunday: false }, '2026-03-26': { sunday: false }, '2026-03-27': { sunday: false },
-    '2026-03-29': { sunday: true },  '2026-03-30': { sunday: false }, '2026-03-31': { sunday: false }
-};
-
-function getEventBlockForDate(dateStr) {
-    const event = EVENT_DAYS_2026_03[dateStr];
-    if (!event) return null;
-    return event.sunday
-        ? { start: '14:00', end: '22:29', label: 'На этот день запланировано мероприятие (2 игры). Брони доступны до 14:00 и с 22:30.' }
-        : { start: '18:00', end: '22:29', label: 'На этот день запланировано мероприятие. Брони доступны до 18:00 и с 22:30.' };
-}
-
-function timeToMinutes(t) {
-    const [h, m] = t.split(':').map(Number);
-    return (h || 0) * 60 + (m || 0);
-}
-
-// Режим работы: Пн–Чт, Вс 12:00–00:00; Пт–Сб 12:00–02:00
-function isWithinOpeningHours(dateStr, timeStr) {
-    const d = new Date(dateStr + 'T12:00:00');
-    const day = d.getDay(); // 0 Вс, 1 Пн, ..., 6 Сб
-    const t = timeToMinutes(timeStr);
-    const fromNoon = 12 * 60;   // 720
-    const twoAM = 2 * 60;      // 120
-    if (day >= 1 && day <= 4 || day === 0) {
-        return t >= fromNoon || t === 0;
-    }
-    return t >= fromNoon || t <= twoAM;
-}
-
-function getOpeningHoursHint(dateStr) {
-    const d = new Date(dateStr + 'T12:00:00');
-    const day = d.getDay();
-    if (day === 5 || day === 6) return 'В этот день ресторан работает 12:00–02:00.';
-    return 'В этот день ресторан работает 12:00–00:00.';
-}
-
-function isTimeInBlockedRange(timeStr, block) {
-    if (!block) return false;
-    const t = timeToMinutes(timeStr);
-    const start = timeToMinutes(block.start);
-    const end = timeToMinutes(block.end);
-    return t >= start && t <= end;
-}
-
-function getNearestAvailableSlot(dateStr, block) {
-    if (!block) return null;
-    return { date: dateStr, time: '22:30' };
 }
 
 function formatDateForDisplay(dateStr) {
@@ -71,6 +9,14 @@ function formatDateForDisplay(dateStr) {
     const month = d.getMonth() + 1;
     const dayOfWeek = days[d.getDay()];
     return `${day}.${String(month).padStart(2, '0')} (${dayOfWeek})`;
+}
+
+function formatTodayForInput() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
 }
 
 async function submitForm(url, data) {
@@ -85,18 +31,132 @@ async function submitForm(url, data) {
     return json;
 }
 
+async function fetchAvailability(api, dateStr, timeStr = '') {
+    if (!dateStr) return null;
+
+    const params = new URLSearchParams({ date: dateStr });
+    if (timeStr) params.set('time', timeStr);
+
+    const res = await fetch(api + '/api/availability?' + params.toString());
+    const json = await res.json();
+    if (!res.ok && !json.ok) {
+        throw new Error(json.message || 'Не удалось получить доступность.');
+    }
+    return json;
+}
+
+function formatAvailabilityMessage(payload) {
+    if (!payload) return '';
+    if (payload.message) {
+        if (payload.next_available) {
+            return `${payload.message} Ближайшее доступное окно: ${formatDateForDisplay(payload.next_available.date)} в ${payload.next_available.time}.`;
+        }
+        return payload.message;
+    }
+    if (payload.summary) return payload.summary;
+    return payload.opening_hours_hint || '';
+}
+
+function setupScrollReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    const selectorGroups = [
+        '.hero-copy',
+        '.hero-panel',
+        '.trust-item',
+        '.mobile-action-card',
+        '.mobile-jump-nav a',
+        '.story-copy',
+        '.feature-card',
+        '.signature-card',
+        '.gallery-copy',
+        '.gallery-photo',
+        '.event-card',
+        '.banquet-copy',
+        '.banquet-form-shell',
+        '.contacts-card',
+        '.contacts-map',
+        '.booking-info',
+        '.booking-form',
+        '.menu-category',
+        '.surface-card'
+    ];
+
+    const seen = new Set();
+    const revealNodes = [];
+
+    selectorGroups.forEach((selector) => {
+        document.querySelectorAll(selector).forEach((node) => {
+            if (seen.has(node)) return;
+            seen.add(node);
+            revealNodes.push(node);
+        });
+    });
+
+    if (!revealNodes.length) return;
+
+    document.documentElement.classList.add('has-motion');
+
+    revealNodes.forEach((node) => {
+        const parent = node.parentElement;
+        const siblings = parent ? Array.from(parent.children).filter((child) => child.matches(node.tagName.toLowerCase() + (node.className ? '.' + String(node.className).trim().split(/\s+/).join('.') : ''))) : [];
+        const siblingIndex = siblings.length > 1 ? siblings.indexOf(node) : 0;
+        const delay = siblingIndex >= 0 ? Math.min(siblingIndex, 5) * 70 : 0;
+
+        node.setAttribute('data-reveal', node.classList.contains('trust-item') || node.classList.contains('mobile-action-card') ? 'soft' : 'up');
+        node.style.setProperty('--reveal-delay', `${delay}ms`);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.16,
+        rootMargin: '0px 0px -8% 0px'
+    });
+
+    revealNodes.forEach((node) => observer.observe(node));
+}
+
+function setFormStatus(el, type, message) {
+    if (!el) return;
+    if (!message) {
+        el.textContent = '';
+        el.className = 'form-status';
+        return;
+    }
+    el.textContent = message;
+    el.className = `form-status is-visible ${type === 'success' ? 'is-success' : 'is-error'}`;
+}
+
+function setButtonLoading(button, isLoading, idleText, loadingText) {
+    if (!button) return;
+    button.disabled = isLoading;
+    button.textContent = isLoading ? loadingText : idleText;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const api = getApiBase();
 
-    // Banquet form
+    setupScrollReveal();
+
     const banquetForm = document.getElementById('banquetForm');
+    const banquetStatus = document.getElementById('banquetFormStatus');
+
     if (banquetForm) {
+        const banquetButton = banquetForm.querySelector('button[type="submit"]');
+        const banquetIdleText = banquetButton ? banquetButton.textContent : 'Отправить';
+
         banquetForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = banquetForm.querySelector('button[type="submit"]');
-            const origText = btn.textContent;
-            btn.disabled = true;
-            btn.textContent = 'Отправка...';
+            setFormStatus(banquetStatus, '', '');
+            setButtonLoading(banquetButton, true, banquetIdleText, 'Отправляем...');
+
             try {
                 const data = {
                     event_type: banquetForm.querySelector('[name="event_type"]').value,
@@ -104,80 +164,111 @@ document.addEventListener('DOMContentLoaded', () => {
                     comments: banquetForm.querySelector('[name="comments"]').value
                 };
                 await submitForm(api + '/api/banquet', data);
-                alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.');
+                setFormStatus(
+                    banquetStatus,
+                    'success',
+                    'Заявка отправлена. Мы свяжемся с вами в ближайшее время, чтобы обсудить детали мероприятия.'
+                );
                 banquetForm.reset();
             } catch (err) {
-                alert('Ошибка: ' + err.message + '\n\nЗапустите сервер: cd readers-pub && python3 server.py');
+                setFormStatus(
+                    banquetStatus,
+                    'error',
+                    'Не удалось отправить заявку: ' + err.message
+                );
             } finally {
-                btn.disabled = false;
-                btn.textContent = origText;
+                setButtonLoading(banquetButton, false, banquetIdleText, 'Отправляем...');
             }
         });
     }
 
-    // Booking form
     const bookingForm = document.getElementById('bookingForm');
+    const bookingStatus = document.getElementById('bookingFormStatus');
+
     if (bookingForm) {
         const dateInput = bookingForm.querySelector('input[name="date"]');
         const timeInput = bookingForm.querySelector('input[name="time"]');
+        const bookingButton = bookingForm.querySelector('button[type="submit"]');
+        const bookingIdleText = bookingButton ? bookingButton.textContent : 'Отправить бронь';
         let eventHintEl = null;
+        let availabilityRequestId = 0;
 
-        function updateTimeRestriction() {
+        if (dateInput) {
+            dateInput.min = formatTodayForInput();
+        }
+
+        function ensureHintElement() {
+            if (!eventHintEl) {
+                eventHintEl = document.createElement('p');
+                eventHintEl.className = 'form-status is-visible is-info';
+                timeInput.closest('.form-group').appendChild(eventHintEl);
+            }
+        }
+
+        async function updateTimeRestriction() {
             const dateStr = dateInput.value;
+            const timeStr = timeInput.value;
+            const requestId = ++availabilityRequestId;
+
+            setFormStatus(bookingStatus, '', '');
+
             if (!dateStr) {
-                timeInput.removeAttribute('min');
-                timeInput.removeAttribute('max');
                 if (eventHintEl) eventHintEl.remove();
+                eventHintEl = null;
                 return;
             }
-            const block = getEventBlockForDate(dateStr);
-            if (block) {
-                timeInput.removeAttribute('min');
-                timeInput.removeAttribute('max');
-                if (!eventHintEl) {
-                    eventHintEl = document.createElement('p');
-                    eventHintEl.className = 'event-hint';
-                    eventHintEl.style.cssText = 'margin-top:6px;font-size:0.85rem;color:rgba(255,255,255,0.85);';
-                    timeInput.closest('.form-group').appendChild(eventHintEl);
+
+            try {
+                const payload = await fetchAvailability(api, dateStr, timeStr);
+                if (requestId !== availabilityRequestId) return;
+
+                ensureHintElement();
+
+                if (!timeStr) {
+                    eventHintEl.className = payload.blocked_periods && payload.blocked_periods.length
+                        ? 'form-status is-visible is-info'
+                        : 'form-status is-visible is-success';
+                    eventHintEl.textContent = formatAvailabilityMessage(payload);
+                    return;
                 }
-                eventHintEl.textContent = block.label;
-            } else {
-                timeInput.removeAttribute('min');
-                timeInput.removeAttribute('max');
-                if (eventHintEl) eventHintEl.textContent = '';
+
+                eventHintEl.className = payload.available
+                    ? 'form-status is-visible is-success'
+                    : 'form-status is-visible is-error';
+                eventHintEl.textContent = formatAvailabilityMessage(payload);
+            } catch (err) {
+                ensureHintElement();
+                eventHintEl.className = 'form-status is-visible is-error';
+                eventHintEl.textContent = 'Не удалось проверить доступность: ' + err.message;
             }
         }
 
         dateInput.addEventListener('change', updateTimeRestriction);
         dateInput.addEventListener('input', updateTimeRestriction);
+        timeInput.addEventListener('change', updateTimeRestriction);
+        timeInput.addEventListener('input', updateTimeRestriction);
 
         bookingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            setFormStatus(bookingStatus, '', '');
+
             const dateStr = bookingForm.querySelector('[name="date"]').value;
             const timeStr = bookingForm.querySelector('[name="time"]').value;
-            const block = getEventBlockForDate(dateStr);
 
-            if (!isWithinOpeningHours(dateStr, timeStr)) {
-                alert('Ресторан в этот день закрыт в выбранное время. Пн–Чт, Вс: 12:00–00:00. Пт–Сб: 12:00–02:00.');
-                return;
-            }
-            if (block && isTimeInBlockedRange(timeStr, block)) {
-                const slot = getNearestAvailableSlot(dateStr, block);
-                const msg = slot
-                    ? `На выбранное время запланировано мероприятие. Пожалуйста, выберите другое время или дату.\n\nБлижайшее доступное: ${formatDateForDisplay(slot.date)} в ${slot.time}`
-                    : 'На выбранное время запланировано мероприятие. Выберите время до ' + (block.start === '14:00' ? '14:00' : '18:00') + ' или с 22:30.';
-                alert(msg);
-                if (slot) {
-                    bookingForm.querySelector('[name="time"]').value = slot.time;
-                }
-                return;
-            }
+            setButtonLoading(bookingButton, true, bookingIdleText, 'Отправляем...');
 
-            const btn = bookingForm.querySelector('button[type="submit"]');
-            const origText = btn.textContent;
-            btn.disabled = true;
-            btn.textContent = 'Отправка...';
             try {
+                const availability = await fetchAvailability(api, dateStr, timeStr);
+                if (!availability.available) {
+                    const msg = formatAvailabilityMessage(availability);
+                    setFormStatus(bookingStatus, 'error', msg);
+                    if (availability.next_available) {
+                        bookingForm.querySelector('[name="time"]').value = availability.next_available.time;
+                        await updateTimeRestriction();
+                    }
+                    return;
+                }
+
                 const data = {
                     name: bookingForm.querySelector('[name="name"]').value,
                     phone: bookingForm.querySelector('[name="phone"]').value,
@@ -185,15 +276,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     time: timeStr,
                     guests: bookingForm.querySelector('[name="guests"]').value
                 };
-                await submitForm(api + '/api/booking', data);
-                alert('Бронирование отправлено! Ждём вас в Readers Pub.');
+                const response = await submitForm(api + '/api/booking', data);
+                setFormStatus(
+                    bookingStatus,
+                    'success',
+                    response.message || 'Бронь отправлена. Мы свяжемся с вами по указанному телефону.'
+                );
                 bookingForm.reset();
-                updateTimeRestriction();
+                if (eventHintEl) {
+                    eventHintEl.remove();
+                    eventHintEl = null;
+                }
             } catch (err) {
-                alert('Ошибка: ' + err.message + '\n\nЗапустите сервер: cd readers-pub && python3 server.py');
+                setFormStatus(
+                    bookingStatus,
+                    'error',
+                    'Не удалось отправить бронь: ' + err.message
+                );
             } finally {
-                btn.disabled = false;
-                btn.textContent = origText;
+                setButtonLoading(bookingButton, false, bookingIdleText, 'Отправляем...');
             }
         });
     }

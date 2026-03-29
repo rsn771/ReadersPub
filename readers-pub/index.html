@@ -3,170 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readers Pub — Ресторан в центре Ижевска</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Readers Pub — атмосферный паб в центре Ижевска</title>
+    <meta name="description" content="Readers Pub — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
+    <link rel="stylesheet" href="styles.css?v=20260329-6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-top">
-            <div class="logo">Readers Pub</div>
+            <a href="index.html" class="logo">Readers Pub</a>
             <nav class="nav">
-                <a href="#hero" class="nav-link">О нас</a>
+                <a href="#story" class="nav-link">О нас</a>
+                <a href="#signature" class="nav-link">Хиты меню</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="standup.html" class="nav-link">Стенд-ап</a>
-                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#events" class="nav-link">Форматы вечера</a>
+                <a href="#services" class="nav-link">Банкеты</a>
                 <a href="#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать стол</a>
+                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
             </nav>
-            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">ВКонтакте</a>
+            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <p class="hero-tagline">ЕШЬ. ПЕЙ. ЛЮБИ.</p>
-            <p class="hero-tagline">ВОЗВРАЩАЙСЯ</p>
-            <p class="hero-tagline">СНОВА.</p>
-            <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-            <a href="menu.html" class="btn-primary hero-btn-menu">Меню</a>
-        </div>
-    </section>
-
-    <!-- Welcome Section -->
-    <section class="welcome welcome-bg">
-        <div class="container">
-            <h2 class="section-subtitle">НАСЛАЖДАЙСЯ МОМЕНТОМ</h2>
-            <h1 class="section-title">ДОБРО ПОЖАЛОВАТЬ В АНГЛИЮ</h1>
-            <h1 class="section-title accent">РЕСТОРАН С АТМОСФЕРОЙ.</h1>
-            <p class="section-text">
-                Добро пожаловать в уютный ресторан-паб, расположенный в самом центре города — прямо на Центральной площади.<br><br>
-                Здесь встречаются вкус, атмосфера и традиции: в меню вы найдете блюда классической европейской кухни и аутентичные позиции удмуртской гастрономии.<br><br>
-                Большой выбор импортного пива, щедрые порции и большой экран с трансляцией спортивных событий — все, что нужно для теплых встреч и громких побед.
-            </p>
-            <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-        </div>
-    </section>
-
-    <!-- Interior Section -->
-    <section class="interior interior-bg">
-        <div class="container">
-            <h2 class="section-subtitle">ИНТЕРЬЕР.</h2>
-            <p class="interior-text">
-                Атмосфера Английского паба в современном стиле. Теплое освещение, обилие дерева и мягкие акцентные кресла создают атмосферу уюта, сохраняя дерзкий характер ресторана. Два просторных зала подойдут как для душевных встреч, так и для просмотра спортивных трансляций на большом экране.
-            </p>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu-section">
-        <div class="container">
-            <h2 class="section-subtitle">МЕНЮ.</h2>
-            <p class="menu-text">
-                В меню ресторана представлена классическая Европейская и национальная Удмуртская кухня. Отдельно представлены сезонные блюда и напитки, и, конечно же, детское меню.<br><br>
-                Барная карта — отдельный вид искусства: авторские коктейли, строгая классика, огромный выбор импортного пенного. Здесь каждый найдет свой эликсир хорошего настроения.
-            </p>
-            <a href="menu.html" class="btn-primary">Смотреть меню</a>
-        </div>
-    </section>
-
-    <!-- Veranda Section -->
-    <section class="veranda">
-        <div class="veranda-bg"></div>
-        <div class="container">
-            <h2 class="section-subtitle">ОТДОХНИ ОТ СУЕТЫ НА СВЕЖЕМ ВОЗДУХЕ</h2>
-            <h1 class="section-title">ЛЕТНЯЯ ВЕРАНДА.</h1>
-            <h2 class="section-subtitle">СЛЫШИШЬ, ПТИЧКИ ПОЮТ...</h2>
-            <p class="veranda-text">
-                Ничто так не передает вайб отдыха, как летняя веранда в лучах закатного солнца. Для вашего удобства, мы продумали каждую мелочь: комфортные кресла, зелень, обогреватель, атмосферная гирлянда, и, конечно же, теплые мягкие пледы для вечерних посиделок с друзьями.
-            </p>
-            <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-subtitle">УСЛУГИ.</h2>
-            <p class="services-intro">
-                У Вас день рождения, свадьба или корпоратив? Отлично! Мы с радостью станем частью Вашего праздника. Обещаем, что в наших уютных стенах Ваше мероприятие станет по-настоящему особенным.
-            </p>
-            <h3 class="services-title">У НАС ВЫ МОЖЕТЕ ПРОВЕСТИ...</h3>
-            <div class="services-grid">
-                <div class="service-item">КОРПОРАТИВ</div>
-                <div class="service-item">ФУРШЕТ</div>
-                <div class="service-item">БИЗНЕС-ЛАНЧ</div>
-                <div class="service-item">ВЫПУСКНОЙ</div>
-                <div class="service-item">НОВЫЙ ГОД</div>
-                <div class="service-item">СВАДЬБУ</div>
+    <main>
+        <section id="hero" class="hero hero-layout">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-kicker">Readers Pub • центр Ижевска • вечер с характером</p>
+                    <h1 class="hero-title">Атмосферный паб, в который хочется возвращаться.</h1>
+                    <p class="hero-description">
+                        <span class="desktop-copy">
+                            Европейская кухня, удмуртские гастрономические акценты, большой выбор пива, мягкий свет,
+                            живая атмосфера и удобный формат для встреч, свиданий, компаний и событий.
+                        </span>
+                        <span class="mobile-copy">
+                            Кухня, бар, веранда и удобная бронь в центре города.
+                        </span>
+                    </p>
+                    <div class="hero-actions">
+                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
+                        <a href="menu.html" class="btn-secondary">Посмотреть меню</a>
+                    </div>
+                    <div class="hero-highlights">
+                        <div class="highlight-chip">Центральная площадь</div>
+                        <div class="highlight-chip">Летняя веранда</div>
+                        <div class="highlight-chip">Уютный интерьер</div>
+                        <div class="highlight-chip">Банкетный формат</div>
+                    </div>
+                </div>
+                <div class="hero-panel surface-card">
+                    <p class="panel-label">Сегодня у нас хорошо для</p>
+                    <div class="hero-moments">
+                        <article class="moment-card">
+                            <span class="moment-number">01</span>
+                            <h2>Ужина вдвоем</h2>
+                            <p>Тёплый свет, спокойный ритм и блюда, которые хочется разделить.</p>
+                        </article>
+                        <article class="moment-card">
+                            <span class="moment-number">02</span>
+                            <h2>Встречи с друзьями</h2>
+                            <p>Пиво, сеты на компанию и правильное настроение без лишней суеты.</p>
+                        </article>
+                        <article class="moment-card">
+                            <span class="moment-number">03</span>
+                            <h2>Повода отметить</h2>
+                            <p>День рождения, корпоратив или камерный банкет без лишней суеты.</p>
+                        </article>
+                    </div>
+                </div>
             </div>
-            <h3 class="form-title">ОСТАВИТЬ ЗАЯВКУ НА ПРОВЕДЕНИЕ БАНКЕТА</h3>
-            <form class="banquet-form" id="banquetForm">
-                <div class="form-group">
-                    <label>Тип мероприятия</label>
-                    <select name="event_type" required>
-                        <option value="">Выберите тип</option>
-                        <option value="corporate">Корпоратив</option>
-                        <option value="wedding">Свадьба</option>
-                        <option value="birthday">День рождения</option>
-                        <option value="graduation">Выпускной</option>
-                        <option value="other">Другое</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Контактный телефон</label>
-                    <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
-                </div>
-                <div class="form-group">
-                    <label>Комментарии</label>
-                    <textarea name="comments" rows="4" placeholder="Опишите ваше мероприятие..."></textarea>
-                </div>
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="privacy" required>
-                        <span>Я согласен с политикой конфиденциальности</span>
-                    </label>
-                </div>
-                <button type="submit" class="btn-primary">Отправить запрос</button>
-            </form>
-            <a href="privacy.html" class="privacy-link">Политика конфиденциальности и обработки персональных данных</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contacts Section -->
-    <section id="contacts" class="contacts">
-        <div class="container">
-            <h2 class="section-subtitle">КОНТАКТЫ.</h2>
-            <div class="contacts-content">
-                <p>Пушкинская, 223, Ижевск, Россия</p>
-                <p>Бронирование столов: <a href="tel:+73412693001">+7 3412 693-001</a></p>
-                <p>Заказ банкетов: <a href="tel:+79821217375">+7 982 121 73 75</a></p>
-                <p>Email: <a href="mailto:banket-izhevsk@amaks-hotels.ru">banket-izhevsk@amaks-hotels.ru</a></p>
-                <p><strong>Режим работы:</strong></p>
-                <p>Вс-Чт: 12:00-00:00</p>
-                <p>Пт-Сб: 12:00-02:00</p>
+        <section class="trust-strip">
+            <div class="container trust-grid">
+                <div class="trust-item">
+                    <span class="trust-value">12:00–00:00</span>
+                    <span class="trust-label">Вс–Чт</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-value">12:00–02:00</span>
+                    <span class="trust-label">Пт–Сб</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-value">Пушкинская, 223</span>
+                    <span class="trust-label">Легко найти</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-value">+7 3412 693-001</span>
+                    <span class="trust-label">Быстрая бронь</span>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section class="mobile-quick-actions">
+            <div class="container">
+                <div class="mobile-action-grid">
+                    <a href="bronirovaniestola.html" class="mobile-action-card">Бронь</a>
+                    <a href="menu.html" class="mobile-action-card">Меню</a>
+                    <a href="tel:+73412693001" class="mobile-action-card">Позвонить</a>
+                    <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="mobile-action-card" target="_blank" rel="noopener">Маршрут</a>
+                </div>
+                <div class="mobile-jump-nav">
+                    <a href="#signature">Хиты</a>
+                    <a href="#events">Форматы</a>
+                    <a href="#services">Банкеты</a>
+                    <a href="#contacts">Контакты</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="story-section section-shell">
+            <div class="container story-grid">
+                <div class="mobile-section-intro surface-card">
+                    <span class="mobile-section-label">Почему к нам приходят</span>
+                    <span class="mobile-section-title">Атмосфера, кухня, бар и формат вечера</span>
+                    <span class="mobile-section-summary">Коротко о том, за что выбирают Readers Pub.</span>
+                </div>
+                <div class="mobile-section-panel">
+                    <div class="story-copy">
+                        <p class="section-eyebrow">Почему к нам приходят</p>
+                        <h2 class="display-title">Не просто ресторан, а место для правильного настроения.</h2>
+                        <p class="lead-text">
+                            <span class="desktop-copy">
+                                Readers Pub соединяет английский характер, тёплый интерьер и живой городской ритм. Здесь удобно
+                                как начать вечер, так и остаться до позднего часа за разговорами, ужином или ещё одним бокалом.
+                            </span>
+                            <span class="mobile-copy">
+                                Место для ужина, встречи или вечера с компанией без лишнего пафоса.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="story-cards">
+                        <article class="feature-card surface-card">
+                            <h3>Атмосфера</h3>
+                            <p>Дерево, мягкий свет, глубокие оттенки и ощущение взрослого уюта без пафоса.</p>
+                        </article>
+                        <article class="feature-card surface-card">
+                            <h3>Кухня</h3>
+                            <p>Европейская классика и аутентичные удмуртские позиции в одном сильном меню.</p>
+                        </article>
+                        <article class="feature-card surface-card">
+                            <h3>Бар</h3>
+                            <p>Импортное пиво, коктейли и понятная карта напитков для любого сценария вечера.</p>
+                        </article>
+                        <article class="feature-card surface-card">
+                            <h3>Повод</h3>
+                            <p>Свидание, встреча, семейный ужин или банкет: пространство гибко под разный сценарий вечера.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="signature" class="signature-section section-shell">
+            <div class="container">
+                <div class="mobile-section-intro surface-card">
+                    <span class="mobile-section-label">Хиты</span>
+                    <span class="mobile-section-title">Три позиции, с которых проще всего начать</span>
+                    <span class="mobile-section-summary">Баффало, сет на компанию и локальный акцент кухни.</span>
+                </div>
+                <div class="mobile-section-panel">
+                    <div class="section-heading centered">
+                        <p class="section-eyebrow">Хиты, с которых приятно начать</p>
+                        <h2 class="display-title">Фирменные позиции, которые продают вечер сами.</h2>
+                    </div>
+                    <div class="signature-grid">
+                        <article class="signature-card">
+                            <img class="signature-media" src="assets/buffalo-wings.jpg?v=20260329" alt="Крылышки Баффало">
+                            <div class="signature-content">
+                                <span class="signature-type">Закуска к пиву</span>
+                                <h3>Крылышки Баффало</h3>
+                                <p>Острая глазурь, сочная текстура и идеальный повод заказать ещё один напиток.</p>
+                                <span class="signature-price">580 ₽</span>
+                            </div>
+                        </article>
+                        <article class="signature-card">
+                            <img class="signature-media" src="https://static.tildacdn.com/tild3939-3231-4130-a632-316232306663/IMG_1557.jpg" alt="Интерьер Readers Pub">
+                            <div class="signature-content">
+                                <span class="signature-type">На компанию</span>
+                                <h3>Сет Readers</h3>
+                                <p>Большая закуска для долгих разговоров, тостов и шумных встреч с друзьями.</p>
+                                <span class="signature-price">2790 ₽</span>
+                            </div>
+                        </article>
+                        <article class="signature-card">
+                            <img class="signature-media" src="assets/posikunchiki.jpg?v=20260329" alt="Перепечи и посикунчики">
+                            <div class="signature-content">
+                                <span class="signature-type">Локальный акцент</span>
+                                <h3>Перепечи и посикунчики</h3>
+                                <p>Та самая деталь, из-за которой место запоминается, а не растворяется среди остальных.</p>
+                                <span class="signature-price">от 400 ₽</span>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="section-actions">
+                        <a href="menu.html" class="btn-secondary">Открыть всё меню</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section section-shell">
+            <div class="container gallery-grid">
+                <div class="mobile-section-intro surface-card">
+                    <span class="mobile-section-label">Атмосфера</span>
+                    <span class="mobile-section-title">Свет, дерево, посадка и веранда</span>
+                    <span class="mobile-section-summary">Короткий взгляд на пространство и настроение зала.</span>
+                </div>
+                <div class="mobile-section-panel">
+                    <div class="gallery-copy">
+                        <p class="section-eyebrow">Атмосфера пространства</p>
+                        <h2 class="display-title">Свет, дерево, посадка и настроение вечернего паба.</h2>
+                        <p class="lead-text">
+                            <span class="desktop-copy">
+                                Интерьер должен не спорить с людьми, а усиливать их вечер. Поэтому здесь работает комбинация
+                                спокойных глубоких оттенков, мягкого света и открытого зала для общения и событий.
+                            </span>
+                            <span class="mobile-copy">
+                                Тёплый свет, удобная посадка и ощущение взрослого уютного паба.
+                            </span>
+                        </p>
+                        <div class="gallery-points">
+                            <div class="gallery-point">Удобная посадка для компаний и долгих ужинов</div>
+                            <div class="gallery-point">Два зала для разного ритма вечера</div>
+                            <div class="gallery-point">Летняя веранда с более лёгким настроением</div>
+                        </div>
+                    </div>
+                    <div class="gallery-stack">
+                        <article class="gallery-photo gallery-photo-main">
+                            <div class="photo-caption">Основной зал</div>
+                        </article>
+                        <div class="gallery-side">
+                            <article class="gallery-photo gallery-photo-secondary">
+                                <div class="photo-caption">Уютный свет</div>
+                            </article>
+                            <article class="gallery-photo gallery-photo-tertiary">
+                                <div class="photo-caption">Веранда</div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="events-section section-shell">
+            <div class="container">
+                <div class="mobile-section-intro surface-card">
+                    <span class="mobile-section-label">Форматы вечера</span>
+                    <span class="mobile-section-title">Ужин, компания или летняя веранда</span>
+                    <span class="mobile-section-summary">Три сценария, ради которых сюда удобно прийти.</span>
+                </div>
+                <div class="mobile-section-panel">
+                    <div class="section-heading">
+                        <p class="section-eyebrow">Форматы вечера</p>
+                        <h2 class="display-title">Показываем, ради какого настроения сюда хочется прийти.</h2>
+                    </div>
+                    <div class="events-grid">
+                        <article class="event-card surface-card">
+                            <span class="event-tag">Ужин</span>
+                            <h3>Спокойный вечер вдвоем</h3>
+                            <p>Тёплый свет, удобная посадка и формат, в котором приятно задержаться подольше.</p>
+                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
+                        </article>
+                        <article class="event-card surface-card">
+                            <span class="event-tag">Компания</span>
+                            <h3>Шумная встреча с друзьями</h3>
+                            <p>Пиво, сеты на компанию, понятная кухня и пространство, где разговор идёт легко.</p>
+                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
+                        </article>
+                        <article class="event-card surface-card">
+                            <span class="event-tag">Веранда</span>
+                            <h3>Летний сценарий без лишней суеты</h3>
+                            <p>Пледы, воздух и более расслабленное настроение. Отдельный оффер для тёплого сезона.</p>
+                            <a href="bronirovaniestola.html" class="text-link">Забронировать на веранде</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="banquet-section section-shell">
+            <div class="container banquet-grid">
+                <div class="mobile-section-intro surface-card">
+                    <span class="mobile-section-label">Банкеты</span>
+                    <span class="mobile-section-title">Частные мероприятия и банкетный зал</span>
+                    <span class="mobile-section-summary">Фото зала, форматы мероприятий и заявка на обсуждение.</span>
+                </div>
+                <div class="mobile-section-panel">
+                    <div class="banquet-copy">
+                        <p class="section-eyebrow">Частные события и банкеты</p>
+                        <h2 class="display-title">Сделайте из формы не формальность, а уверенный оффер.</h2>
+                        <p class="lead-text">
+                            <span class="desktop-copy">
+                                Readers Pub подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других
+                                вечеров, где важно совместить атмосферу, сервис и понятную организацию.
+                            </span>
+                            <span class="mobile-copy">
+                                Подходит для дней рождения, корпоративов и камерных частных событий.
+                            </span>
+                        </p>
+                        <div class="banquet-benefits">
+                            <div class="benefit-pill">Корпоративы</div>
+                            <div class="benefit-pill">Свадьбы</div>
+                            <div class="benefit-pill">Дни рождения</div>
+                            <div class="benefit-pill">Выпускные</div>
+                            <div class="benefit-pill">Фуршеты</div>
+                            <div class="benefit-pill">Бизнес-встречи</div>
+                        </div>
+                        <div class="banquet-contact">
+                            <p>Для быстрого обсуждения банкета:</p>
+                            <a href="tel:+79821217375" class="contact-cta">+7 982 121 73 75</a>
+                        </div>
+                    </div>
+                    <div class="banquet-form-shell surface-card">
+                        <div class="banquet-visual">
+                            <img src="assets/banquet-hall.png?v=20260329" alt="Банкетный зал Readers Pub">
+                        </div>
+                        <p class="form-shell-title">Оставить заявку на мероприятие</p>
+                        <p class="mobile-banquet-note">На телефоне оставили только быстрый способ связи, чтобы блок не превращался в длинную форму.</p>
+                        <div class="mobile-banquet-actions">
+                            <a href="tel:+79821217375" class="btn-primary">Обсудить банкет</a>
+                            <a href="#contacts" class="btn-secondary">Контакты</a>
+                        </div>
+                        <form class="banquet-form" id="banquetForm">
+                            <div class="form-group">
+                                <label for="event_type">Тип мероприятия</label>
+                                <select id="event_type" name="event_type" required>
+                                    <option value="">Выберите формат</option>
+                                    <option value="corporate">Корпоратив</option>
+                                    <option value="wedding">Свадьба</option>
+                                    <option value="birthday">День рождения</option>
+                                    <option value="graduation">Выпускной</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="banquet_phone">Контактный телефон</label>
+                                <input id="banquet_phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="banquet_comments">Коротко о мероприятии</label>
+                                <textarea id="banquet_comments" name="comments" rows="4" placeholder="Количество гостей, желаемая дата, формат вечера"></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="privacy" required>
+                                    <span>Согласен с политикой конфиденциальности</span>
+                                </label>
+                            </div>
+                            <div class="form-status" id="banquetFormStatus" aria-live="polite"></div>
+                            <button type="submit" class="btn-primary">Отправить заявку</button>
+                        </form>
+                        <a href="privacy.html" class="privacy-link">Политика конфиденциальности и обработки персональных данных</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contacts-section section-shell">
+            <div class="container contacts-grid">
+                <div class="contacts-card surface-card">
+                    <p class="section-eyebrow">Контакты</p>
+                    <h2 class="display-title">Приехать, позвонить, написать.</h2>
+                    <div class="contacts-content">
+                        <p>Пушкинская, 223, Ижевск</p>
+                        <p>Бронирование: <a href="tel:+73412693001">+7 3412 693-001</a></p>
+                        <p>Банкеты: <a href="tel:+79821217375">+7 982 121 73 75</a></p>
+                        <p>Email: <a href="mailto:banket-izhevsk@amaks-hotels.ru">banket-izhevsk@amaks-hotels.ru</a></p>
+                        <p>Вс–Чт: 12:00–00:00</p>
+                        <p>Пт–Сб: 12:00–02:00</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:+73412693001" class="btn-primary">Позвонить</a>
+                        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="btn-secondary" target="_blank" rel="noopener">Построить маршрут</a>
+                    </div>
+                </div>
+                <div class="contacts-map surface-card">
+                    <div class="map-frame">
+                        <div class="map-copy">
+                            <p class="map-label">Readers Pub</p>
+                            <p class="map-address">Центр города, понятная локация и быстрый доступ для вечерней встречи.</p>
+                            <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">Открыть VK сообщества</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer class="footer">
         <div class="footer-content">
-            <a href="privacy.html">Политика конфиденциальности</a>
-            <a href="#contacts">Контакты</a>
-            <a href="menu.html">Меню</a>
-            <a href="privacy.html">Политика обработки персональных данных</a>
-            <p>Удмуртская республика, город Ижевск, улица Пушкинская, 223</p>
-            <p><a href="#hero">Главная</a></p>
-            <p>ООО «ИРЕНА»</p>
+            <div class="footer-brand">
+                <p class="footer-title">Readers Pub</p>
+                <p>Атмосферный ресторан-паб в центре Ижевска.</p>
+            </div>
+            <div class="footer-links">
+                <a href="menu.html">Меню</a>
+                <a href="bronirovaniestola.html">Бронь</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+            <p class="footer-meta">ООО «ИРЕНА», Удмуртская Республика, Ижевск, ул. Пушкинская, 223</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="mobile-dock">
+        <a href="tel:+73412693001">Позвонить</a>
+        <a href="bronirovaniestola.html" class="mobile-dock-primary">Бронь</a>
+        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
+    </div>
+
+    <script src="script.js?v=20260329-6"></script>
 </body>
 </html>
