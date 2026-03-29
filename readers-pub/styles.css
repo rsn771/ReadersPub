@@ -790,11 +790,14 @@ main {
 .booking-form form {
     display: grid;
     gap: 16px;
+    min-width: 0;
 }
 
 .form-group {
     display: grid;
     gap: 8px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .form-group label {
@@ -822,7 +825,12 @@ main {
 
 .form-group input[type="date"],
 .form-group input[type="time"] {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    min-inline-size: 0;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 .form-group input[type="date"]::-webkit-date-and-time-value,
@@ -1061,6 +1069,10 @@ main {
     align-items: center;
 }
 
+.booking-layout > * {
+    min-width: 0;
+}
+
 .booking-info {
     padding: 38px;
 }
@@ -1090,6 +1102,8 @@ main {
 
 .booking-form {
     padding: 30px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .booking-form h2 {
