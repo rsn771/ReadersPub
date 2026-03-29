@@ -1751,6 +1751,9 @@ main {
 
     .gallery-copy {
         order: 2;
+        position: relative;
+        z-index: 1;
+        margin-top: 4px;
     }
 
     .gallery-points {
@@ -1760,6 +1763,10 @@ main {
 
     .gallery-photo-main {
         min-height: 210px;
+    }
+
+    .gallery-section .mobile-section-panel {
+        gap: 16px;
     }
 
     .event-card .text-link {
