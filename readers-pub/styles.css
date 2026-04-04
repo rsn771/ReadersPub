@@ -690,15 +690,102 @@ main {
 /* Events */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    justify-items: center;
+}
+
+.events-rotator {
+    position: relative;
+    width: min(100%, 540px);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 34px;
+    isolation: isolate;
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .event-card {
-    padding: 28px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 20px, 0) scale(0.985);
+    filter: blur(6px);
+    transition:
+        opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.event-card::before,
+.event-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.event-card::before {
+    background:
+        radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.12), transparent 34%),
+        linear-gradient(180deg, rgba(18, 36, 26, 0.58), rgba(8, 14, 11, 0.94));
+}
+
+.event-card::after {
+    top: auto;
+    height: 68%;
+    background: linear-gradient(180deg, transparent, rgba(5, 10, 8, 0.42) 24%, rgba(5, 10, 8, 0.86));
+}
+
+.event-card[data-event-theme="intro"]::before {
+    background:
+        radial-gradient(circle at 50% 12%, rgba(224, 188, 108, 0.28), transparent 42%),
+        linear-gradient(180deg, #143028 0%, #0e1f1a 42%, #07100d 100%);
+}
+
+.event-card[data-event-theme="dinner"]::before {
+    background:
+        radial-gradient(circle at 46% 22%, rgba(232, 180, 124, 0.24), transparent 34%),
+        linear-gradient(180deg, #1f2a25 0%, #15201c 40%, #0a100d 100%);
+}
+
+.event-card[data-event-theme="company"]::before {
+    background:
+        radial-gradient(circle at 58% 18%, rgba(214, 183, 108, 0.2), transparent 36%),
+        linear-gradient(180deg, #20231f 0%, #121714 40%, #080b09 100%);
+}
+
+.event-card[data-event-theme="veranda"]::before {
+    background:
+        radial-gradient(circle at 52% 16%, rgba(113, 191, 178, 0.18), transparent 34%),
+        linear-gradient(180deg, #143535 0%, #102220 44%, #08100d 100%);
+}
+
+.event-card.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+}
+
+.event-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .event-tag {
+    display: inline-flex;
+    width: fit-content;
+    padding: 11px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--accent);
     font-size: 0.82rem;
     letter-spacing: 0.22em;
@@ -706,13 +793,77 @@ main {
 }
 
 .event-card h3 {
-    margin-top: 14px;
-    font-size: 1.52rem;
+    margin-top: 18px;
+    max-width: 420px;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 0.95;
 }
 
 .event-card p {
-    margin: 12px 0 16px;
-    color: var(--text-muted);
+    margin: 18px 0 0;
+    max-width: 390px;
+    color: rgba(240, 233, 220, 0.78);
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.events-rotator .text-link {
+    margin-top: 24px;
+}
+
+.event-rotator-dots {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    right: 24px;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.event-rotator-dot {
+    position: relative;
+    height: 4px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.event-rotator-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, rgba(214, 183, 108, 0.9), rgba(255, 245, 208, 0.95));
+}
+
+.event-rotator-dot.is-active::after {
+    animation: eventSlideFill 3000ms linear forwards;
+}
+
+@keyframes eventSlideFill {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .event-card {
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+
+    .event-rotator-dot.is-active::after {
+        animation: none;
+        transform: scaleX(1);
+    }
 }
 
 /* Banquet */

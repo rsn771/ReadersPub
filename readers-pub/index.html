@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readers Pub — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Readers Pub — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20260404-3">
+    <link rel="stylesheet" href="styles.css?v=20260404-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -266,24 +266,42 @@
                         <h2 class="display-title">Показываем, ради какого настроения сюда хочется прийти.</h2>
                     </div>
                     <div class="events-grid">
-                        <article class="event-card surface-card">
-                            <span class="event-tag">Ужин</span>
-                            <h3>Спокойный вечер вдвоем</h3>
-                            <p>Тёплый свет, удобная посадка и формат, в котором приятно задержаться подольше.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
-                        </article>
-                        <article class="event-card surface-card">
-                            <span class="event-tag">Компания</span>
-                            <h3>Шумная встреча с друзьями</h3>
-                            <p>Пиво, сеты на компанию, понятная кухня и пространство, где разговор идёт легко.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
-                        </article>
-                        <article class="event-card surface-card">
-                            <span class="event-tag">Веранда</span>
-                            <h3>Летний сценарий без лишней суеты</h3>
-                            <p>Пледы, воздух и более расслабленное настроение. Отдельный оффер для тёплого сезона.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать на веранде</a>
-                        </article>
+                        <div class="events-rotator surface-card" data-evening-rotator>
+                            <div class="event-rotator-dots" aria-hidden="true">
+                                <span class="event-rotator-dot is-active" data-evening-dot></span>
+                                <span class="event-rotator-dot" data-evening-dot></span>
+                                <span class="event-rotator-dot" data-evening-dot></span>
+                                <span class="event-rotator-dot" data-evening-dot></span>
+                            </div>
+
+                            <article class="event-card is-active" data-evening-slide data-event-theme="intro">
+                                <span class="event-tag">Форматы вечера</span>
+                                <h3>Одна карточка — несколько настроений для разного повода.</h3>
+                                <p>Каждые несколько секунд показываем разные сценарии, чтобы быстрее почувствовать вайб места.</p>
+                                <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
+                            </article>
+
+                            <article class="event-card" data-evening-slide data-event-theme="dinner" aria-hidden="true">
+                                <span class="event-tag">Ужин</span>
+                                <h3>Спокойный вечер вдвоем</h3>
+                                <p>Тёплый свет, удобная посадка и формат, в котором приятно задержаться подольше.</p>
+                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать стол</a>
+                            </article>
+
+                            <article class="event-card" data-evening-slide data-event-theme="company" aria-hidden="true">
+                                <span class="event-tag">Компания</span>
+                                <h3>Шумная встреча с друзьями</h3>
+                                <p>Пиво, сеты на компанию, понятная кухня и пространство, где разговор идёт легко.</p>
+                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать стол</a>
+                            </article>
+
+                            <article class="event-card" data-evening-slide data-event-theme="veranda" aria-hidden="true">
+                                <span class="event-tag">Веранда</span>
+                                <h3>Летний сценарий без лишней суеты</h3>
+                                <p>Пледы, воздух и более расслабленное настроение. Отдельный оффер для тёплого сезона.</p>
+                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать на веранде</a>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -419,6 +437,6 @@
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
 
-    <script src="script.js?v=20260404-1"></script>
+    <script src="script.js?v=20260404-2"></script>
 </body>
 </html>

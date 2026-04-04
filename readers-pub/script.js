@@ -86,7 +86,6 @@ function setupScrollReveal() {
         '.signature-card',
         '.gallery-copy',
         '.gallery-photo',
-        '.event-card',
         '.banquet-copy',
         '.banquet-form-shell',
         '.contacts-card',
@@ -136,6 +135,65 @@ function setupScrollReveal() {
     revealNodes.forEach((node) => observer.observe(node));
 }
 
+function setupEveningRotator() {
+    const rotator = document.querySelector('[data-evening-rotator]');
+    if (!rotator) return;
+
+    const slides = Array.from(rotator.querySelectorAll('[data-evening-slide]'));
+    const dots = Array.from(rotator.querySelectorAll('[data-evening-dot]'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (slides.length < 2) return;
+
+    let activeIndex = 0;
+    let rotateTimer = null;
+
+    function activateSlide(nextIndex) {
+        activeIndex = (nextIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, index) => {
+            const isActive = index === activeIndex;
+            const slideLink = slide.querySelector('.text-link');
+
+            slide.classList.toggle('is-active', isActive);
+            slide.setAttribute('aria-hidden', String(!isActive));
+
+            if (slideLink) {
+                slideLink.tabIndex = isActive ? 0 : -1;
+            }
+        });
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('is-active', index === activeIndex);
+        });
+    }
+
+    function stopRotation() {
+        if (!rotateTimer) return;
+        clearInterval(rotateTimer);
+        rotateTimer = null;
+    }
+
+    function startRotation() {
+        if (prefersReducedMotion || rotateTimer) return;
+        rotateTimer = window.setInterval(() => {
+            activateSlide(activeIndex + 1);
+        }, 3000);
+    }
+
+    activateSlide(0);
+    startRotation();
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopRotation();
+            return;
+        }
+
+        startRotation();
+    });
+}
+
 function setFormStatus(el, type, message, showBookingCallAction = false) {
     if (!el) return;
     if (!message) {
@@ -169,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const api = getApiBase();
 
     setupScrollReveal();
+    setupEveningRotator();
 
     const banquetForm = document.getElementById('banquetForm');
     const banquetStatus = document.getElementById('banquetFormStatus');
