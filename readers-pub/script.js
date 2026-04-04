@@ -1,3 +1,6 @@
+const BOOKING_PHONE_HREF = 'tel:+73412693001';
+const BOOKING_PHONE_LABEL = '+7 3412 693-001';
+
 function getApiBase() {
     return window.location.origin;
 }
@@ -133,14 +136,26 @@ function setupScrollReveal() {
     revealNodes.forEach((node) => observer.observe(node));
 }
 
-function setFormStatus(el, type, message) {
+function setFormStatus(el, type, message, showBookingCallAction = false) {
     if (!el) return;
     if (!message) {
-        el.textContent = '';
+        el.replaceChildren();
         el.className = 'form-status';
         return;
     }
-    el.textContent = message;
+
+    const textNode = document.createElement('span');
+    textNode.textContent = message;
+    el.replaceChildren(textNode);
+
+    if (showBookingCallAction) {
+        const phoneLink = document.createElement('a');
+        phoneLink.href = BOOKING_PHONE_HREF;
+        phoneLink.className = 'form-status-call';
+        phoneLink.textContent = `Позвонить по брони: ${BOOKING_PHONE_LABEL}`;
+        el.appendChild(phoneLink);
+    }
+
     el.className = `form-status is-visible ${type === 'success' ? 'is-success' : 'is-error'}`;
 }
 
@@ -238,18 +253,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     eventHintEl.className = payload.blocked_periods && payload.blocked_periods.length
                         ? 'form-status is-visible is-info'
                         : 'form-status is-visible is-success';
-                    eventHintEl.textContent = formatAvailabilityMessage(payload);
+                    eventHintEl.replaceChildren(formatAvailabilityMessage(payload));
                     return;
                 }
 
-                eventHintEl.className = payload.available
-                    ? 'form-status is-visible is-success'
-                    : 'form-status is-visible is-error';
-                eventHintEl.textContent = formatAvailabilityMessage(payload);
+                setFormStatus(
+                    eventHintEl,
+                    payload.available ? 'success' : 'error',
+                    formatAvailabilityMessage(payload),
+                    !payload.available
+                );
             } catch (err) {
                 ensureHintElement();
-                eventHintEl.className = 'form-status is-visible is-error';
-                eventHintEl.textContent = 'Не удалось проверить доступность: ' + err.message;
+                setFormStatus(
+                    eventHintEl,
+                    'error',
+                    'Не удалось проверить доступность: ' + err.message
+                );
             }
         }
 
@@ -271,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const availability = await fetchAvailability(api, dateStr, timeStr);
                 if (!availability.available) {
                     const msg = formatAvailabilityMessage(availability);
-                    setFormStatus(bookingStatus, 'error', msg);
+                    setFormStatus(bookingStatus, 'error', msg, true);
                     if (availability.next_available) {
                         bookingForm.querySelector('[name="time"]').value = availability.next_available.time;
                         await updateTimeRestriction();
