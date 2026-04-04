@@ -770,6 +770,10 @@ main {
     background: linear-gradient(180deg, transparent, rgba(5, 10, 8, 0.42) 24%, rgba(5, 10, 8, 0.86));
 }
 
+.event-static-card::after {
+    height: 54%;
+}
+
 .event-static-card[data-event-theme="intro"]::before,
 .event-card[data-event-theme="intro"]::before {
     background:
@@ -833,9 +837,9 @@ main {
 }
 
 .event-static-card h3 {
-    max-width: 340px;
-    font-size: clamp(2rem, 2.8vw, 3.2rem);
-    line-height: 0.98;
+    max-width: 300px;
+    font-size: clamp(1.55rem, 2vw, 2.35rem);
+    line-height: 1.02;
 }
 
 .event-static-card p,
@@ -848,10 +852,20 @@ main {
 }
 
 .event-static-card p {
-    max-width: 320px;
-    margin-top: 14px;
-    font-size: 0.92rem;
-    line-height: 1.65;
+    max-width: 300px;
+    margin-top: 12px;
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.event-static-card .event-tag {
+    padding: 9px 14px;
+    font-size: 0.74rem;
+}
+
+.event-static-card .text-link {
+    margin-top: 18px;
+    font-size: 0.88rem;
 }
 
 .event-static-card .text-link,
