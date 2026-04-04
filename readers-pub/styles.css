@@ -296,17 +296,6 @@ main {
     letter-spacing: 0.02em;
 }
 
-.logo-home {
-    display: inline-flex;
-    align-items: center;
-}
-
-.logo-image {
-    width: auto;
-    height: 56px;
-    object-fit: contain;
-    display: block;
-}
 
 .nav {
     display: flex;
@@ -1307,9 +1296,6 @@ main {
         gap: 14px;
     }
 
-    .logo-image {
-        height: 46px;
-    }
 
     .container {
         width: calc(100% - 32px);
@@ -1866,9 +1852,6 @@ main {
         font-size: 1.22rem;
     }
 
-    .logo-image {
-        height: 38px;
-    }
 
     .vk-link {
         font-size: 0.8rem;
