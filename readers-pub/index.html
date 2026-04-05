@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readers Pub — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Readers Pub — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20260404-7">
+    <link rel="stylesheet" href="styles.css?v=20260405-27">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -13,9 +13,11 @@
 <body>
     <header class="header">
         <div class="header-top">
-            <a href="index.html" class="logo">Readers Pub</a>
+            <a href="index.html" class="logo" aria-label="Readers Pub">
+                <img class="logo-mark" src="assets/photo-base.svg?v=20260405-1" alt="Readers Pub">
+            </a>
             <nav class="nav">
-                <a href="#story" class="nav-link">О нас</a>
+                <a href="#gallery" class="nav-link">Атмосфера</a>
                 <a href="#signature" class="nav-link">Хиты меню</a>
                 <a href="menu.html" class="nav-link">Меню</a>
                 <a href="#events" class="nav-link">Форматы вечера</a>
@@ -52,52 +54,23 @@
                         <a href="menu.html" class="btn-secondary">Посмотреть меню</a>
                     </div>
                     <div class="hero-highlights">
-                        <div class="highlight-chip">Центральная площадь</div>
-                        <div class="highlight-chip">Летняя веранда</div>
-                        <div class="highlight-chip">Уютный интерьер</div>
-                        <div class="highlight-chip">Банкетный формат</div>
+                        <div class="highlight-chip">
+                            <span class="highlight-value">12:00–00:00</span>
+                            <span class="highlight-note">Вс–Чт</span>
+                        </div>
+                        <div class="highlight-chip">
+                            <span class="highlight-value">12:00–02:00</span>
+                            <span class="highlight-note">Пт–Сб</span>
+                        </div>
+                        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="highlight-chip" target="_blank" rel="noopener">
+                            <span class="highlight-value">Пушкинская, 223</span>
+                            <span class="highlight-note">Легко найти</span>
+                        </a>
+                        <a href="tel:+73412693001" class="highlight-chip">
+                            <span class="highlight-value">+7 3412 693-001</span>
+                            <span class="highlight-note">Быстрая бронь</span>
+                        </a>
                     </div>
-                </div>
-                <div class="hero-panel surface-card">
-                    <p class="panel-label">Сегодня у нас хорошо для</p>
-                    <div class="hero-moments">
-                        <article class="moment-card">
-                            <span class="moment-number">01</span>
-                            <h2>Ужина вдвоем</h2>
-                            <p>Тёплый свет, спокойный ритм и блюда, которые хочется разделить.</p>
-                        </article>
-                        <article class="moment-card">
-                            <span class="moment-number">02</span>
-                            <h2>Встречи с друзьями</h2>
-                            <p>Пиво, сеты на компанию и правильное настроение без лишней суеты.</p>
-                        </article>
-                        <article class="moment-card">
-                            <span class="moment-number">03</span>
-                            <h2>Повода отметить</h2>
-                            <p>День рождения, корпоратив или камерный банкет без лишней суеты.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="trust-strip">
-            <div class="container trust-grid">
-                <div class="trust-item">
-                    <span class="trust-value">12:00–00:00</span>
-                    <span class="trust-label">Вс–Чт</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-value">12:00–02:00</span>
-                    <span class="trust-label">Пт–Сб</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-value">Пушкинская, 223</span>
-                    <span class="trust-label">Легко найти</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-value">+7 3412 693-001</span>
-                    <span class="trust-label">Быстрая бронь</span>
                 </div>
             </div>
         </section>
@@ -111,7 +84,7 @@
                     <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="mobile-action-card" target="_blank" rel="noopener">Маршрут</a>
                 </div>
                 <div class="mobile-jump-nav">
-                    <a href="#signature">Хиты</a>
+                    <a href="#signature">Кухня</a>
                     <a href="#events">Форматы</a>
                     <a href="#services">Банкеты</a>
                     <a href="#contacts">Контакты</a>
@@ -119,104 +92,75 @@
             </div>
         </section>
 
-        <section id="story" class="story-section section-shell">
-            <div class="container story-grid">
-                <div class="mobile-section-intro surface-card">
-                    <span class="mobile-section-label">Почему к нам приходят</span>
-                    <span class="mobile-section-title">Атмосфера, кухня, бар и формат вечера</span>
-                    <span class="mobile-section-summary">Коротко о том, за что выбирают Readers Pub.</span>
-                </div>
-                <div class="mobile-section-panel">
-                    <div class="story-copy">
-                        <p class="section-eyebrow">Почему к нам приходят</p>
-                        <h2 class="display-title">Не просто ресторан, а место для правильного настроения.</h2>
-                        <p class="lead-text">
-                            <span class="desktop-copy">
-                                Readers Pub соединяет английский характер, тёплый интерьер и живой городской ритм. Здесь удобно
-                                как начать вечер, так и остаться до позднего часа за разговорами, ужином или ещё одним бокалом.
-                            </span>
-                            <span class="mobile-copy">
-                                Место для ужина, встречи или вечера с компанией без лишнего пафоса.
-                            </span>
-                        </p>
-                    </div>
-                    <div class="story-cards">
-                        <article class="feature-card surface-card">
-                            <h3>Атмосфера</h3>
-                            <p>Дерево, мягкий свет, глубокие оттенки и ощущение взрослого уюта без пафоса.</p>
-                        </article>
-                        <article class="feature-card surface-card">
-                            <h3>Кухня</h3>
-                            <p>Европейская классика и аутентичные удмуртские позиции в одном сильном меню.</p>
-                        </article>
-                        <article class="feature-card surface-card">
-                            <h3>Бар</h3>
-                            <p>Импортное пиво, коктейли и понятная карта напитков для любого сценария вечера.</p>
-                        </article>
-                        <article class="feature-card surface-card">
-                            <h3>Повод</h3>
-                            <p>Свидание, встреча, семейный ужин или банкет: пространство гибко под разный сценарий вечера.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="signature" class="signature-section section-shell">
             <div class="container">
-                <div class="mobile-section-intro surface-card">
-                    <span class="mobile-section-label">Хиты</span>
-                    <span class="mobile-section-title">Три позиции, с которых проще всего начать</span>
-                    <span class="mobile-section-summary">Баффало, сет на компанию и локальный акцент кухни.</span>
-                </div>
                 <div class="mobile-section-panel">
-                    <div class="section-heading centered">
-                        <p class="section-eyebrow">Хиты, с которых приятно начать</p>
-                        <h2 class="display-title">Фирменные позиции, которые продают вечер сами.</h2>
-                    </div>
-                    <div class="signature-grid">
-                        <article class="signature-card">
-                            <img class="signature-media" src="assets/buffalo-wings.jpg?v=20260329" alt="Крылышки Баффало">
-                            <div class="signature-content">
-                                <span class="signature-type">Закуска к пиву</span>
-                                <h3>Крылышки Баффало</h3>
-                                <p>Острая глазурь, сочная текстура и идеальный повод заказать ещё один напиток.</p>
-                                <span class="signature-price">580 ₽</span>
+                    <article class="kitchen-showcase">
+                        <img class="kitchen-showcase-media" src="assets/kitchen-showcase.png?v=20260405-8" alt="Блюда кухни Readers Pub">
+                        <div class="container kitchen-showcase-inner">
+                            <div class="kitchen-showcase-copy">
+                                <p class="section-eyebrow">Кухня Readers Pub</p>
+                                <h2 class="display-title">Европейская кухня с Удмуртским акцентом</h2>
+                                <p class="lead-text">
+                                    <span class="desktop-copy">
+                                        В меню Readers Pub европейская база соединяется с локальными акцентами и подачей без лишней тяжести.
+                                        Здесь легко собрать ужин вдвоём, длинный стол для компании или просто выбрать несколько сильных позиций
+                                        под пиво, вино и долгий вечер.
+                                    </span>
+                                    <span class="mobile-copy">
+                                        Европейская база, локальные акценты и блюда, которые удобно брать и на ужин, и на компанию.
+                                    </span>
+                                </p>
+                                <div class="kitchen-showcase-points">
+                                    <span class="kitchen-point">Пицца и горячие блюда</span>
+                                    <span class="kitchen-point">Закуски к пиву</span>
+                                    <span class="kitchen-point">Локальные акценты</span>
+                                </div>
+                                <div class="kitchen-showcase-actions">
+                                    <a href="menu.html" class="btn-secondary">Открыть всё меню</a>
+                                </div>
                             </div>
-                        </article>
-                        <article class="signature-card">
-                            <img class="signature-media" src="https://static.tildacdn.com/tild3939-3231-4130-a632-316232306663/IMG_1557.jpg" alt="Интерьер Readers Pub">
-                            <div class="signature-content">
-                                <span class="signature-type">На компанию</span>
-                                <h3>Сет Readers</h3>
-                                <p>Большая закуска для долгих разговоров, тостов и шумных встреч с друзьями.</p>
-                                <span class="signature-price">2790 ₽</span>
-                            </div>
-                        </article>
-                        <article class="signature-card">
-                            <img class="signature-media" src="assets/posikunchiki.jpg?v=20260329" alt="Перепечи и посикунчики">
-                            <div class="signature-content">
-                                <span class="signature-type">Локальный акцент</span>
-                                <h3>Перепечи и посикунчики</h3>
-                                <p>Та самая деталь, из-за которой место запоминается, а не растворяется среди остальных.</p>
-                                <span class="signature-price">от 400 ₽</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="section-actions">
-                        <a href="menu.html" class="btn-secondary">Открыть всё меню</a>
-                    </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="gallery-section section-shell">
-            <div class="container gallery-grid">
-                <div class="mobile-section-intro surface-card">
-                    <span class="mobile-section-label">Атмосфера</span>
-                    <span class="mobile-section-title">Свет, дерево, посадка и веранда</span>
-                    <span class="mobile-section-summary">Короткий взгляд на пространство и настроение зала.</span>
+        <section class="bar-section section-shell">
+            <div class="container">
+                <div class="mobile-section-panel">
+                    <article class="bar-showcase">
+                        <div class="container bar-showcase-inner">
+                            <div class="bar-showcase-copy">
+                                <p class="section-eyebrow">Бар Readers Pub</p>
+                                <h2 class="display-title">Бар, который собирает вечер вокруг себя.</h2>
+                                <p class="lead-text">
+                                    <span class="desktop-copy">
+                                        В барной карте Readers Pub собраны импортное пиво, классический крепкий алкоголь,
+                                        вино и коктейли, которые легко подобрать и под ужин, и под длинный разговор.
+                                        Это спокойная взрослая подборка без визуального шума, но с достаточной глубиной выбора.
+                                    </span>
+                                    <span class="mobile-copy">
+                                        Импортное пиво, вино, крепкий бар и понятная подборка напитков под любой вечер.
+                                    </span>
+                                </p>
+                                <div class="bar-showcase-points">
+                                    <span class="bar-point">Импортное пиво</span>
+                                    <span class="bar-point">Классические коктейли</span>
+                                    <span class="bar-point">Вино и крепкий бар</span>
+                                </div>
+                                <div class="bar-showcase-actions">
+                                    <a href="menu.html" class="btn-secondary">Смотреть меню бара</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section section-shell">
+            <div class="container gallery-grid">
                 <div class="mobile-section-panel">
                     <div class="gallery-copy">
                         <p class="section-eyebrow">Атмосфера пространства</p>
