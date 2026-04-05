@@ -77,6 +77,8 @@ function setupScrollReveal() {
 
     const selectorGroups = [
         '.hero-copy',
+        '.kitchen-showcase-copy',
+        '.bar-showcase-copy',
         '.hero-panel',
         '.trust-item',
         '.mobile-action-card',

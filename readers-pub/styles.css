@@ -166,6 +166,58 @@ main {
     .has-motion .signature-card[data-reveal] {
         transform: translate3d(0, 28px, 0) scale(0.978);
     }
+
+    .has-motion .hero-copy > *,
+    .has-motion .kitchen-showcase-copy > *,
+    .has-motion .bar-showcase-copy > * {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+        filter: blur(2px);
+        transition:
+            opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 860ms cubic-bezier(0.22, 1, 0.36, 1),
+            filter 860ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: calc(var(--reveal-delay, 0ms) + var(--text-stagger, 0ms));
+        will-change: opacity, transform, filter;
+    }
+
+    .has-motion .hero-copy.is-visible > *,
+    .has-motion .kitchen-showcase-copy.is-visible > *,
+    .has-motion .bar-showcase-copy.is-visible > * {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        filter: blur(0);
+    }
+
+    .has-motion .hero-copy > :nth-child(1),
+    .has-motion .kitchen-showcase-copy > :nth-child(1),
+    .has-motion .bar-showcase-copy > :nth-child(1) {
+        --text-stagger: 70ms;
+    }
+
+    .has-motion .hero-copy > :nth-child(2),
+    .has-motion .kitchen-showcase-copy > :nth-child(2),
+    .has-motion .bar-showcase-copy > :nth-child(2) {
+        --text-stagger: 140ms;
+    }
+
+    .has-motion .hero-copy > :nth-child(3),
+    .has-motion .kitchen-showcase-copy > :nth-child(3),
+    .has-motion .bar-showcase-copy > :nth-child(3) {
+        --text-stagger: 210ms;
+    }
+
+    .has-motion .hero-copy > :nth-child(4),
+    .has-motion .kitchen-showcase-copy > :nth-child(4),
+    .has-motion .bar-showcase-copy > :nth-child(4) {
+        --text-stagger: 280ms;
+    }
+
+    .has-motion .hero-copy > :nth-child(5),
+    .has-motion .kitchen-showcase-copy > :nth-child(5),
+    .has-motion .bar-showcase-copy > :nth-child(5) {
+        --text-stagger: 350ms;
+    }
 }
 
 .section-title {
