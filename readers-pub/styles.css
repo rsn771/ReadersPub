@@ -1503,11 +1503,6 @@ main {
     color: var(--text-main);
 }
 
-.mobile-banquet-note,
-.mobile-banquet-actions {
-    display: none;
-}
-
 .banquet-form,
 .booking-form form {
     display: grid;
@@ -2500,10 +2495,7 @@ main {
     .gallery-copy .display-title,
     .gallery-copy .lead-text,
     #signature .section-heading,
-    #events .section-heading,
-    .banquet-copy .section-eyebrow,
-    .banquet-copy .display-title,
-    .banquet-copy .lead-text {
+    #events .section-heading {
         display: none;
     }
 
@@ -2561,45 +2553,40 @@ main {
         gap: 14px;
     }
 
+    /* Банкеты на телефоне: заголовок и короткое описание прямо в разделе
+       (без отдельной карточки-окна), затем телефон и форма заявки.
+       Плашки форматов «Корпоративы / Свадьбы / …» не показываем. */
+    .banquet-copy .section-eyebrow { margin-bottom: 10px; }
+
+    .banquet-copy .display-title {
+        font-size: clamp(1.5rem, 7.5vw, 2rem);
+        line-height: 1.1;
+    }
+
+    .banquet-copy .lead-text {
+        margin-top: 12px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
     .banquet-benefits {
-        margin-top: 0;
+        display: none;
     }
 
     .banquet-contact {
-        margin-top: 14px;
+        margin-top: 16px;
     }
 
-    .mobile-banquet-note,
-    .mobile-banquet-actions {
-        display: block;
-    }
-
-    .mobile-banquet-note {
-        margin-bottom: 14px;
-        color: var(--text-muted);
-        font-size: 0.88rem;
-        line-height: 1.5;
-    }
-
-    .mobile-banquet-actions {
-        display: grid;
-        gap: 10px;
-        margin-bottom: 6px;
-    }
-
-    .banquet-form {
-        display: none;
-    }
-
-    .privacy-link {
-        display: none;
+    .banquet-form-shell {
+        margin-top: 4px;
     }
 }
 
 @media (max-width: 480px) {
+    /* Лого на телефоне — вровень с бургером (44px), шапка от этого не растёт */
     .logo-mark {
-        height: 28px;
-        max-width: min(196px, 46vw);
+        height: 44px;
+        max-width: min(200px, 48vw);
     }
 
 
@@ -3435,6 +3422,42 @@ main {
     .cta-card-actions .btn-secondary { width: 100%; }
     .cta-card-tags span { font-size: 0.82rem; padding: 7px 13px; }
 
+    /* --- Меню на телефоне: «Меню» → «Кухня и барная карта» → фото 4:3 → кнопка.
+       Раскрываем .cta-card-copy (display: contents), чтобы её содержимое стало
+       ячейками той же сетки и фото можно было поставить между заголовком
+       и кнопкой. Своё z-index возвращаем детям — иначе они уйдут
+       под полупрозрачную подложку .cta-card::before. --- */
+    #menu-cta .cta-card--split { gap: 16px; }
+    #menu-cta .cta-card-copy { display: contents; }
+    #menu-cta .cta-card-copy > * { position: relative; z-index: 1; }
+
+    #menu-cta .section-eyebrow { order: 1; margin-bottom: 0; }
+    #menu-cta .cta-card-copy .display-title { order: 2; margin: 0; }
+    #menu-cta .cta-card-copy .lead-text { order: 3; }
+    #menu-cta .cta-card-photo { order: 4; }
+    #menu-cta .cta-card-actions { order: 5; margin-top: 0; }
+
+    /* короткое описание ровно в две строки (длинное — только на ПК) */
+    #menu-cta .cta-card-copy .lead-text {
+        margin-top: -4px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* плашки категорий на телефоне не показываем */
+    #menu-cta .cta-card-tags { display: none; }
+
+    /* фото — ровно 4:3, вписано по ширине карточки, ничего не обрезается */
+    #menu-cta .cta-card-photo {
+        min-height: 0;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+    }
+
     /* Подвал: не прижимать к нижнему доку */
     .footer { padding: 40px 0 120px; }
     .footer-legal { flex-direction: column; gap: 8px; }
@@ -3442,9 +3465,13 @@ main {
 
 /* Совсем узкие экраны */
 @media (max-width: 380px) {
-    .logo-mark { height: 34px; }
     .strip-card-btn { font-size: 0.88rem; padding: 8px 14px; }
     .cta-card { padding: 28px 16px; }
+}
+
+/* Самые узкие (320–360px): лого чуть меньше, чтобы не подпирало бургер */
+@media (max-width: 360px) {
+    .logo-mark { height: 38px; }
 }
 
 /* ===== Быстрая форма брони в секции «Бронирование» ===== */
@@ -3533,7 +3560,21 @@ main {
    =================================================================== */
 .promo-banner {
     width: 100%;
-    scroll-margin-top: 90px;
+}
+
+/* Переходы по якорям: шапка зафиксирована сверху (81px на ПК, ~67px на планшете,
+   ~66px на телефоне), поэтому отодвигаем цель прокрутки —
+   иначе заголовок раздела уезжает под неё */
+main > section[id],
+.strip-card[id] {
+    scroll-margin-top: 96px;
+}
+
+@media (max-width: 860px) {
+    main > section[id],
+    .strip-card[id] {
+        scroll-margin-top: 82px;
+    }
 }
 
 .promo-banner-media {
