@@ -34,7 +34,7 @@ BOT_TOKEN = (
     os.environ.get("TELEGRAM_BOT_TOKEN") or
     ""
 ).strip()
-_owner_str = os.environ.get("OWNER_IDS", "5651149188,728379071")
+_owner_str = os.environ.get("OWNER_IDS", "")
 OWNER_IDS = [int(x.strip()) for x in _owner_str.split(",") if x.strip()]
 
 SITE_URL = os.environ.get("READERS_PUB_URL", "https://readerspub.ru")

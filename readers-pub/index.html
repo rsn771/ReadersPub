@@ -3,55 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readers Pub — атмосферный паб в центре Ижевска</title>
-    <meta name="description" content="Readers Pub — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20260405-28">
+    <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
+    <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
+    <link rel="stylesheet" href="styles.css?v=20260919-9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="header-top">
-            <a href="index.html" class="logo" aria-label="Readers Pub">
-                <img class="logo-mark" src="assets/photo-base.svg?v=20260405-1" alt="Readers Pub">
+            <a href="index.html" class="logo" aria-label="Бар Читателей">
+                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
             </a>
             <nav class="nav">
-                <a href="#gallery" class="nav-link">Атмосфера</a>
-                <a href="#signature" class="nav-link">Хиты меню</a>
+                <a href="#card-afisha" class="nav-link">Афиша</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="#events" class="nav-link">Форматы вечера</a>
-                <a href="#services" class="nav-link">Банкеты</a>
+                <a href="menu.html" class="nav-link">Бизнес-ланчи</a>
+                <a href="#promo" class="nav-link">Акции</a>
+                <a href="#card-bankety" class="nav-link">Банкеты</a>
                 <a href="#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
+                <a href="#contacts" class="nav-link">Сертификаты</a>
             </nav>
             <div class="header-side">
                 <span class="header-address">Пушкинская, 223</span>
                 <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
             </div>
+            <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
+        <nav class="mobile-nav" id="mobileNav" hidden>
+            <a href="#card-afisha">Афиша</a>
+            <a href="menu.html">Меню</a>
+            <a href="menu.html">Бизнес-ланчи</a>
+            <a href="#promo">Акции</a>
+            <a href="#services">Банкеты</a>
+            <a href="#contacts">Контакты</a>
+            <a href="bronirovaniestola.html" class="mobile-nav-cta">Забронировать стол</a>
+        </nav>
     </header>
 
     <main>
         <section id="hero" class="hero hero-layout">
-            <div class="hero-bg"></div>
-            <div class="hero-overlay"></div>
+            <!-- ============================================================
+                 БАННЕРЫ ГЛАВНОЙ СТРАНИЦЫ — пока пусто (серый фон-заглушка).
+
+                 Форматы для маркетолога (подробно — README, раздел «Баннеры»):
+                   ПК       1920 × 1080   (16:9)
+                   Планшет  1536 × 2048   (3:4)
+                   Мобилка  1080 × 1920   (9:16)
+
+                 Как добавить баннер:
+                 1) прогнать исходник: python3 tools/make-hero-crops.py фото.jpg --name hero-1
+                 2) раскомментировать блок <picture> ниже (по одному на баннер).
+                 ============================================================ -->
+            <div class="hero-photos" id="heroPhotos" aria-hidden="true">
+                <!--
+                <picture class="hero-photo is-active">
+                    <source media="(max-width: 640px)" srcset="assets/hero/hero-1-mobile.webp">
+                    <source media="(max-width: 1024px)" srcset="assets/hero/hero-1-tablet.webp">
+                    <img src="assets/hero/hero-1-desktop.webp" alt="" fetchpriority="high" decoding="async">
+                </picture>
+                -->
+            </div>
+            <div class="hero-scrim"></div>
+
+            <!-- Мобильный первый экран: лого + навигация в столбик (вместо слайдера) -->
+            <div class="hero-mobile">
+                <img class="hero-mobile-logo" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
+                <nav class="hero-mobile-nav" aria-label="Разделы">
+                    <a href="#card-afisha">Афиша</a>
+                    <a href="menu.html">Меню</a>
+                    <a href="menu.html">Бизнес-ланчи</a>
+                    <a href="#promo">Акции</a>
+                    <a href="#card-bankety">Банкеты</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="bronirovaniestola.html" class="hero-mobile-cta">Забронировать стол</a>
+                </nav>
+            </div>
+
+            <button type="button" class="hero-edge hero-edge--prev" id="heroPrev" aria-label="Предыдущий слайд">
+                <span class="hero-edge-ico" aria-hidden="true">‹</span>
+            </button>
+            <button type="button" class="hero-edge hero-edge--next" id="heroNext" aria-label="Следующий слайд">
+                <span class="hero-edge-ico" aria-hidden="true">›</span>
+            </button>
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <p class="hero-kicker">Readers Pub • центр Ижевска • вечер с характером</p>
-                    <h1 class="hero-title">Атмосферный паб, в который хочется возвращаться.</h1>
-                    <p class="hero-description">
-                        <span class="desktop-copy">
-                            Европейская кухня, удмуртские гастрономические акценты, большой выбор пива, мягкий свет,
-                            живая атмосфера и удобный формат для встреч, свиданий, компаний и событий.
-                        </span>
-                        <span class="mobile-copy">
-                            Кухня, бар, веранда и удобная бронь в центре города.
-                        </span>
-                    </p>
-                    <div class="hero-actions">
-                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-                        <a href="menu.html" class="btn-secondary">Посмотреть меню</a>
+                    <div class="hero-slider" id="heroSlider" tabindex="0" aria-roledescription="карусель" aria-label="Разделы Бара Читателей">
+                        <div class="hero-viewport">
+                            <div class="hero-slides" id="heroSlides">
+
+                                <article class="hero-slide is-active" role="group" aria-roledescription="слайд" aria-label="Искусство вкуса">
+                                    <p class="hero-script">Искусство вкуса</p>
+                                    <h1 class="hero-title hero-title--caps" data-content="home.hero.title">в каждой детали</h1>
+                                    <p class="hero-description" data-content="home.hero.subtitle">Пространство с атмосферой старинной библиотеки и уютной гостиной: европейская кухня, авторский бар и вечера, куда хочется возвращаться.</p>
+                                    <div class="hero-actions">
+                                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
+                                        <a href="menu.html" class="btn-secondary">Посмотреть меню</a>
+                                    </div>
+                                </article>
+
+                                <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Атмосфера">
+                                    <p class="hero-script">Атмосфера</p>
+                                    <h2 class="hero-title hero-title--caps">старинной библиотеки</h2>
+                                    <p class="hero-description">Мягкий свет, дерево и книги, уютная посадка и негромкая музыка — место, где вечер идёт в своём ритме.</p>
+                                    <div class="hero-actions">
+                                        <a href="#card-afisha" class="btn-primary">Смотреть афишу</a>
+                                        <a href="#contacts" class="btn-secondary">Как нас найти</a>
+                                    </div>
+                                </article>
+
+                                <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Вечера">
+                                    <p class="hero-script">Вечера,</p>
+                                    <h2 class="hero-title hero-title--caps">куда хочется возвращаться</h2>
+                                    <p class="hero-description">Ужин вдвоём, встреча с компанией или частное событие — соберём вечер под ваш повод и настроение.</p>
+                                    <div class="hero-actions">
+                                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
+                                        <a href="#card-bankety" class="btn-secondary">Банкеты и события</a>
+                                    </div>
+                                </article>
+
+                            </div>
+                        </div>
+                        <div class="hero-controls">
+                            <div class="hero-dots" id="heroDots" role="tablist" aria-label="Выбор слайда"></div>
+                        </div>
                     </div>
                     <div class="hero-highlights">
                         <div class="highlight-chip">
@@ -84,77 +162,186 @@
                     <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="mobile-action-card" target="_blank" rel="noopener">Маршрут</a>
                 </div>
                 <div class="mobile-jump-nav">
-                    <a href="#signature">Кухня</a>
-                    <a href="#events">Форматы</a>
+                    <a href="#card-afisha">Афиша</a>
+                    <a href="menu.html">Меню</a>
                     <a href="#services">Банкеты</a>
                     <a href="#contacts">Контакты</a>
                 </div>
             </div>
         </section>
 
-        <section id="signature" class="signature-section section-shell">
+        <section id="sections" class="sections-strip">
             <div class="container">
-                <div class="mobile-section-panel">
-                    <article class="kitchen-showcase">
-                        <img class="kitchen-showcase-media" src="assets/kitchen-showcase.png?v=20260405-8" alt="Блюда кухни Readers Pub">
-                        <div class="container kitchen-showcase-inner">
-                            <div class="kitchen-showcase-copy">
-                                <p class="section-eyebrow">Кухня Readers Pub</p>
-                                <h2 class="display-title">Европейская кухня с Удмуртским акцентом</h2>
-                                <p class="lead-text">
-                                    <span class="desktop-copy">
-                                        В меню Readers Pub европейская база соединяется с локальными акцентами и подачей без лишней тяжести.
-                                        Здесь легко собрать ужин вдвоём, длинный стол для компании или просто выбрать несколько сильных позиций
-                                        под пиво, вино и долгий вечер.
-                                    </span>
-                                    <span class="mobile-copy">
-                                        Европейская база, локальные акценты и блюда, которые удобно брать и на ужин, и на компанию.
-                                    </span>
-                                </p>
-                                <div class="kitchen-showcase-points">
-                                    <span class="kitchen-point">Пицца и горячие блюда</span>
-                                    <span class="kitchen-point">Закуски к пиву</span>
-                                    <span class="kitchen-point">Локальные акценты</span>
-                                </div>
-                                <div class="kitchen-showcase-actions">
-                                    <a href="menu.html" class="btn-secondary">Открыть всё меню</a>
-                                </div>
-                            </div>
+                <div class="strip-grid">
+                    <a class="strip-card" id="card-afisha" href="standup.html">
+                        <div class="strip-card-media strip-card-media--navy">
+                            <span class="strip-card-btn">Афиша</span>
                         </div>
-                    </article>
+                    </a>
+                    <a class="strip-card" id="card-menu" href="menu.html">
+                        <div class="strip-card-media strip-card-media--wine">
+                            <span class="strip-card-btn">Меню</span>
+                        </div>
+                    </a>
+                    <a class="strip-card" id="card-bankety" href="#services">
+                        <div class="strip-card-media strip-card-media--navy">
+                            <span class="strip-card-btn">Банкеты</span>
+                        </div>
+                    </a>
+                    <a class="strip-card" id="card-promo" href="#promo">
+                        <div class="strip-card-media strip-card-media--wine">
+                            <span class="strip-card-btn">Акции</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="bar-section section-shell">
-            <div class="container">
-                <div class="mobile-section-panel">
-                    <article class="bar-showcase">
-                        <div class="container bar-showcase-inner">
-                            <div class="bar-showcase-copy">
-                                <p class="section-eyebrow">Бар Readers Pub</p>
-                                <h2 class="display-title">Бар, который собирает вечер вокруг себя.</h2>
-                                <p class="lead-text">
-                                    <span class="desktop-copy">
-                                        В барной карте Readers Pub собраны импортное пиво, классический крепкий алкоголь,
-                                        вино и коктейли, которые легко подобрать и под ужин, и под длинный разговор.
-                                        Это спокойная взрослая подборка без визуального шума, но с достаточной глубиной выбора.
-                                    </span>
-                                    <span class="mobile-copy">
-                                        Импортное пиво, вино, крепкий бар и понятная подборка напитков под любой вечер.
-                                    </span>
-                                </p>
-                                <div class="bar-showcase-points">
-                                    <span class="bar-point">Импортное пиво</span>
-                                    <span class="bar-point">Классические коктейли</span>
-                                    <span class="bar-point">Вино и крепкий бар</span>
-                                </div>
-                                <div class="bar-showcase-actions">
-                                    <a href="menu.html" class="btn-secondary">Смотреть меню бара</a>
-                                </div>
-                            </div>
+        <section id="afisha-feed" class="afisha-feed section-shell">
+            <div class="container afisha-feed-head">
+                <p class="section-eyebrow">Афиша</p>
+                <h2 class="display-title">Ближайшие события</h2>
+            </div>
+            <div class="feed-viewport container">
+                <div class="feed-track" id="feedTrack">
+
+                    <article class="feed-card">
+                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-body">
+                            <span class="feed-date">Пт · 12 сентября · 20:00</span>
+                            <h3 class="feed-title">Стендап-вечер</h3>
+                            <p class="feed-text">Открытый микрофон и приглашённые комики.</p>
                         </div>
                     </article>
+
+                    <article class="feed-card">
+                        <div class="feed-card-media feed-card-media--wine"></div>
+                        <div class="feed-card-body">
+                            <span class="feed-date">Сб · 13 сентября · 21:00</span>
+                            <h3 class="feed-title">Живая музыка</h3>
+                            <p class="feed-text">Акустический сет по вечерам выходных.</p>
+                        </div>
+                    </article>
+
+                    <article class="feed-card">
+                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-body">
+                            <span class="feed-date">Чт · 18 сентября · 19:30</span>
+                            <h3 class="feed-title">Квиз «Читатели»</h3>
+                            <p class="feed-text">Командная викторина с призами от бара.</p>
+                        </div>
+                    </article>
+
+                    <article class="feed-card">
+                        <div class="feed-card-media feed-card-media--wine"></div>
+                        <div class="feed-card-body">
+                            <span class="feed-date">Пт · 19 сентября · 20:00</span>
+                            <h3 class="feed-title">Винный вечер</h3>
+                            <p class="feed-text">Дегустация и неспешные разговоры под бокал.</p>
+                        </div>
+                    </article>
+
+                    <article class="feed-card">
+                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-body">
+                            <span class="feed-date">Сб · 20 сентября · 21:00</span>
+                            <h3 class="feed-title">Джем-сейшн</h3>
+                            <p class="feed-text">Свободный микрофон для музыкантов города.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+            <div class="container afisha-feed-foot">
+                <a href="standup.html" class="btn-secondary afisha-feed-all">Смотреть всю афишу</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             АКЦИИ — рекламный баннер, только фото, без текста поверх.
+             Ровно ДВА формата, третьего быть не должно (подробно — README):
+               ПК и планшет (шире 860px)   1920 × 1440  (4:3 горизонтально)
+               Телефон      (860px и уже)  1080 × 1440  (3:4 вертикально)
+             Углы прямые, изображение не обрезается — пропорции жёстко
+             зафиксированы в CSS (.promo-banner-media).
+
+             Как поставить баннер:
+             1) положить файлы в assets/promo/
+                promo-desktop.webp (1920×720) и promo-mobile.webp (1080×1350);
+             2) раскомментировать блок <picture> ниже.
+             Нужна ссылка с баннера — обернуть <picture> в <a href="...">.
+             ============================================================ -->
+        <section id="promo" class="promo-banner" aria-label="Акции">
+            <div class="promo-banner-media">
+                <!--
+                <picture>
+                    <source media="(max-width: 860px)" srcset="assets/promo/promo-mobile.webp">
+                    <img src="assets/promo/promo-desktop.webp" alt="Акции Бара Читателей"
+                         width="1920" height="1440" loading="lazy" decoding="async">
+                </picture>
+                -->
+            </div>
+        </section>
+
+        <section id="booking" class="cta-band section-shell">
+            <div class="container">
+                <div class="cta-card cta-card--wine cta-card--tall">
+                    <div class="cta-card-copy">
+                        <p class="section-eyebrow">Бронирование</p>
+                        <h2 class="display-title">Забронируйте вечер, а не просто стол</h2>
+                        <p class="lead-text">Оставьте заявку онлайн — подготовим комфортную посадку для встречи, свидания, компании или вечера после работы.</p>
+                        <div class="cta-card-meta">
+                            <div class="cta-meta-item"><span>Вс–Чт</span><strong>12:00–00:00</strong></div>
+                            <div class="cta-meta-item"><span>Пт–Сб</span><strong>12:00–02:00</strong></div>
+                            <div class="cta-meta-item"><span>Адрес</span><strong>Пушкинская, 223</strong></div>
+                        </div>
+                        <div class="cta-card-actions">
+                            <a href="tel:+73412693001" class="btn-secondary">Позвонить</a>
+                        </div>
+                    </div>
+
+                    <form class="booking-quick" id="quickBookingForm" novalidate>
+                        <p class="booking-quick-title">Оставить заявку</p>
+                        <div class="booking-quick-field">
+                            <label for="qb-name">Имя</label>
+                            <input type="text" id="qb-name" name="name" placeholder="Как к вам обращаться" autocomplete="name" required>
+                        </div>
+                        <div class="booking-quick-field">
+                            <label for="qb-date">Дата</label>
+                            <input type="date" id="qb-date" name="date" required>
+                        </div>
+                        <div class="booking-quick-field">
+                            <label for="qb-phone">Телефон</label>
+                            <input type="tel" id="qb-phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+                        </div>
+                        <button type="submit" class="btn-primary booking-quick-submit">Отправить заявку</button>
+                        <p class="booking-quick-status" id="quickBookingStatus" aria-live="polite"></p>
+                        <p class="booking-quick-note">Мы перезвоним, чтобы подтвердить время и количество гостей.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu-cta" class="cta-band section-shell">
+            <div class="container">
+                <div class="cta-card cta-card--navy cta-card--split">
+                    <div class="cta-card-copy">
+                        <p class="section-eyebrow">Меню</p>
+                        <h2 class="display-title">Кухня и барная карта</h2>
+                        <p class="lead-text">Европейская кухня с локальными акцентами, пицца и закуски к пиву, авторский бар — вино, коктейли и крепкий алкоголь.</p>
+                        <div class="cta-card-tags">
+                            <span>Горячее</span>
+                            <span>Пицца</span>
+                            <span>Закуски к пиву</span>
+                            <span>Вино</span>
+                            <span>Коктейли</span>
+                            <span>Пиво</span>
+                        </div>
+                        <div class="cta-card-actions">
+                            <a href="menu.html" class="btn-primary">Открыть меню</a>
+                        </div>
+                    </div>
+                    <div class="cta-card-photo" aria-hidden="true"></div>
                 </div>
             </div>
         </section>
@@ -182,7 +369,7 @@
                     </div>
                     <div class="gallery-stack">
                         <article class="gallery-photo gallery-photo-main">
-                            <div class="photo-caption">Основной зал</div>
+                            <div class="photo-caption">Атмосферный зал</div>
                         </article>
                         <div class="gallery-side">
                             <article class="gallery-photo gallery-photo-secondary">
@@ -190,82 +377,6 @@
                             </article>
                             <article class="gallery-photo gallery-photo-tertiary">
                                 <div class="photo-caption">Веранда</div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="events" class="events-section section-shell">
-            <div class="container">
-                <div class="mobile-section-intro surface-card">
-                    <span class="mobile-section-label">Форматы вечера</span>
-                    <span class="mobile-section-title">Ужин, компания или летняя веранда</span>
-                    <span class="mobile-section-summary">Три сценария, ради которых сюда удобно прийти.</span>
-                </div>
-                <div class="mobile-section-panel">
-                    <div class="section-heading">
-                        <p class="section-eyebrow">Форматы вечера</p>
-                        <h2 class="display-title">Показываем, ради какого настроения сюда хочется прийти.</h2>
-                    </div>
-                    <div class="events-desktop-grid" aria-label="Форматы вечера">
-                        <article class="event-static-card surface-card" data-event-theme="dinner">
-                            <span class="event-tag">Ужин</span>
-                            <h3>Спокойный вечер вдвоем</h3>
-                            <p>Тёплый свет, удобная посадка и формат, в котором приятно задержаться подольше.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
-                        </article>
-
-                        <article class="event-static-card surface-card" data-event-theme="company">
-                            <span class="event-tag">Компания</span>
-                            <h3>Шумная встреча с друзьями</h3>
-                            <p>Пиво, сеты на компанию, понятная кухня и пространство, где разговор идёт легко.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
-                        </article>
-
-                        <article class="event-static-card surface-card" data-event-theme="veranda">
-                            <span class="event-tag">Веранда</span>
-                            <h3>Летний сценарий без лишней суеты</h3>
-                            <p>Пледы, воздух и более расслабленное настроение. Отдельный оффер для тёплого сезона.</p>
-                            <a href="bronirovaniestola.html" class="text-link">Забронировать на веранде</a>
-                        </article>
-                    </div>
-                    <div class="events-grid">
-                        <div class="events-rotator surface-card" data-evening-rotator>
-                            <div class="event-rotator-dots" aria-hidden="true">
-                                <span class="event-rotator-dot is-active" data-evening-dot></span>
-                                <span class="event-rotator-dot" data-evening-dot></span>
-                                <span class="event-rotator-dot" data-evening-dot></span>
-                                <span class="event-rotator-dot" data-evening-dot></span>
-                            </div>
-
-                            <article class="event-card is-active" data-evening-slide data-event-theme="intro">
-                                <span class="event-tag">Форматы вечера</span>
-                                <h3>Одна карточка — несколько настроений для разного повода.</h3>
-                                <p>Каждые несколько секунд показываем разные сценарии, чтобы быстрее почувствовать вайб места.</p>
-                                <a href="bronirovaniestola.html" class="text-link">Забронировать стол</a>
-                            </article>
-
-                            <article class="event-card" data-evening-slide data-event-theme="dinner" aria-hidden="true">
-                                <span class="event-tag">Ужин</span>
-                                <h3>Спокойный вечер вдвоем</h3>
-                                <p>Тёплый свет, удобная посадка и формат, в котором приятно задержаться подольше.</p>
-                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать стол</a>
-                            </article>
-
-                            <article class="event-card" data-evening-slide data-event-theme="company" aria-hidden="true">
-                                <span class="event-tag">Компания</span>
-                                <h3>Шумная встреча с друзьями</h3>
-                                <p>Пиво, сеты на компанию, понятная кухня и пространство, где разговор идёт легко.</p>
-                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать стол</a>
-                            </article>
-
-                            <article class="event-card" data-evening-slide data-event-theme="veranda" aria-hidden="true">
-                                <span class="event-tag">Веранда</span>
-                                <h3>Летний сценарий без лишней суеты</h3>
-                                <p>Пледы, воздух и более расслабленное настроение. Отдельный оффер для тёплого сезона.</p>
-                                <a href="bronirovaniestola.html" class="text-link" tabindex="-1">Забронировать на веранде</a>
                             </article>
                         </div>
                     </div>
@@ -283,10 +394,10 @@
                 <div class="mobile-section-panel">
                     <div class="banquet-copy">
                         <p class="section-eyebrow">Частные события и банкеты</p>
-                        <h2 class="display-title">Сделайте из формы не формальность, а уверенный оффер.</h2>
+                        <h2 class="display-title">Банкетный зал для ваших событий</h2>
                         <p class="lead-text">
                             <span class="desktop-copy">
-                                Readers Pub подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других
+                                Бар Читателей подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других
                                 вечеров, где важно совместить атмосферу, сервис и понятную организацию.
                             </span>
                             <span class="mobile-copy">
@@ -308,7 +419,7 @@
                     </div>
                     <div class="banquet-form-shell surface-card">
                         <div class="banquet-visual">
-                            <img src="assets/banquet-event-hall.webp?v=20260329-16" alt="Банкетный зал Readers Pub">
+                            <img src="assets/banquet-event-hall.webp?v=20260329-16" alt="Банкетный зал Бара Читателей">
                         </div>
                         <p class="form-shell-title">Оставить заявку на мероприятие</p>
                         <p class="mobile-banquet-note">На телефоне оставили только быстрый способ связи, чтобы блок не превращался в длинную форму.</p>
@@ -372,7 +483,7 @@
                 <div class="contacts-map surface-card">
                     <div class="map-frame">
                         <div class="map-copy">
-                            <p class="map-label">Readers Pub</p>
+                            <p class="map-label">Бар Читателей</p>
                             <p class="map-address">Центр города, понятная локация и быстрый доступ для вечерней встречи.</p>
                             <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">Открыть VK сообщества</a>
                         </div>
@@ -384,16 +495,36 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">
-                <p class="footer-title">Readers Pub</p>
-                <p>Атмосферный ресторан-паб в центре Ижевска.</p>
+            <div class="footer-col footer-brand">
+                <img class="footer-logo" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
+                <p>Атмосферный ресторан-бар в центре Ижевска.</p>
+                <a href="https://vk.com/rspub" class="footer-social" target="_blank" rel="noopener">ВКонтакте →</a>
             </div>
-            <div class="footer-links">
+            <div class="footer-col">
+                <p class="footer-col-title">Разделы</p>
+                <a href="#card-afisha">Афиша</a>
                 <a href="menu.html">Меню</a>
                 <a href="bronirovaniestola.html">Бронь</a>
-                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="#services">Банкеты</a>
+                <a href="#contacts">Контакты</a>
             </div>
-            <p class="footer-meta">ООО «ИРЕНА», Удмуртская Республика, Ижевск, ул. Пушкинская, 223</p>
+            <div class="footer-col">
+                <p class="footer-col-title">Документы</p>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+                <a href="#">Публичная оферта</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Контакты</p>
+                <a href="tel:+73412693001">+7 3412 693-001</a>
+                <span>Пушкинская, 223, Ижевск</span>
+                <span>Вс–Чт: 12:00–00:00</span>
+                <span>Пт–Сб: 12:00–02:00</span>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p class="footer-meta">ООО «ИРЕНА» · ИНН 0000000000 · ОГРН 0000000000000 · Удмуртская Республика, г. Ижевск, ул. Пушкинская, 223</p>
+            <p class="footer-copy">© 2026 Бар Читателей</p>
         </div>
     </footer>
 
@@ -403,6 +534,93 @@
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
 
+    <script src="content-loader.js?v=20260710-1"></script>
+    <script src="hero-slider.js?v=20260901-1"></script>
     <script src="script.js?v=20260405-28"></script>
+    <script>
+    // Быстрая заявка на бронь из секции «Бронирование» → /api/booking (Telegram)
+    (function () {
+        var form = document.getElementById('quickBookingForm');
+        if (!form) return;
+        var status = document.getElementById('quickBookingStatus');
+        var submit = form.querySelector('button[type="submit"]');
+        var dateInput = form.querySelector('input[name="date"]');
+
+        // нельзя выбрать прошедшую дату
+        if (dateInput) {
+            var t = new Date();
+            dateInput.min = new Date(t.getTime() - t.getTimezoneOffset() * 60000)
+                .toISOString().slice(0, 10);
+        }
+
+        function setStatus(text, kind) {
+            status.textContent = text;
+            status.className = 'booking-quick-status' + (kind ? ' is-' + kind : '');
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            var name = form.name.value.trim();
+            var date = form.date.value;
+            var phone = form.phone.value.trim();
+
+            if (!name || !date || !phone) {
+                form.querySelectorAll('input').forEach(function (i) { i.classList.add('is-touched'); });
+                setStatus('Заполните имя, дату и телефон.', 'error');
+                return;
+            }
+
+            submit.disabled = true;
+            var idle = submit.textContent;
+            submit.textContent = 'Отправляем…';
+            setStatus('', '');
+
+            try {
+                var res = await fetch('/api/booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, phone: phone, date: date })
+                });
+                var data = await res.json().catch(function () { return {}; });
+                if (data.ok) {
+                    setStatus(data.message || 'Заявка отправлена! Мы свяжемся с вами.', 'ok');
+                    form.reset();
+                } else {
+                    setStatus(data.message || 'Не удалось отправить. Позвоните нам: +7 3412 693-001', 'error');
+                }
+            } catch (err) {
+                setStatus('Сервер недоступен. Позвоните нам: +7 3412 693-001', 'error');
+            } finally {
+                submit.disabled = false;
+                submit.textContent = idle;
+            }
+        });
+    })();
+    </script>
+    <script>
+    // Мобильное меню (бургер)
+    (function () {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('mobileNav');
+        if (!burger || !nav) return;
+
+        function setOpen(open) {
+            nav.hidden = !open;
+            burger.classList.toggle('is-open', open);
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        burger.addEventListener('click', function () {
+            setOpen(nav.hidden);
+        });
+        // закрываем после перехода по ссылке
+        nav.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') setOpen(false);
+        });
+        // закрываем, если экран стал десктопным
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 860 && !nav.hidden) setOpen(false);
+        });
+    })();
+    </script>
 </body>
 </html>

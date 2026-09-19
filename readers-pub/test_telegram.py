@@ -15,7 +15,7 @@ if _env.exists():
             os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 TOKEN = os.environ.get("TELEGRAM_RESTAURANT_BOT_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN", "")
-OWNER_IDS = [int(x.strip()) for x in (os.environ.get("OWNER_IDS") or "5651149188,728379071").split(",") if x.strip()]
+OWNER_IDS = [int(x.strip()) for x in (os.environ.get("OWNER_IDS") or "").split(",") if x.strip()]
 
 import ssl
 import urllib.request

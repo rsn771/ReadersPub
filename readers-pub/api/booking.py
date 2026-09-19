@@ -29,11 +29,13 @@ class handler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_len) if content_len else b"{}"
         data = json.loads(body.decode("utf-8") or "{}")
 
-        name = data.get("name", "-")
-        phone = data.get("phone", "-")
-        date = data.get("date", "-")
-        time = data.get("time", "-")
-        guests = data.get("guests", "-")
+        name = (data.get("name") or "").strip() or "—"
+        phone = (data.get("phone") or "").strip() or "—"
+        date = (data.get("date") or "").strip()
+        # время и гости необязательны: пустая строка = «не указано»
+        # (важно: "-" ломает разбор времени в build_availability_response)
+        time = (str(data.get("time") or "")).strip()
+        guests = (str(data.get("guests") or "")).strip()
 
         availability = build_availability_response(date, time)
         if not availability.get("ok"):
@@ -60,12 +62,12 @@ class handler(BaseHTTPRequestHandler):
             return
 
         text = (
-            "🪑 <b>Новая бронь стола (Readers Pub)</b>\n\n"
+            "🪑 <b>Новая бронь стола (Бар Читателей)</b>\n\n"
             f"Имя: {name}\n"
             f"Телефон: {phone}\n"
             f"Дата: {date}\n"
-            f"Время: {time}\n"
-            f"Гостей: {guests}\n"
+            f"Время: {time or 'не указано'}\n"
+            f"Гостей: {guests or 'не указано'}\n"
             f"Статус: ожидает подтверждения"
         )
         ok, _ = send_to_telegram(text)

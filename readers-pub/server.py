@@ -22,6 +22,11 @@ _SSL_CTX.verify_mode = ssl.CERT_NONE
 
 BOOKINGS_FILE = Path(__file__).parent / "bookings.json"
 AVAILABILITY_FILE = Path(__file__).parent / "availability.json"
+CONTENT_FILE = Path(__file__).parent / "content.json"
+
+# Пароль админки. ВАЖНО: для боевого использования задайте ADMIN_PASSWORD в окружении
+# и НЕ храните реальный пароль в коде. Значение по умолчанию — только для локальной разработки.
+ADMIN_PASSWORD = (os.environ.get("ADMIN_PASSWORD") or "readerspub-admin").strip()
 
 # Загрузка .env.bot (если есть)
 _env_path = os.path.join(os.path.dirname(__file__), "..", ".env.bot")
@@ -33,12 +38,14 @@ if os.path.exists(_env_path):
                 k, v = line.split("=", 1)
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
+# Токен и получатели берутся ТОЛЬКО из окружения (.env.bot локально,
+# переменные окружения на сервере). В коде хранить их нельзя — репозиторий публичный.
 BOT_TOKEN = (
     os.environ.get("TELEGRAM_RESTAURANT_BOT_TOKEN") or
     os.environ.get("TELEGRAM_BOT_TOKEN") or
     ""
-).strip() or "8208417749:AAE4FPGVdAuF2rIkwNUYfisrOA6-p-vMQMk"
-_owner_str = os.environ.get("OWNER_IDS", "5651149188,728379071")
+).strip()
+_owner_str = os.environ.get("OWNER_IDS", "")
 OWNER_IDS = [int(x.strip()) for x in _owner_str.split(",") if x.strip()]
 TELEGRAM_API = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
@@ -246,6 +253,12 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/availability":
             self._handle_availability(parsed.query)
             return
+        if parsed.path == "/api/content":
+            self._handle_get_content()
+            return
+        if parsed.path == "/api/admin/bookings":
+            self._handle_admin_bookings()
+            return
         super().do_GET()
 
     def do_POST(self):
@@ -253,8 +266,64 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
             self._handle_booking()
         elif self.path == "/api/banquet":
             self._handle_banquet()
+        elif self.path == "/api/admin/login":
+            self._handle_admin_login()
+        elif self.path == "/api/admin/content":
+            self._handle_save_content()
         else:
             self.send_error(404)
+
+    # --- Админка: контент и авторизация ---
+    def _is_admin_authorized(self) -> bool:
+        provided = (self.headers.get("X-Admin-Password") or "").strip()
+        return bool(provided) and provided == ADMIN_PASSWORD
+
+    def _handle_get_content(self):
+        if not CONTENT_FILE.exists():
+            self._send_json({"ok": True, "content": {}})
+            return
+        try:
+            content = json.loads(CONTENT_FILE.read_text(encoding="utf-8"))
+            self._send_json({"ok": True, "content": content})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_admin_login(self):
+        try:
+            data = self._read_json()
+            if (data.get("password") or "").strip() == ADMIN_PASSWORD:
+                self._send_json({"ok": True, "token": ADMIN_PASSWORD})
+            else:
+                self._send_json({"ok": False, "message": "Неверный пароль"}, 401)
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_save_content(self):
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Не авторизовано"}, 401)
+            return
+        try:
+            data = self._read_json()
+            content = data.get("content", data)
+            if not isinstance(content, dict):
+                self._send_json({"ok": False, "message": "Ожидался объект content"}, 400)
+                return
+            content.setdefault("_meta", {})
+            content["_meta"]["updated_at"] = datetime.now().isoformat()
+            CONTENT_FILE.write_text(json.dumps(content, ensure_ascii=False, indent=2), encoding="utf-8")
+            self._send_json({"ok": True, "message": "Контент сохранён"})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_admin_bookings(self):
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Не авторизовано"}, 401)
+            return
+        try:
+            rows = json.loads(BOOKINGS_FILE.read_text(encoding="utf-8")) if BOOKINGS_FILE.exists() else []
+            self._send_json({"ok": True, "bookings": rows})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
 
     def _handle_test_telegram(self):
         """Проверка: отправляет тестовое сообщение и показывает результат."""
@@ -311,11 +380,13 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
     def _handle_booking(self):
         try:
             data = self._read_json()
-            name = data.get("name", "-")
-            phone = data.get("phone", "-")
-            date = data.get("date", "-")
-            time = data.get("time", "-")
-            guests = data.get("guests", "-")
+            name = (data.get("name") or "").strip() or "—"
+            phone = (data.get("phone") or "").strip() or "—"
+            date = (data.get("date") or "").strip()
+            # время и гости необязательны: пустая строка = «не указано»
+            # (важно: "-" ломает разбор времени в _build_availability_response)
+            time = (str(data.get("time") or "")).strip()
+            guests = (str(data.get("guests") or "")).strip()
 
             availability = _build_availability_response(date, time)
             if not availability.get("ok"):
@@ -331,12 +402,12 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
                 return
 
             text = (
-                "🪑 <b>Новая бронь стола (Readers Pub)</b>\n\n"
+                "🪑 <b>Новая бронь стола (Бар Читателей)</b>\n\n"
                 f"Имя: {name}\n"
                 f"Телефон: {phone}\n"
                 f"Дата: {date}\n"
-                f"Время: {time}\n"
-                f"Гостей: {guests}\n"
+                f"Время: {time or 'не указано'}\n"
+                f"Гостей: {guests or 'не указано'}\n"
                 f"Статус: ожидает подтверждения"
             )
             ok, err = send_to_telegram(text)

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Админ-панель — Readers Pub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css?v=20260710-2">
+</head>
+<body>
+    <!-- ================= ЭКРАН ВХОДА ================= -->
+    <div id="loginView" class="login-view">
+        <form class="login-card" id="loginForm">
+            <div class="login-brand">Reader's Pub</div>
+            <h1>Админ-панель</h1>
+            <p class="login-sub">Управление контентом сайта заведения</p>
+            <label for="loginPassword">Пароль</label>
+            <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль" required>
+            <div class="login-error" id="loginError" hidden></div>
+            <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Войти</button>
+            <p class="login-hint">Локальный пароль по умолчанию: <code>readerspub-admin</code></p>
+        </form>
+    </div>
+
+    <!-- ================= ПАНЕЛЬ ================= -->
+    <div id="appView" class="app-view" hidden>
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="sidebar-brand-name">Reader's Pub</span>
+                <span class="sidebar-brand-tag">Admin</span>
+            </div>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <a href="#/dashboard" data-nav="dashboard"><span class="nav-ico">▤</span> Дашборд</a>
+                <a href="#/content"   data-nav="content"><span class="nav-ico">✎</span> Контент главной</a>
+                <a href="#/settings"  data-nav="settings"><span class="nav-ico">⚙</span> Настройки</a>
+                <a href="#/media"     data-nav="media"><span class="nav-ico">🖼</span> Изображения</a>
+                <a href="#/menu"      data-nav="menu"><span class="nav-ico">🍽</span> Меню</a>
+                <a href="#/events"    data-nav="events"><span class="nav-ico">★</span> События</a>
+                <a href="#/bookings"  data-nav="bookings"><span class="nav-ico">📅</span> Брони</a>
+                <a href="#/users"     data-nav="users"><span class="nav-ico">👤</span> Пользователи</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/index.html" target="_blank" class="sidebar-viewsite">↗ Открыть сайт</a>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <header class="topbar">
+                <div>
+                    <h2 id="pageTitle">Дашборд</h2>
+                    <p id="pageSubtitle" class="topbar-sub">Обзор состояния сайта</p>
+                </div>
+                <div class="topbar-actions">
+                    <span class="topbar-user">Администратор</span>
+                    <button class="btn btn-ghost" id="logoutBtn">Выйти</button>
+                </div>
+            </header>
+            <main class="content" id="view"><!-- рендерится из admin.js --></main>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="admin.js?v=20260710-1"></script>
+</body>
+</html>

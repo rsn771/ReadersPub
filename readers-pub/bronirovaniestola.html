@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Забронировать стол — Readers Pub</title>
-    <meta name="description" content="Онлайн-бронирование столов в Readers Pub. Выберите дату и время, а мы подтвердим ваш вечер.">
-    <link rel="stylesheet" href="styles.css?v=20260405-28">
+    <title>Забронировать стол — Бар Читателей</title>
+    <meta name="description" content="Онлайн-бронирование столов в Бар Читателей. Выберите дату и время, а мы подтвердим ваш вечер.">
+    <link rel="stylesheet" href="styles.css?v=20260919-9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="header-top">
-            <a href="index.html" class="logo" aria-label="Readers Pub">
-                <img class="logo-mark" src="assets/photo-base.svg?v=20260405-1" alt="Readers Pub">
+            <a href="index.html" class="logo" aria-label="Бар Читателей">
+                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260405-1" alt="Бар Читателей">
             </a>
             <nav class="nav">
                 <a href="index.html#story" class="nav-link">О нас</a>
@@ -35,7 +35,7 @@
                 <p class="section-eyebrow">Бронирование</p>
                 <h1>Забронируйте вечер, а не просто стол.</h1>
                 <p>
-                    Оставьте заявку онлайн, и Readers Pub подготовит комфортную посадку для встречи, свидания,
+                    Оставьте заявку онлайн, и Бар Читателей подготовит комфортную посадку для встречи, свидания,
                     шумной компании или вечера после работы.
                 </p>
                 <div class="booking-meta">
@@ -48,42 +48,22 @@
 
             <section class="booking-form surface-card">
                 <h2>Оставить бронь</h2>
-                <p class="opening-hint">Если на выбранное время идёт мероприятие, сайт сразу подскажет ближайшее доступное окно.</p>
-                <form id="bookingForm">
-                    <div class="form-group">
-                        <label for="booking_name">Ваше имя</label>
-                        <input id="booking_name" type="text" name="name" placeholder="Как к вам обращаться" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="booking_phone">Телефон</label>
-                        <input id="booking_phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="booking_date">Дата</label>
-                        <input id="booking_date" type="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="booking_time">Время</label>
-                        <input id="booking_time" type="time" name="time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="booking_guests">Количество гостей</label>
-                        <select id="booking_guests" name="guests" required>
-                            <option value="">Выберите количество</option>
-                            <option value="2">2 гостя</option>
-                            <option value="3">3 гостя</option>
-                            <option value="4">4 гостя</option>
-                            <option value="5">5 гостей</option>
-                            <option value="6">6 гостей</option>
-                            <option value="7">7 гостей</option>
-                            <option value="8">8 гостей</option>
-                            <option value="9">9 гостей</option>
-                            <option value="10">10+ гостей</option>
-                        </select>
-                    </div>
-                    <div class="form-status" id="bookingFormStatus" aria-live="polite"></div>
-                    <button type="submit" class="btn-primary">Отправить бронь</button>
-                </form>
+                <p class="opening-hint">Заполните форму — мы свяжемся с вами для подтверждения посадки. Вс–Чт: 12:00–00:00, Пт–Сб: 12:00–02:00.</p>
+
+                <!-- ========================================================= -->
+                <!--  БРОНИРОВАНИЕ ЧЕРЕЗ ЯНДЕКС ФОРМУ                           -->
+                <!--  Чтобы подключить свою форму: впишите её ID в data-form-id -->
+                <!--  ниже (или в const YANDEX_FORM_ID в script-блоке).         -->
+                <!--  Как получить ID — см. README-YANDEX-FORM.md               -->
+                <!-- ========================================================= -->
+                <div class="yandex-form" id="yandexForm" data-form-id=""></div>
+
+                <p class="booking-fallback">
+                    Форма не открывается? Позвоните:
+                    <a href="tel:+73412693001" class="text-link">+7 3412 693-001</a>
+                    &nbsp;·&nbsp;
+                    <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">ВКонтакте</a>
+                </p>
             </section>
         </div>
     </main>
@@ -95,5 +75,34 @@
     </div>
 
     <script src="script.js?v=20260405-28"></script>
+    <script>
+    // === Встройка Яндекс Формы бронирования ===
+    // Впишите ID вашей формы между кавычек (либо в атрибут data-form-id выше).
+    // Пример: const YANDEX_FORM_ID = "68abc123def456"; ID берётся из ссылки формы:
+    // https://forms.yandex.ru/u/<ЭТОТ_ID>/  — подробнее в README-YANDEX-FORM.md
+    (function () {
+        const YANDEX_FORM_ID = "";
+        const box = document.getElementById('yandexForm');
+        if (!box) return;
+        const formId = (YANDEX_FORM_ID || box.dataset.formId || '').trim();
+
+        if (formId) {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://forms.yandex.ru/u/' + encodeURIComponent(formId) + '/?iframe=1';
+            iframe.title = 'Бронирование стола — Бар Читателей';
+            iframe.loading = 'lazy';
+            iframe.setAttribute('frameborder', '0');
+            iframe.className = 'yandex-form-iframe';
+            box.appendChild(iframe);
+        } else {
+            box.innerHTML =
+                '<div class="yandex-form-placeholder">' +
+                    '<span class="yandex-form-placeholder-badge">Скоро</span>' +
+                    '<strong>Онлайн-форма бронирования подключается.</strong>' +
+                    '<span>Здесь появится Яндекс Форма. Пока принимаем брони по телефону и во ВКонтакте.</span>' +
+                '</div>';
+        }
+    })();
+    </script>
 </body>
 </html>
