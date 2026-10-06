@@ -210,6 +210,13 @@ def delete_photo(slot: str):
 PUBLISH_PATHS = [CONTENT_FILE, UPLOAD_DIR]
 
 
+def _existing_paths():
+    """git ругается на путь, которого нет на диске («pathspec did not match»),
+    поэтому отдаём ему только существующее. Папка uploads появляется лишь
+    после первой загрузки фото — до этого её не существует."""
+    return [p for p in PUBLISH_PATHS if (ROOT / p).exists()]
+
+
 def _git(*args, timeout=90):
     """Возвращает (код, stdout, stderr).
 
@@ -236,7 +243,10 @@ def publish_status() -> dict:
         return {"mode": "none", "pending": 0, "files": [],
                 "message": "Папка проекта не подключена к GitHub — публикация недоступна."}
 
-    code, out, _ = _git("status", "--porcelain", "--", *PUBLISH_PATHS, timeout=20)
+    paths = _existing_paths()
+    if not paths:
+        return {"mode": "git", "pending": 0, "files": [], "ahead": 0}
+    code, out, _ = _git("status", "--porcelain", "--", *paths, timeout=20)
     # строка вида "XY путь": первые два символа — статус, дальше имя файла
     files = [ln[2:].strip() for ln in out.splitlines() if ln.strip()] if code == 0 else []
 
@@ -261,7 +271,7 @@ def git_publish() -> dict:
         return {"ok": True, "nothing": True, "message": "Нечего публиковать — всё уже на сайте."}
 
     if st["pending"]:
-        code, _, err = _git("add", "--", *PUBLISH_PATHS, timeout=30)
+        code, _, err = _git("add", "--", *_existing_paths(), timeout=30)
         if code != 0:
             return {"ok": False, "message": f"Не удалось подготовить файлы: {err}"}
 
