@@ -25,8 +25,8 @@ Vercel видит коммит и пересобирает сайт сам.
 
 ## Шаг 2. Переменные окружения в Vercel
 
-Проект на vercel.com → **Settings → Environment Variables**. Добавить пять штук
-(для всех окружений: Production, Preview, Development):
+Проект на vercel.com → **Settings → Environment Variables**. Добавить четыре
+штуки (для всех окружений: Production, Preview, Development):
 
 | Имя | Значение | Зачем |
 |---|---|---|
@@ -34,7 +34,10 @@ Vercel видит коммит и пересобирает сайт сам.
 | `ADMIN_SECRET` | длинная случайная строка | подпись сессий, никому не показывать |
 | `GITHUB_TOKEN` | токен из шага 1 | запись правок |
 | `GITHUB_REPO` | `rsn771/ReadersPub` | куда писать |
-| `CONTENT_PREFIX` | `readers-pub` | папка сайта внутри репозитория |
+
+Ещё две переменные задавать не нужно — у них правильные значения по умолчанию:
+`GITHUB_BRANCH` = `main`, `CONTENT_PREFIX` = `readers-pub`. Их задают, только
+если репозиторий или папка переименованы.
 
 Случайную строку для `ADMIN_SECRET` можно получить так:
 

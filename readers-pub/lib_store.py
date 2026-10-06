@@ -55,7 +55,12 @@ def use_github() -> bool:
 # ---------------------------------------------------------------- авторизация
 
 def password_ok(given: str) -> bool:
-    return hmac.compare_digest((given or "").strip(), ADMIN_PASSWORD)
+    # сравниваем байты, а не строки: compare_digest падает на не-ASCII,
+    # то есть на любом пароле с русскими буквами
+    return hmac.compare_digest(
+        (given or "").strip().encode("utf-8"),
+        ADMIN_PASSWORD.encode("utf-8"),
+    )
 
 
 def make_token() -> str:
@@ -69,7 +74,7 @@ def token_ok(token: str) -> bool:
     try:
         exp, sig = (token or "").split(".", 1)
         expected = hmac.new(ADMIN_SECRET.encode(), exp.encode(), hashlib.sha256).hexdigest()[:32]
-        return hmac.compare_digest(sig, expected) and int(exp) > time.time()
+        return hmac.compare_digest(sig.encode("utf-8"), expected.encode("utf-8")) and int(exp) > time.time()
     except Exception:
         return False
 
