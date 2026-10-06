@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Меню — Бар Читателей</title>
     <meta name="description" content="Меню Бара Читателей: кухня, барная карта и осеннее сезонное меню. Ижевск, Пушкинская, 223.">
-    <link rel="stylesheet" href="styles.css?v=20261001-4">
+    <link rel="stylesheet" href="styles.css?v=20261007-3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
                 <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
             <div class="header-side">
-                <span class="header-address">Пушкинская, 223</span>
+                <span class="header-address" data-content="settings.address_short">Пушкинская, 223</span>
                 <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
             </div>
             <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
@@ -157,7 +157,7 @@
         <div class="footer-content">
             <div class="footer-col footer-brand">
                 <img class="footer-logo" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
-                <p>Атмосферный ресторан-бар в центре Ижевска.</p>
+                <p data-content="footer.about">Атмосферный ресторан-бар в центре Ижевска.</p>
                 <a href="https://vk.com/rspub" class="footer-social" target="_blank" rel="noopener">ВКонтакте →</a>
             </div>
             <div class="footer-col">
@@ -177,14 +177,14 @@
             <div class="footer-col">
                 <p class="footer-col-title">Контакты</p>
                 <a href="tel:+73412693001">+7 3412 693-001</a>
-                <span>Пушкинская, 223, Ижевск</span>
-                <span>Вс–Чт: 12:00–00:00</span>
-                <span>Пт–Сб: 12:00–02:00</span>
+                <span data-content="settings.address">Пушкинская, 223, Ижевск</span>
+                <span data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</span>
+                <span data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</span>
             </div>
         </div>
         <div class="footer-legal">
-            <p class="footer-meta">ООО «ИРЕНА» · ИНН 0000000000 · ОГРН 0000000000000 · Удмуртская Республика, г. Ижевск, ул. Пушкинская, 223</p>
-            <p class="footer-copy">© 2026 Бар Читателей</p>
+            <p class="footer-meta" data-content="footer.legal">ООО «ИРЕНА» · ИНН 0000000000 · ОГРН 0000000000000 · Удмуртская Республика, г. Ижевск, ул. Пушкинская, 223</p>
+            <p class="footer-copy" data-content="footer.copyright">© 2026 Бар Читателей</p>
         </div>
     </footer>
 
@@ -320,6 +320,6 @@
         }, { passive: true });
     })();
     </script>
-    <script src="content-loader.js?v=20261001-4"></script>
+    <script src="content-loader.js?v=20261007-3"></script>
 </body>
 </html>

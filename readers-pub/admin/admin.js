@@ -98,24 +98,104 @@
     ];
 
     const TEXT_LABELS = {
-        "home.hero.script":        "Первый экран — строка вязью",
-        "home.hero.title":         "Первый экран — заголовок",
-        "home.hero.subtitle":      "Первый экран — описание",
+        /* Главная — первый экран (три слайда по очереди) */
+        "home.hero.script":        "Слайд 1 — строка вязью",
+        "home.hero.title":         "Слайд 1 — заголовок",
+        "home.hero.subtitle":      "Слайд 1 — описание",
+        "home.hero2.script":       "Слайд 2 — строка вязью",
+        "home.hero2.title":        "Слайд 2 — заголовок",
+        "home.hero2.subtitle":     "Слайд 2 — описание",
+        "home.hero3.script":       "Слайд 3 — строка вязью",
+        "home.hero3.title":        "Слайд 3 — заголовок",
+        "home.hero3.subtitle":     "Слайд 3 — описание",
+
+        /* Карточки разделов */
+        "home.cards.afisha":       "Карточка — подпись «Афиша»",
+        "home.cards.menu":         "Карточка — подпись «Меню»",
+        "home.cards.bankety":      "Карточка — подпись «Банкеты»",
+        "home.cards.promo":        "Карточка — подпись «Акции»",
+
+        /* Афиша */
         "home.feed.eyebrow":       "Афиша — надзаголовок",
         "home.feed.title":         "Афиша — заголовок",
+        "home.events.e1.date":     "Событие 1 — дата и время",
+        "home.events.e1.title":    "Событие 1 — название",
+        "home.events.e1.text":     "Событие 1 — описание",
+        "home.events.e2.date":     "Событие 2 — дата и время",
+        "home.events.e2.title":    "Событие 2 — название",
+        "home.events.e2.text":     "Событие 2 — описание",
+        "home.events.e3.date":     "Событие 3 — дата и время",
+        "home.events.e3.title":    "Событие 3 — название",
+        "home.events.e3.text":     "Событие 3 — описание",
+        "home.events.e4.date":     "Событие 4 — дата и время",
+        "home.events.e4.title":    "Событие 4 — название",
+        "home.events.e4.text":     "Событие 4 — описание",
+        "home.events.e5.date":     "Событие 5 — дата и время",
+        "home.events.e5.title":    "Событие 5 — название",
+        "home.events.e5.text":     "Событие 5 — описание",
+
+        /* Бронирование */
         "home.booking.eyebrow":    "Бронирование — надзаголовок",
         "home.booking.title":      "Бронирование — заголовок",
-        "home.booking.text":       "Бронирование — текст",
-        "home.menu.eyebrow":       "Меню — надзаголовок",
-        "home.menu.title":         "Меню — заголовок",
-        "home.menu.text":          "Меню — текст (ПК)",
-        "home.menu.text_mobile":   "Меню — текст (телефон)",
+        "home.booking.text":       "Бронирование — описание",
+        "home.booking.form_title": "Бронирование — заголовок формы",
+        "home.booking.form_note":  "Бронирование — подпись под формой",
+
+        /* Меню */
+        "home.menu.eyebrow":       "Блок «Меню» — надзаголовок",
+        "home.menu.title":         "Блок «Меню» — заголовок",
+        "home.menu.text":          "Блок «Меню» — описание (ПК)",
+        "home.menu.text_mobile":   "Блок «Меню» — описание (телефон)",
+        "home.menu.tag1":          "Блок «Меню» — плашка 1",
+        "home.menu.tag2":          "Блок «Меню» — плашка 2",
+        "home.menu.tag3":          "Блок «Меню» — плашка 3",
+        "home.menu.tag4":          "Блок «Меню» — плашка 4",
+        "home.menu.tag5":          "Блок «Меню» — плашка 5",
+        "home.menu.tag6":          "Блок «Меню» — плашка 6",
+
+        /* Атмосфера */
         "home.gallery.eyebrow":    "Атмосфера — надзаголовок",
         "home.gallery.title":      "Атмосфера — заголовок",
-        "home.banquet.eyebrow":    "Банкеты — надзаголовок",
-        "home.banquet.title":      "Банкеты — заголовок",
-        "home.banquet.text_mobile":"Банкеты — текст (телефон)",
+        "home.gallery.point1":     "Атмосфера — пункт 1",
+        "home.gallery.point2":     "Атмосфера — пункт 2",
+        "home.gallery.point3":     "Атмосфера — пункт 3",
+        "home.gallery.caption1":   "Атмосфера — подпись к большому фото",
+        "home.gallery.caption2":   "Атмосфера — подпись к фото 2",
+        "home.gallery.caption3":   "Атмосфера — подпись к фото 3",
 
+        /* Банкеты */
+        "home.banquet.eyebrow":       "Банкеты — надзаголовок",
+        "home.banquet.title":         "Банкеты — заголовок",
+        "home.banquet.text_mobile":   "Банкеты — описание (телефон)",
+        "home.banquet.pill1":         "Банкеты — формат 1",
+        "home.banquet.pill2":         "Банкеты — формат 2",
+        "home.banquet.pill3":         "Банкеты — формат 3",
+        "home.banquet.pill4":         "Банкеты — формат 4",
+        "home.banquet.pill5":         "Банкеты — формат 5",
+        "home.banquet.pill6":         "Банкеты — формат 6",
+        "home.banquet.contact_label": "Банкеты — строка над телефоном",
+        "home.banquet.form_title":    "Банкеты — заголовок формы",
+
+        /* Контакты */
+        "home.contacts.eyebrow":   "Контакты — надзаголовок",
+        "home.contacts.title":     "Контакты — заголовок",
+        "home.contacts.map_title": "Контакты — подпись на карте",
+        "home.contacts.map_text":  "Контакты — текст на карте",
+
+        /* Общие значения — меняются один раз, обновляются везде */
+        "settings.address":            "Адрес полностью (во всех местах сайта)",
+        "settings.address_short":      "Адрес коротко (шапка, плашки)",
+        "settings.hours_weekday":      "Часы Вс–Чт (во всех местах сайта)",
+        "settings.hours_weekend":      "Часы Пт–Сб (во всех местах сайта)",
+        "settings.hours_weekday_short":"Часы Вс–Чт коротко (плашки)",
+        "settings.hours_weekend_short":"Часы Пт–Сб коротко (плашки)",
+
+        /* Подвал — на всех страницах сразу */
+        "footer.about":     "Подвал — описание под логотипом",
+        "footer.legal":     "Подвал — реквизиты (ООО, ИНН, ОГРН, адрес)",
+        "footer.copyright": "Подвал — строка копирайта",
+
+        /* Страница меню */
         "menu.eyebrow":       "Меню — надзаголовок",
         "menu.title":         "Меню — заголовок страницы",
         "menu.lead":          "Меню — описание под заголовком",
@@ -123,10 +203,12 @@
         "menu.group_bar":     "Меню — название группы «Напитки и бар»",
         "menu.group_season":  "Меню — название группы «Осеннее меню»",
 
+        /* Бизнес-ланчи */
         "lunch.eyebrow":      "Бизнес-ланчи — надзаголовок",
         "lunch.title":        "Бизнес-ланчи — заголовок",
         "lunch.lead":         "Бизнес-ланчи — описание",
 
+        /* Страница брони */
         "booking.eyebrow":    "Бронь — надзаголовок",
         "booking.title":      "Бронь — заголовок",
         "booking.text":       "Бронь — описание",
@@ -487,48 +569,42 @@
             after: initEditor
         },
         content: {
-            title: "Тексты главной", sub: "Блоки главной страницы, сверху вниз",
-            render: async () => `
-                <div class="notice">Все поля ниже <b>живые</b>: сохранили — обновили сайт, текст поменялся. Порядок блоков совпадает с порядком на странице.</div>
-                <div class="card">
-                    <div class="card-title">1. Первый экран</div>
-                    <p class="card-hint">Первый слайд. Вязь — рукописная строка над заголовком.</p>
-                    ${field("Строка вязью", "home.hero.script")}
-                    ${field("Заголовок", "home.hero.title")}
-                    ${field("Подзаголовок", "home.hero.subtitle", "textarea")}
-                </div>
-                <div class="card">
-                    <div class="card-title">2. Афиша</div>
-                    ${field("Надзаголовок", "home.feed.eyebrow")}
-                    ${field("Заголовок", "home.feed.title")}
-                </div>
-                <div class="card">
-                    <div class="card-title">3. Бронирование</div>
-                    <p class="card-hint">На телефоне этот блок скрыт — там работает кнопка «Бронь» внизу экрана.</p>
-                    ${field("Надзаголовок", "home.booking.eyebrow")}
-                    ${field("Заголовок", "home.booking.title")}
-                    ${field("Текст", "home.booking.text", "textarea")}
-                </div>
-                <div class="card">
-                    <div class="card-title">4. Меню</div>
-                    <p class="card-hint">Короткий текст показывается на телефоне вместо длинного — две строки.</p>
-                    ${field("Надзаголовок", "home.menu.eyebrow")}
-                    ${field("Заголовок", "home.menu.title")}
-                    ${field("Текст (ПК)", "home.menu.text", "textarea")}
-                    ${field("Текст (телефон, коротко)", "home.menu.text_mobile", "textarea")}
-                </div>
-                <div class="card">
-                    <div class="card-title">5. Атмосфера</div>
-                    ${field("Надзаголовок", "home.gallery.eyebrow")}
-                    ${field("Заголовок", "home.gallery.title")}
-                </div>
-                <div class="card">
-                    <div class="card-title">6. Банкеты</div>
-                    ${field("Надзаголовок", "home.banquet.eyebrow")}
-                    ${field("Заголовок", "home.banquet.title")}
-                    ${field("Текст (телефон, коротко)", "home.banquet.text_mobile", "textarea")}
-                </div>
-                ${saveBar}`
+            title: "Тексты списком", sub: "Все тексты сайта в одном месте",
+            render: async () => {
+                // группы собираются из подписей: всё, что до первого тире
+                const GROUPS = [
+                    ["Первый экран",        /^home\.hero/],
+                    ["Карточки разделов",   /^home\.cards\./],
+                    ["Афиша и события",     /^home\.(feed|events)\./],
+                    ["Бронирование",        /^home\.booking\./],
+                    ["Блок «Меню»",         /^home\.menu\./],
+                    ["Атмосфера",           /^home\.gallery\./],
+                    ["Банкеты",             /^home\.banquet\./],
+                    ["Контакты",            /^home\.contacts\./],
+                    ["Общее: адрес и часы", /^settings\.(address|hours)/],
+                    ["Подвал",              /^footer\./],
+                    ["Страница «Меню»",     /^menu\./],
+                    ["Страница «Бизнес-ланчи»", /^lunch\./],
+                    ["Страница «Бронь»",    /^booking\./]
+                ];
+                const all = Object.keys(TEXT_LABELS);
+                const cards = GROUPS.map(([name, re_]) => {
+                    const paths = all.filter((p) => re_.test(p));
+                    if (!paths.length) return "";
+                    return `<div class="card">
+                        <div class="card-title">${esc(name)}</div>
+                        ${paths.map((p) => {
+                            const val = String(getPath(content, p) || "");
+                            return field(TEXT_LABELS[p], p, val.length > 60 ? "textarea" : "");
+                        }).join("")}
+                    </div>`;
+                }).join("");
+                return `
+                <div class="notice">Здесь те же тексты, что и в <a href="#/editor"><b>«Редакторе страницы»</b></a>, только списком.
+                Редактором удобнее — там видно, где текст стоит. Этот раздел пригодится, когда нужно быстро пройтись по всему.</div>
+                ${cards}
+                ${saveBar}`;
+            }
         },
         settings: {
             title: "Настройки", sub: "Контакты, часы работы, соцсети",

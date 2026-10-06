@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20261001-4">
+    <link rel="stylesheet" href="styles.css?v=20261007-3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
                 <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
             <div class="header-side">
-                <span class="header-address">Пушкинская, 223</span>
+                <span class="header-address" data-content="settings.address_short">Пушкинская, 223</span>
                 <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
             </div>
             <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
@@ -104,9 +104,9 @@
                                 </article>
 
                                 <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Атмосфера">
-                                    <p class="hero-script">Атмосфера</p>
-                                    <h2 class="hero-title hero-title--caps">старинной библиотеки</h2>
-                                    <p class="hero-description">Мягкий свет, дерево и книги, уютная посадка и негромкая музыка — место, где вечер идёт в своём ритме.</p>
+                                    <p class="hero-script" data-content="home.hero2.script">Атмосфера</p>
+                                    <h2 class="hero-title hero-title--caps" data-content="home.hero2.title">старинной библиотеки</h2>
+                                    <p class="hero-description" data-content="home.hero2.subtitle">Мягкий свет, дерево и книги, уютная посадка и негромкая музыка — место, где вечер идёт в своём ритме.</p>
                                     <div class="hero-actions">
                                         <a href="#card-afisha" class="btn-primary">Смотреть афишу</a>
                                         <a href="#contacts" class="btn-secondary">Как нас найти</a>
@@ -114,9 +114,9 @@
                                 </article>
 
                                 <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Вечера">
-                                    <p class="hero-script">Вечера,</p>
-                                    <h2 class="hero-title hero-title--caps">куда хочется возвращаться</h2>
-                                    <p class="hero-description">Ужин вдвоём, встреча с компанией или частное событие — соберём вечер под ваш повод и настроение.</p>
+                                    <p class="hero-script" data-content="home.hero3.script">Вечера,</p>
+                                    <h2 class="hero-title hero-title--caps" data-content="home.hero3.title">куда хочется возвращаться</h2>
+                                    <p class="hero-description" data-content="home.hero3.subtitle">Ужин вдвоём, встреча с компанией или частное событие — соберём вечер под ваш повод и настроение.</p>
                                     <div class="hero-actions">
                                         <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
                                         <a href="#services" class="btn-secondary">Банкеты и события</a>
@@ -131,15 +131,15 @@
                     </div>
                     <div class="hero-highlights">
                         <div class="highlight-chip">
-                            <span class="highlight-value">12:00–00:00</span>
+                            <span class="highlight-value" data-content="settings.hours_weekday_short">12:00–00:00</span>
                             <span class="highlight-note">Вс–Чт</span>
                         </div>
                         <div class="highlight-chip">
-                            <span class="highlight-value">12:00–02:00</span>
+                            <span class="highlight-value" data-content="settings.hours_weekend_short">12:00–02:00</span>
                             <span class="highlight-note">Пт–Сб</span>
                         </div>
                         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="highlight-chip" target="_blank" rel="noopener">
-                            <span class="highlight-value">Пушкинская, 223</span>
+                            <span class="highlight-value" data-content="settings.address_short">Пушкинская, 223</span>
                             <span class="highlight-note">Легко найти</span>
                         </a>
                         <a href="tel:+73412693001" class="highlight-chip">
@@ -173,22 +173,22 @@
                 <div class="strip-grid">
                     <a class="strip-card" id="card-afisha" href="standup.html">
                         <div class="strip-card-media strip-card-media--navy" data-photo="card-afisha">
-                            <span class="strip-card-btn">Афиша</span>
+                            <span class="strip-card-btn" data-content="home.cards.afisha">Афиша</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-menu" href="menu.html">
                         <div class="strip-card-media strip-card-media--wine" data-photo="card-menu">
-                            <span class="strip-card-btn">Меню</span>
+                            <span class="strip-card-btn" data-content="home.cards.menu">Меню</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-bankety" href="#services">
                         <div class="strip-card-media strip-card-media--navy" data-photo="card-bankety">
-                            <span class="strip-card-btn">Банкеты</span>
+                            <span class="strip-card-btn" data-content="home.cards.bankety">Банкеты</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-promo" href="#promo">
                         <div class="strip-card-media strip-card-media--wine" data-photo="card-promo">
-                            <span class="strip-card-btn">Акции</span>
+                            <span class="strip-card-btn" data-content="home.cards.promo">Акции</span>
                         </div>
                     </a>
                 </div>
@@ -206,45 +206,45 @@
                     <article class="feed-card">
                         <div class="feed-card-media feed-card-media--navy" data-photo="event-1"></div>
                         <div class="feed-card-body">
-                            <span class="feed-date">Пт · 12 сентября · 20:00</span>
-                            <h3 class="feed-title">Стендап-вечер</h3>
-                            <p class="feed-text">Открытый микрофон и приглашённые комики.</p>
+                            <span class="feed-date" data-content="home.events.e1.date">Пт · 12 сентября · 20:00</span>
+                            <h3 class="feed-title" data-content="home.events.e1.title">Стендап-вечер</h3>
+                            <p class="feed-text" data-content="home.events.e1.text">Открытый микрофон и приглашённые комики.</p>
                         </div>
                     </article>
 
                     <article class="feed-card">
                         <div class="feed-card-media feed-card-media--wine" data-photo="event-2"></div>
                         <div class="feed-card-body">
-                            <span class="feed-date">Сб · 13 сентября · 21:00</span>
-                            <h3 class="feed-title">Живая музыка</h3>
-                            <p class="feed-text">Акустический сет по вечерам выходных.</p>
+                            <span class="feed-date" data-content="home.events.e2.date">Сб · 13 сентября · 21:00</span>
+                            <h3 class="feed-title" data-content="home.events.e2.title">Живая музыка</h3>
+                            <p class="feed-text" data-content="home.events.e2.text">Акустический сет по вечерам выходных.</p>
                         </div>
                     </article>
 
                     <article class="feed-card">
                         <div class="feed-card-media feed-card-media--navy" data-photo="event-3"></div>
                         <div class="feed-card-body">
-                            <span class="feed-date">Чт · 18 сентября · 19:30</span>
-                            <h3 class="feed-title">Квиз «Читатели»</h3>
-                            <p class="feed-text">Командная викторина с призами от бара.</p>
+                            <span class="feed-date" data-content="home.events.e3.date">Чт · 18 сентября · 19:30</span>
+                            <h3 class="feed-title" data-content="home.events.e3.title">Квиз «Читатели»</h3>
+                            <p class="feed-text" data-content="home.events.e3.text">Командная викторина с призами от бара.</p>
                         </div>
                     </article>
 
                     <article class="feed-card">
                         <div class="feed-card-media feed-card-media--wine" data-photo="event-4"></div>
                         <div class="feed-card-body">
-                            <span class="feed-date">Пт · 19 сентября · 20:00</span>
-                            <h3 class="feed-title">Винный вечер</h3>
-                            <p class="feed-text">Дегустация и неспешные разговоры под бокал.</p>
+                            <span class="feed-date" data-content="home.events.e4.date">Пт · 19 сентября · 20:00</span>
+                            <h3 class="feed-title" data-content="home.events.e4.title">Винный вечер</h3>
+                            <p class="feed-text" data-content="home.events.e4.text">Дегустация и неспешные разговоры под бокал.</p>
                         </div>
                     </article>
 
                     <article class="feed-card">
                         <div class="feed-card-media feed-card-media--navy" data-photo="event-5"></div>
                         <div class="feed-card-body">
-                            <span class="feed-date">Сб · 20 сентября · 21:00</span>
-                            <h3 class="feed-title">Джем-сейшн</h3>
-                            <p class="feed-text">Свободный микрофон для музыкантов города.</p>
+                            <span class="feed-date" data-content="home.events.e5.date">Сб · 20 сентября · 21:00</span>
+                            <h3 class="feed-title" data-content="home.events.e5.title">Джем-сейшн</h3>
+                            <p class="feed-text" data-content="home.events.e5.text">Свободный микрофон для музыкантов города.</p>
                         </div>
                     </article>
 
@@ -289,9 +289,9 @@
                         <h2 class="display-title" data-content="home.booking.title">Забронируйте вечер, а не просто стол</h2>
                         <p class="lead-text" data-content="home.booking.text">Оставьте заявку онлайн — подготовим комфортную посадку для встречи, свидания, компании или вечера после работы.</p>
                         <div class="cta-card-meta">
-                            <div class="cta-meta-item"><span>Вс–Чт</span><strong>12:00–00:00</strong></div>
-                            <div class="cta-meta-item"><span>Пт–Сб</span><strong>12:00–02:00</strong></div>
-                            <div class="cta-meta-item"><span>Адрес</span><strong>Пушкинская, 223</strong></div>
+                            <div class="cta-meta-item"><span>Вс–Чт</span><strong data-content="settings.hours_weekday_short">12:00–00:00</strong></div>
+                            <div class="cta-meta-item"><span>Пт–Сб</span><strong data-content="settings.hours_weekend_short">12:00–02:00</strong></div>
+                            <div class="cta-meta-item"><span>Адрес</span><strong data-content="settings.address_short">Пушкинская, 223</strong></div>
                         </div>
                         <div class="cta-card-actions">
                             <a href="tel:+73412693001" class="btn-secondary">Позвонить</a>
@@ -299,7 +299,7 @@
                     </div>
 
                     <form class="booking-quick" id="quickBookingForm" novalidate>
-                        <p class="booking-quick-title">Оставить заявку</p>
+                        <p class="booking-quick-title" data-content="home.booking.form_title">Оставить заявку</p>
                         <div class="booking-quick-field">
                             <label for="qb-name">Имя</label>
                             <input type="text" id="qb-name" name="name" placeholder="Как к вам обращаться" autocomplete="name" required>
@@ -314,7 +314,7 @@
                         </div>
                         <button type="submit" class="btn-primary booking-quick-submit">Отправить заявку</button>
                         <p class="booking-quick-status" id="quickBookingStatus" aria-live="polite"></p>
-                        <p class="booking-quick-note">Мы перезвоним, чтобы подтвердить время и количество гостей.</p>
+                        <p class="booking-quick-note" data-content="home.booking.form_note">Мы перезвоним, чтобы подтвердить время и количество гостей.</p>
                     </form>
                 </div>
             </div>
@@ -331,12 +331,12 @@
                             <span class="mobile-copy" data-content="home.menu.text_mobile">Европейская кухня, пицца и закуски к пиву. Бар — вино, коктейли, крепкое.</span>
                         </p>
                         <div class="cta-card-tags">
-                            <span>Горячее</span>
-                            <span>Пицца</span>
-                            <span>Закуски к пиву</span>
-                            <span>Вино</span>
-                            <span>Коктейли</span>
-                            <span>Пиво</span>
+                            <span data-content="home.menu.tag1">Горячее</span>
+                            <span data-content="home.menu.tag2">Пицца</span>
+                            <span data-content="home.menu.tag3">Закуски к пиву</span>
+                            <span data-content="home.menu.tag4">Вино</span>
+                            <span data-content="home.menu.tag5">Коктейли</span>
+                            <span data-content="home.menu.tag6">Пиво</span>
                         </div>
                         <div class="cta-card-actions">
                             <a href="menu.html" class="btn-primary">Открыть меню</a>
@@ -363,21 +363,21 @@
                             </span>
                         </p>
                         <div class="gallery-points">
-                            <div class="gallery-point">Удобная посадка для компаний и долгих ужинов</div>
-                            <div class="gallery-point">Два зала для разного ритма вечера</div>
-                            <div class="gallery-point">Летняя веранда с более лёгким настроением</div>
+                            <div class="gallery-point" data-content="home.gallery.point1">Удобная посадка для компаний и долгих ужинов</div>
+                            <div class="gallery-point" data-content="home.gallery.point2">Два зала для разного ритма вечера</div>
+                            <div class="gallery-point" data-content="home.gallery.point3">Летняя веранда с более лёгким настроением</div>
                         </div>
                     </div>
                     <div class="gallery-stack">
                         <article class="gallery-photo gallery-photo-main" data-photo="gallery-1">
-                            <div class="photo-caption">Атмосферный зал</div>
+                            <div class="photo-caption" data-content="home.gallery.caption1">Атмосферный зал</div>
                         </article>
                         <div class="gallery-side">
                             <article class="gallery-photo gallery-photo-secondary" data-photo="gallery-2">
-                                <div class="photo-caption">Уютный свет</div>
+                                <div class="photo-caption" data-content="home.gallery.caption2">Уютный свет</div>
                             </article>
                             <article class="gallery-photo gallery-photo-tertiary" data-photo="gallery-3">
-                                <div class="photo-caption">Веранда</div>
+                                <div class="photo-caption" data-content="home.gallery.caption3">Веранда</div>
                             </article>
                         </div>
                     </div>
@@ -399,15 +399,15 @@
                             <span class="mobile-copy" data-content="home.banquet.text_mobile">Подходит для дней рождения, корпоративов и камерных частных событий.</span>
                         </p>
                         <div class="banquet-benefits">
-                            <div class="benefit-pill">Корпоративы</div>
-                            <div class="benefit-pill">Свадьбы</div>
-                            <div class="benefit-pill">Дни рождения</div>
-                            <div class="benefit-pill">Выпускные</div>
-                            <div class="benefit-pill">Фуршеты</div>
-                            <div class="benefit-pill">Бизнес-встречи</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill1">Корпоративы</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill2">Свадьбы</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill3">Дни рождения</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill4">Выпускные</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill5">Фуршеты</div>
+                            <div class="benefit-pill" data-content="home.banquet.pill6">Бизнес-встречи</div>
                         </div>
                         <div class="banquet-contact">
-                            <p>Для быстрого обсуждения банкета:</p>
+                            <p data-content="home.banquet.contact_label">Для быстрого обсуждения банкета:</p>
                             <a href="tel:+79821217375" class="contact-cta">+7 982 121 73 75</a>
                         </div>
                     </div>
@@ -415,7 +415,7 @@
                         <div class="banquet-visual" data-photo="banquet">
                             <img src="assets/banquet-event-hall.webp?v=20260329-16" alt="Банкетный зал Бара Читателей">
                         </div>
-                        <p class="form-shell-title">Оставить заявку на мероприятие</p>
+                        <p class="form-shell-title" data-content="home.banquet.form_title">Оставить заявку на мероприятие</p>
                         <form class="banquet-form" id="banquetForm">
                             <div class="form-group">
                                 <label for="event_type">Тип мероприятия</label>
@@ -454,15 +454,15 @@
         <section id="contacts" class="contacts-section section-shell">
             <div class="container contacts-grid">
                 <div class="contacts-card surface-card">
-                    <p class="section-eyebrow">Контакты</p>
-                    <h2 class="display-title">Приехать, позвонить, написать.</h2>
+                    <p class="section-eyebrow" data-content="home.contacts.eyebrow">Контакты</p>
+                    <h2 class="display-title" data-content="home.contacts.title">Приехать, позвонить, написать.</h2>
                     <div class="contacts-content">
-                        <p>Пушкинская, 223, Ижевск</p>
+                        <p data-content="settings.address">Пушкинская, 223, Ижевск</p>
                         <p>Бронирование: <a href="tel:+73412693001">+7 3412 693-001</a></p>
                         <p>Банкеты: <a href="tel:+79821217375">+7 982 121 73 75</a></p>
                         <p>Email: <a href="mailto:banket-izhevsk@amaks-hotels.ru">banket-izhevsk@amaks-hotels.ru</a></p>
-                        <p>Вс–Чт: 12:00–00:00</p>
-                        <p>Пт–Сб: 12:00–02:00</p>
+                        <p data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</p>
+                        <p data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</p>
                     </div>
                     <div class="contact-actions">
                         <a href="tel:+73412693001" class="btn-primary">Позвонить</a>
@@ -472,8 +472,8 @@
                 <div class="contacts-map surface-card">
                     <div class="map-frame">
                         <div class="map-copy">
-                            <p class="map-label">Бар Читателей</p>
-                            <p class="map-address">Центр города, понятная локация и быстрый доступ для вечерней встречи.</p>
+                            <p class="map-label" data-content="home.contacts.map_title">Бар Читателей</p>
+                            <p class="map-address" data-content="home.contacts.map_text">Центр города, понятная локация и быстрый доступ для вечерней встречи.</p>
                             <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">Открыть VK сообщества</a>
                         </div>
                     </div>
@@ -486,7 +486,7 @@
         <div class="footer-content">
             <div class="footer-col footer-brand">
                 <img class="footer-logo" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
-                <p>Атмосферный ресторан-бар в центре Ижевска.</p>
+                <p data-content="footer.about">Атмосферный ресторан-бар в центре Ижевска.</p>
                 <a href="https://vk.com/rspub" class="footer-social" target="_blank" rel="noopener">ВКонтакте →</a>
             </div>
             <div class="footer-col">
@@ -506,14 +506,14 @@
             <div class="footer-col">
                 <p class="footer-col-title">Контакты</p>
                 <a href="tel:+73412693001">+7 3412 693-001</a>
-                <span>Пушкинская, 223, Ижевск</span>
-                <span>Вс–Чт: 12:00–00:00</span>
-                <span>Пт–Сб: 12:00–02:00</span>
+                <span data-content="settings.address">Пушкинская, 223, Ижевск</span>
+                <span data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</span>
+                <span data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</span>
             </div>
         </div>
         <div class="footer-legal">
-            <p class="footer-meta">ООО «ИРЕНА» · ИНН 0000000000 · ОГРН 0000000000000 · Удмуртская Республика, г. Ижевск, ул. Пушкинская, 223</p>
-            <p class="footer-copy">© 2026 Бар Читателей</p>
+            <p class="footer-meta" data-content="footer.legal">ООО «ИРЕНА» · ИНН 0000000000 · ОГРН 0000000000000 · Удмуртская Республика, г. Ижевск, ул. Пушкинская, 223</p>
+            <p class="footer-copy" data-content="footer.copyright">© 2026 Бар Читателей</p>
         </div>
     </footer>
 
@@ -523,7 +523,7 @@
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
 
-    <script src="content-loader.js?v=20261001-4"></script>
+    <script src="content-loader.js?v=20261007-3"></script>
     <script src="hero-slider.js?v=20260901-1"></script>
     <script src="script.js?v=20260405-28"></script>
     <script>
