@@ -3,8 +3,10 @@
 Сервер сайта Readers Pub. Раздаёт статику и принимает заявки на бронь,
 отправляя их в Telegram (бот clearlebot / bot.py проекта).
 """
+import base64
 import json
 import os
+import re
 import ssl
 import sys
 from datetime import datetime, timedelta
@@ -15,6 +17,8 @@ import urllib.error
 import urllib.request
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
+import lib_store as store
+
 # SSL: на Mac часто падает проверка сертификатов — используем контекст без проверки для Telegram API
 _SSL_CTX = ssl.create_default_context()
 _SSL_CTX.check_hostname = False
@@ -23,10 +27,6 @@ _SSL_CTX.verify_mode = ssl.CERT_NONE
 BOOKINGS_FILE = Path(__file__).parent / "bookings.json"
 AVAILABILITY_FILE = Path(__file__).parent / "availability.json"
 CONTENT_FILE = Path(__file__).parent / "content.json"
-
-# Пароль админки. ВАЖНО: для боевого использования задайте ADMIN_PASSWORD в окружении
-# и НЕ храните реальный пароль в коде. Значение по умолчанию — только для локальной разработки.
-ADMIN_PASSWORD = (os.environ.get("ADMIN_PASSWORD") or "readerspub-admin").strip()
 
 # Загрузка .env.bot (если есть)
 _env_path = os.path.join(os.path.dirname(__file__), "..", ".env.bot")
@@ -37,6 +37,11 @@ if os.path.exists(_env_path):
             if line and not line.startswith("#") and "=" in line:
                 k, v = line.split("=", 1)
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+# Пароль админки и токены сессий — в lib_store.py (общие с Vercel)
+
+# Куда складывать фото, что принимать и какой лимит — в lib_store.py
+
 
 # Токен и получатели берутся ТОЛЬКО из окружения (.env.bot локально,
 # переменные окружения на сервере). В коде хранить их нельзя — репозиторий публичный.
@@ -259,6 +264,9 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/admin/bookings":
             self._handle_admin_bookings()
             return
+        if parsed.path == "/api/admin/publish-status":
+            self._handle_publish_status()
+            return
         super().do_GET()
 
     def do_POST(self):
@@ -270,13 +278,18 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
             self._handle_admin_login()
         elif self.path == "/api/admin/content":
             self._handle_save_content()
+        elif self.path == "/api/admin/upload":
+            self._handle_upload()
+        elif self.path == "/api/admin/photo-delete":
+            self._handle_photo_delete()
+        elif self.path == "/api/admin/publish":
+            self._handle_publish()
         else:
             self.send_error(404)
 
     # --- Админка: контент и авторизация ---
     def _is_admin_authorized(self) -> bool:
-        provided = (self.headers.get("X-Admin-Password") or "").strip()
-        return bool(provided) and provided == ADMIN_PASSWORD
+        return store.token_ok((self.headers.get("X-Admin-Password") or "").strip())
 
     def _handle_get_content(self):
         if not CONTENT_FILE.exists():
@@ -291,8 +304,8 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
     def _handle_admin_login(self):
         try:
             data = self._read_json()
-            if (data.get("password") or "").strip() == ADMIN_PASSWORD:
-                self._send_json({"ok": True, "token": ADMIN_PASSWORD})
+            if store.password_ok(data.get("password") or ""):
+                self._send_json({"ok": True, "token": store.make_token()})
             else:
                 self._send_json({"ok": False, "message": "Неверный пароль"}, 401)
         except Exception as e:
@@ -300,7 +313,7 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
 
     def _handle_save_content(self):
         if not self._is_admin_authorized():
-            self._send_json({"ok": False, "message": "Не авторизовано"}, 401)
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
             return
         try:
             data = self._read_json()
@@ -315,9 +328,90 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
         except Exception as e:
             self._send_json({"ok": False, "message": str(e)}, 500)
 
+    # --- Админка: загрузка фото ---
+    def _read_content(self) -> dict:
+        if CONTENT_FILE.exists():
+            try:
+                return json.loads(CONTENT_FILE.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return {}
+
+    def _write_content(self, content: dict):
+        content.setdefault("_meta", {})
+        content["_meta"]["updated_at"] = datetime.now().isoformat()
+        CONTENT_FILE.write_text(json.dumps(content, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def _handle_upload(self):
+        """Принимает фото для одной позиции сайта.
+
+        Тело запроса — JSON: {"slot": "hero-1", "type": "image/jpeg", "data": "<base64>"}
+        Файл кладётся в assets/uploads/<slot>.<ext>, путь пишется в content.photos[slot].
+        Серая заглушка на сайте пропадает сама: content-loader.js видит фото
+        и подставляет его вместо заглушки.
+        """
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
+            return
+        try:
+            slot, mime, blob = store.decode_upload(self._read_json())
+            if slot is None:
+                self._send_json({"ok": False, "message": blob}, 400)
+                return
+
+            rel = store.save_photo(slot, mime, blob)
+            content = self._read_content()
+            content.setdefault("photos", {})[slot] = rel
+            self._write_content(content)
+
+            self._send_json({"ok": True, "slot": slot, "file": rel,
+                             "size": len(blob), "message": "Фото загружено"})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_photo_delete(self):
+        """Убирает фото с позиции — на сайте снова появляется серая заглушка."""
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
+            return
+        try:
+            data = self._read_json()
+            slot = re.sub(r"[^a-z0-9_-]", "", str(data.get("slot") or "").lower())
+            if not slot:
+                self._send_json({"ok": False, "message": "Не указана позиция (slot)"}, 400)
+                return
+
+            store.delete_photo(slot)
+
+            content = self._read_content()
+            if content.get("photos", {}).pop(slot, None) is not None:
+                self._write_content(content)
+            self._send_json({"ok": True, "slot": slot, "message": "Фото убрано"})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_publish_status(self):
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
+            return
+        try:
+            self._send_json({"ok": True, "status": store.publish_status()})
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
+    def _handle_publish(self):
+        if not self._is_admin_authorized():
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
+            return
+        try:
+            res = store.git_publish()
+            self._send_json(res, 200 if res.get("ok") else 500)
+        except Exception as e:
+            self._send_json({"ok": False, "message": str(e)}, 500)
+
     def _handle_admin_bookings(self):
         if not self._is_admin_authorized():
-            self._send_json({"ok": False, "message": "Не авторизовано"}, 401)
+            self._send_json({"ok": False, "message": "Сессия истекла, войдите заново"}, 401)
             return
         try:
             rows = json.loads(BOOKINGS_FILE.read_text(encoding="utf-8")) if BOOKINGS_FILE.exists() else []
@@ -457,6 +551,11 @@ class ReadersPubHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
+        # HTML и content.json не кэшируем: иначе после правки в админке
+        # владелец видит старую страницу и думает, что ничего не сохранилось
+        path = urlparse(self.path).path
+        if path.endswith((".html", "/")) or path.endswith("content.json"):
+            self.send_header("Cache-Control", "no-store, must-revalidate")
         super().end_headers()
 
 

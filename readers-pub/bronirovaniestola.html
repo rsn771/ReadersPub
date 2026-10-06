@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Забронировать стол — Бар Читателей</title>
     <meta name="description" content="Онлайн-бронирование столов в Бар Читателей. Выберите дату и время, а мы подтвердим ваш вечер.">
-    <link rel="stylesheet" href="styles.css?v=20260919-15">
+    <link rel="stylesheet" href="styles.css?v=20261001-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -14,30 +14,42 @@
     <header class="header">
         <div class="header-top">
             <a href="index.html" class="logo" aria-label="Бар Читателей">
-                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260405-1" alt="Бар Читателей">
+                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
             </a>
             <nav class="nav">
-                <a href="index.html#story" class="nav-link">О нас</a>
+                <a href="index.html#card-afisha" class="nav-link">Афиша</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="index.html#events" class="nav-link">Форматы вечера</a>
+                <a href="biznes-lanchi.html" class="nav-link">Бизнес-ланчи</a>
+                <a href="index.html#promo" class="nav-link">Акции</a>
                 <a href="index.html#services" class="nav-link">Банкеты</a>
                 <a href="index.html#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
+                <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
-            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
+            <div class="header-side">
+                <span class="header-address">Пушкинская, 223</span>
+                <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
+            </div>
+            <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
+        <nav class="mobile-nav" id="mobileNav" hidden>
+            <a href="index.html#card-afisha">Афиша</a>
+            <a href="menu.html">Меню</a>
+            <a href="biznes-lanchi.html">Бизнес-ланчи</a>
+            <a href="index.html#promo">Акции</a>
+            <a href="index.html#services">Банкеты</a>
+            <a href="index.html#contacts">Контакты</a>
+        </nav>
     </header>
 
     <main class="page-booking">
-        <div class="booking-page-bg"></div>
+        <div class="booking-page-bg" data-photo="booking-bg"></div>
         <div class="container booking-layout">
             <section class="booking-info surface-card">
-                <p class="section-eyebrow">Бронирование</p>
-                <h1>Забронируйте вечер, а не просто стол.</h1>
-                <p>
-                    Оставьте заявку онлайн, и Бар Читателей подготовит комфортную посадку для встречи, свидания,
-                    шумной компании или вечера после работы.
-                </p>
+                <p class="section-eyebrow" data-content="booking.eyebrow">Бронирование</p>
+                <h1 data-content="booking.title">Забронируйте вечер, а не просто стол.</h1>
+                <p data-content="booking.text">Оставьте заявку онлайн, и Бар Читателей подготовит комфортную посадку для встречи, свидания, шумной компании или вечера после работы.</p>
                 <div class="booking-meta">
                     <div>Вс–Чт: 12:00–00:00</div>
                     <div>Пт–Сб: 12:00–02:00</div>
@@ -47,8 +59,8 @@
             </section>
 
             <section class="booking-form surface-card">
-                <h2>Оставить бронь</h2>
-                <p class="opening-hint">Заполните форму — мы свяжемся с вами для подтверждения посадки. Вс–Чт: 12:00–00:00, Пт–Сб: 12:00–02:00.</p>
+                <h2 data-content="booking.form_title">Оставить бронь</h2>
+                <p class="opening-hint" data-content="booking.form_hint">Заполните форму — мы свяжемся с вами для подтверждения посадки. Вс–Чт: 12:00–00:00, Пт–Сб: 12:00–02:00.</p>
 
                 <!-- ========================================================= -->
                 <!--  БРОНИРОВАНИЕ ЧЕРЕЗ ЯНДЕКС ФОРМУ                           -->
@@ -104,5 +116,27 @@
         }
     })();
     </script>
+    <script>
+    // Мобильное меню (бургер)
+    (function () {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('mobileNav');
+        if (!burger || !nav) return;
+
+        function setOpen(open) {
+            nav.hidden = !open;
+            burger.classList.toggle('is-open', open);
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        burger.addEventListener('click', function () { setOpen(nav.hidden); });
+        nav.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') setOpen(false);
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 860 && !nav.hidden) setOpen(false);
+        });
+    })();
+    </script>
+    <script src="content-loader.js?v=20261001-4"></script>
 </body>
 </html>

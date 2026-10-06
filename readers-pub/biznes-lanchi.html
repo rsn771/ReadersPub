@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Меню — Бар Читателей</title>
-    <meta name="description" content="Меню Бара Читателей: кухня, барная карта и осеннее сезонное меню. Ижевск, Пушкинская, 223.">
+    <title>Бизнес-ланчи — Бар Читателей</title>
+    <meta name="description" content="Бизнес-ланч в Баре Читателей каждый будний день с 12:00 до 16:00: салаты, супы, горячее, десерты и напитки. Ижевск, Пушкинская, 223.">
     <link rel="stylesheet" href="styles.css?v=20261001-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
                 <a href="index.html#card-afisha" class="nav-link">Афиша</a>
                 <a href="menu.html" class="nav-link">Меню</a>
                 <a href="biznes-lanchi.html" class="nav-link">Бизнес-ланчи</a>
-                <a href="index.html#card-promo" class="nav-link">Акции</a>
-                <a href="index.html#card-bankety" class="nav-link">Банкеты</a>
+                <a href="index.html#promo" class="nav-link">Акции</a>
+                <a href="index.html#services" class="nav-link">Банкеты</a>
                 <a href="index.html#contacts" class="nav-link">Контакты</a>
                 <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
@@ -37,117 +37,45 @@
             <a href="index.html#card-afisha">Афиша</a>
             <a href="menu.html">Меню</a>
             <a href="biznes-lanchi.html">Бизнес-ланчи</a>
-            <a href="index.html#card-promo">Акции</a>
+            <a href="index.html#promo">Акции</a>
             <a href="index.html#services">Банкеты</a>
             <a href="index.html#contacts">Контакты</a>
-            <a href="bronirovaniestola.html" class="mobile-nav-cta">Забронировать стол</a>
         </nav>
     </header>
 
     <main>
         <!-- ============================================================
-             МЕНЮ — СТРАНИЦЫ-СКАНЫ.
-             Порядок: кухня → бар → сезонное меню.
-             Как добавить/заменить страницу:
-               1) положить .webp в assets/menu/ (основной ~1400px по ширине
-                  и версия «-760.webp» для телефонов);
-               2) скопировать блок <a class="scan"> ниже и поправить пути,
-                  alt и размеры width/height.
+             БИЗНЕС-ЛАНЧ — страница-скан.
+             Как заменить: положить новый .webp в assets/menu/
+             (основной ~1400px по ширине и версия «-760.webp» для телефонов)
+             и поправить пути с размерами width/height в блоке ниже.
              ============================================================ -->
         <section class="scan-menu">
             <div class="container">
                 <div class="scan-menu-head">
-                    <p class="section-eyebrow" data-content="menu.eyebrow">Меню</p>
-                    <h1 class="display-title" data-content="menu.title">Кухня и бар</h1>
-                    <p class="scan-menu-lead" data-content="menu.lead">Европейская кухня с удмуртскими акцентами, барная карта и сезонное осеннее меню. Нажмите на страницу, чтобы открыть её крупно.</p>
+                    <p class="section-eyebrow" data-content="lunch.eyebrow">Бизнес-ланчи</p>
+                    <h1 class="display-title" data-content="lunch.title">Каждый будний день с 12:00 до 16:00</h1>
+                    <p class="scan-menu-lead" data-content="lunch.lead">Салаты, супы, горячее, десерты и напитки по ланчевым ценам. Нажмите на страницу, чтобы открыть её крупно.</p>
                 </div>
 
                 <div class="scan-group">
-                    <h2 class="scan-group-title" id="kuhnya" data-content="menu.group_food">Кухня</h2>
-                    <div class="scan-grid">
-                        <a class="scan" data-photo="scan-food-1" data-photo-default href="assets/menu/menu-01-supy-goryachee-smoker.webp">
-                            <img src="assets/menu/menu-01-supy-goryachee-smoker-760.webp"
-                                 srcset="assets/menu/menu-01-supy-goryachee-smoker-760.webp 760w,
-                                         assets/menu/menu-01-supy-goryachee-smoker.webp 1418w"
+                    <div class="scan-grid scan-grid--single">
+                        <a class="scan" data-photo="scan-lunch" data-photo-default href="assets/menu/biznes-lanch.webp">
+                            <img src="assets/menu/biznes-lanch-760.webp"
+                                 srcset="assets/menu/biznes-lanch-760.webp 760w,
+                                         assets/menu/biznes-lanch.webp 1414w"
                                  sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Меню: супы, горячее, блюда из смокера"
+                                 width="1414" height="2000"
+                                 alt="Бизнес-ланч: салаты, супы, горячее, десерты, напитки"
                                  fetchpriority="high" decoding="async">
                             <span class="scan-zoom">Открыть крупно</span>
                         </a>
-                        <a class="scan" data-photo="scan-food-2" data-photo-default href="assets/menu/menu-02-pizza-deserty.webp">
-                            <img src="assets/menu/menu-02-pizza-deserty-760.webp"
-                                 srcset="assets/menu/menu-02-pizza-deserty-760.webp 760w,
-                                         assets/menu/menu-02-pizza-deserty.webp 1418w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Меню: римская пицца и десерты"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
                     </div>
                 </div>
 
-                <div class="scan-group">
-                    <h2 class="scan-group-title" id="bar" data-content="menu.group_bar">Напитки и бар</h2>
-                    <div class="scan-grid">
-                        <a class="scan" data-photo="scan-drinks-1" data-photo-default href="assets/menu/menu-03-bezalkogolnye-chay-kofe.webp">
-                            <img src="assets/menu/menu-03-bezalkogolnye-chay-kofe-760.webp"
-                                 srcset="assets/menu/menu-03-bezalkogolnye-chay-kofe-760.webp 760w,
-                                         assets/menu/menu-03-bezalkogolnye-chay-kofe.webp 1418w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Меню: безалкогольные напитки, чай, кофе"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
-                        <a class="scan" data-photo="scan-drinks-2" data-photo-default href="assets/menu/menu-04-vino.webp">
-                            <img src="assets/menu/menu-04-vino-760.webp"
-                                 srcset="assets/menu/menu-04-vino-760.webp 760w,
-                                         assets/menu/menu-04-vino.webp 1418w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Винная карта: игристое, белое, красное вино"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
-                        <a class="scan" data-photo="scan-drinks-3" data-photo-default href="assets/menu/menu-05-vodka-kokteyli-pivo.webp">
-                            <img src="assets/menu/menu-05-vodka-kokteyli-pivo-760.webp"
-                                 srcset="assets/menu/menu-05-vodka-kokteyli-pivo-760.webp 760w,
-                                         assets/menu/menu-05-vodka-kokteyli-pivo.webp 1418w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Барная карта: водка, настойки, коктейли, разливное пиво"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
-                        <a class="scan" data-photo="scan-drinks-4" data-photo-default href="assets/menu/menu-06-krepkiy-alkogol.webp">
-                            <img src="assets/menu/menu-06-krepkiy-alkogol-760.webp"
-                                 srcset="assets/menu/menu-06-krepkiy-alkogol-760.webp 760w,
-                                         assets/menu/menu-06-krepkiy-alkogol.webp 1418w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1418" height="1754"
-                                 alt="Крепкий алкоголь: коньяк, виски, ром, джин, текила"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="scan-group">
-                    <h2 class="scan-group-title" id="osennee" data-content="menu.group_season">Осеннее меню</h2>
-                    <div class="scan-grid scan-grid--single">
-                        <a class="scan" data-photo="scan-season" data-photo-default href="assets/menu/menu-07-osennee-menyu.webp">
-                            <img src="assets/menu/menu-07-osennee-menyu-760.webp"
-                                 srcset="assets/menu/menu-07-osennee-menyu-760.webp 760w,
-                                         assets/menu/menu-07-osennee-menyu.webp 1842w"
-                                 sizes="(max-width: 860px) 100vw, 46vw"
-                                 width="1842" height="2433"
-                                 alt="Осеннее сезонное меню"
-                                 loading="lazy" decoding="async">
-                            <span class="scan-zoom">Открыть крупно</span>
-                        </a>
-                    </div>
+                <div class="scan-menu-foot">
+                    <a href="menu.html" class="btn-secondary">Основное меню</a>
+                    <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
                 </div>
             </div>
         </section>
@@ -164,6 +92,7 @@
                 <p class="footer-col-title">Разделы</p>
                 <a href="index.html#card-afisha">Афиша</a>
                 <a href="menu.html">Меню</a>
+                <a href="biznes-lanchi.html">Бизнес-ланчи</a>
                 <a href="bronirovaniestola.html">Бронь</a>
                 <a href="index.html#services">Банкеты</a>
                 <a href="index.html#contacts">Контакты</a>
@@ -206,9 +135,7 @@
             burger.classList.toggle('is-open', open);
             burger.setAttribute('aria-expanded', open ? 'true' : 'false');
         }
-        burger.addEventListener('click', function () {
-            setOpen(nav.hidden);
-        });
+        burger.addEventListener('click', function () { setOpen(nav.hidden); });
         nav.addEventListener('click', function (e) {
             if (e.target.tagName === 'A') setOpen(false);
         });
@@ -219,8 +146,7 @@
     </script>
 
     <script>
-    // Крупный просмотр страницы меню: клик по скану → полноэкранный показ,
-    // стрелки / свайп листают страницы, Esc закрывает.
+    // Крупный просмотр страницы меню (та же механика, что на странице меню)
     (function () {
         var scans = Array.prototype.slice.call(document.querySelectorAll('.scan'));
         if (!scans.length) return;
@@ -230,7 +156,7 @@
         box.hidden = true;
         box.setAttribute('role', 'dialog');
         box.setAttribute('aria-modal', 'true');
-        box.setAttribute('aria-label', 'Страница меню');
+        box.setAttribute('aria-label', 'Бизнес-ланч');
         box.innerHTML =
             '<img alt="">' +
             '<button type="button" class="scan-lb-btn scan-lb-prev" aria-label="Предыдущая страница">‹</button>' +
@@ -244,6 +170,13 @@
         var index = 0;
         var lastFocus = null;
 
+        // одна страница — стрелки и счётчик не нужны
+        if (scans.length < 2) {
+            box.querySelector('.scan-lb-prev').hidden = true;
+            box.querySelector('.scan-lb-next').hidden = true;
+            count.hidden = true;
+        }
+
         function show(i) {
             index = (i + scans.length) % scans.length;
             var link = scans[index];
@@ -255,7 +188,6 @@
             box.scrollLeft = 0;
         }
 
-        // клик по самой странице — приблизить/отдалить
         pic.addEventListener('click', function () {
             var zoom = !box.classList.contains('is-zoomed');
             box.classList.toggle('is-zoomed', zoom);
@@ -292,9 +224,7 @@
         box.querySelector('.scan-lb-prev').addEventListener('click', function () { show(index - 1); });
         box.querySelector('.scan-lb-next').addEventListener('click', function () { show(index + 1); });
         box.querySelector('.scan-lb-close').addEventListener('click', close);
-        box.addEventListener('click', function (e) {
-            if (e.target === box) close();
-        });
+        box.addEventListener('click', function (e) { if (e.target === box) close(); });
 
         document.addEventListener('keydown', function (e) {
             if (box.hidden) return;
@@ -303,19 +233,15 @@
             if (e.key === 'ArrowRight') show(index + 1);
         });
 
-        // свайп влево/вправо на телефоне
         var x0 = null, y0 = null;
         box.addEventListener('touchstart', function (e) {
-            x0 = e.touches[0].clientX;
-            y0 = e.touches[0].clientY;
+            x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
         }, { passive: true });
         box.addEventListener('touchend', function (e) {
             if (x0 === null) return;
             var dx = e.changedTouches[0].clientX - x0;
             var dy = e.changedTouches[0].clientY - y0;
-            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
-                show(index + (dx < 0 ? 1 : -1));
-            }
+            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
             x0 = y0 = null;
         }, { passive: true });
     })();

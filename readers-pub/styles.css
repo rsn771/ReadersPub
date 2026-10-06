@@ -407,6 +407,39 @@ main {
     color: var(--text-main);
 }
 
+/* Акцентная кнопка в верхнем баре — винная, как основные кнопки сайта */
+.nav-cta {
+    margin-left: 4px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: var(--wine);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(119, 51, 69, 0.34);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+    background: var(--wine-soft);
+    color: var(--cream);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(119, 51, 69, 0.46);
+}
+
+/* Узкий десктоп: кнопка «Забронировать стол» заняла место, поэтому
+   поджимаем меню и убираем адрес — иначе шапка переносится на две строки */
+@media (min-width: 861px) and (max-width: 1150px) {
+    .nav { gap: 15px; }
+    .nav-link { font-size: 0.86rem; }
+    .nav-cta { margin-left: 0; padding: 9px 16px; font-size: 0.86rem; }
+    .header-address { display: none; }
+}
+
 .vk-link {
     text-decoration: none;
     color: var(--accent-soft);
@@ -3663,6 +3696,15 @@ main > section[id],
     align-items: start;
 }
 
+/* кнопки под сканами (страница бизнес-ланчей) */
+.scan-menu-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 44px;
+}
+
 /* «Осеннее меню» — одна страница, держим ту же ширину и ставим по центру */
 .scan-grid--single { grid-template-columns: minmax(0, 1fr); justify-items: center; }
 .scan-grid--single .scan { width: min(100%, calc(50% - var(--scan-gap) / 2)); }
@@ -3785,6 +3827,9 @@ main > section[id],
     .scan-group-title { gap: 14px; margin-bottom: 16px; font-size: 1.2rem; }
     .scan { cursor: default; }
     .scan-zoom { display: none; }
+    .scan-menu-foot { margin-top: 28px; flex-direction: column; }
+    .scan-menu-foot .btn-primary,
+    .scan-menu-foot .btn-secondary { width: 100%; }
 
     /* крупный просмотр: страница на всю ширину, листаем пальцем вниз */
     .scan-lightbox { padding: 64px 10px 76px; align-items: flex-start; }
@@ -3798,75 +3843,59 @@ main > section[id],
 }
 
 /* ===================================================================
-   СЕРЫЕ ЗАГЛУШКИ ВМЕСТО ФОТО
-   Все снимки на сайте временно заменены ровным серым полем.
-   Когда появятся реальные фото — удалить этот блок целиком,
-   исходные правила ниже по файлу уже настроены.
+   ФОТО-ПОЗИЦИИ И СЕРЫЕ ЗАГЛУШКИ
+   Каждая позиция на сайте помечена data-photo="<слот>".
+   content-loader.js проставляет ей класс:
+     .no-photo  — фото не загружено, показываем ровное серое поле;
+     .has-photo — фото есть, подставляем его и заглушку убираем.
+   Загружается фото из админки — заглушка пропадает сама,
+   трогать этот файл не нужно.
    =================================================================== */
 :root { --photo-placeholder: #6e727b; }
 
-/* hero-баннер */
-.hero-photos { background: var(--photo-placeholder); }
-
-/* баннер акций */
-.promo-banner-media { background: var(--photo-placeholder); }
-
-/* карточки разделов (Афиша · Меню · Банкеты · Акции) */
-.strip-card-media,
-.strip-card-media--navy,
-.strip-card-media--wine {
+/* --- Позиция без фото: ровное серое поле --- */
+[data-photo].no-photo {
     background-image: none !important;
     background-color: var(--photo-placeholder) !important;
 }
-.strip-card-media::after { display: none; }
+[data-photo].no-photo::after,
+[data-photo].no-photo::before { display: none !important; }
 
-/* карточки ленты афиши */
-.feed-card-media,
-.feed-card-media--navy,
-.feed-card-media--wine {
-    background-image: none !important;
-    background-color: var(--photo-placeholder) !important;
-}
+/* подписи-заглушки («ФОТО» и т.п.) не показываем */
+.strip-card-media.no-photo::after,
+.cta-card-photo.no-photo::after { display: none !important; }
 
-/* фото в блоке «Меню» */
-.cta-card-photo {
-    background-image: none !important;
-    background-color: var(--photo-placeholder) !important;
-}
-.cta-card-photo::after { display: none; }   /* убираем подпись «ФОТО» */
-
-/* галерея «Атмосфера» */
-.gallery-photo-main,
-.gallery-photo-secondary,
-.gallery-photo-tertiary {
-    background-image: none !important;
-    background-color: var(--photo-placeholder) !important;
-}
-
-/* фоновые фото секций «Кухня», «Бар», «О нас» */
-.story-section::before,
-.signature-section::after {
-    background: var(--photo-placeholder) !important;
-}
-.bar-showcase {
-    background: var(--photo-placeholder) !important;
-}
-
-/* карта в контактах и фон страницы бронирования */
-.map-frame {
-    background: var(--photo-placeholder) !important;
-}
-.booking-page-bg {
-    background: var(--photo-placeholder) !important;
-}
-
-/* фото банкетного зала (тег <img>) */
-.banquet-visual img,
-.kitchen-showcase-media {
-    visibility: hidden;
-}
-.banquet-visual {
+/* у банкетного зала картинка — тег <img>, прячем её и красим контейнер */
+.banquet-visual.no-photo img { visibility: hidden; }
+.banquet-visual.no-photo {
     background: var(--photo-placeholder);
     border-radius: var(--radius-md);
     min-height: 240px;
 }
+
+/* --- Позиция с фото: показываем снимок --- */
+[data-photo].has-photo {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.banquet-visual.has-photo { background: none; min-height: 0; }
+.banquet-visual.has-photo img { visibility: visible; }
+
+/* hero: фон-позиция под баннер, пока слайдер пустой */
+.hero-photos.has-photo { background-size: cover; background-position: center; }
+
+/* промо-баннер: фото ложится в жёсткую рамку 4:3 / 3:4 */
+.promo-banner-media.has-photo { background-size: cover; background-position: center; }
+
+/* сканы меню: своя картинка на месте, серым их не красим */
+.scan[data-photo-default] { background: var(--bg-soft); }
+
+/* --- Позиции, которые остаются серыми без разметки data-photo --- */
+.story-section::before,
+.signature-section::after,
+.bar-showcase,
+.map-frame {
+    background: var(--photo-placeholder) !important;
+}
+.kitchen-showcase-media { visibility: hidden; }

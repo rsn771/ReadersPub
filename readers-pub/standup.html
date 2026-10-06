@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Особые вечера — Бар Читателей</title>
     <meta name="description" content="Бар Читателей — атмосфера для особых вечеров, частных встреч и уютных событий в центре Ижевска.">
-    <link rel="stylesheet" href="styles.css?v=20260919-15">
+    <link rel="stylesheet" href="styles.css?v=20261001-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -14,18 +14,33 @@
     <header class="header">
         <div class="header-top">
             <a href="index.html" class="logo" aria-label="Бар Читателей">
-                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260405-1" alt="Бар Читателей">
+                <img class="logo-mark" src="assets/logo-chitateley-white.png?v=20260831-1" alt="Бар Читателей">
             </a>
             <nav class="nav">
-                <a href="index.html#story" class="nav-link">О нас</a>
+                <a href="index.html#card-afisha" class="nav-link">Афиша</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="index.html#events" class="nav-link">Форматы вечера</a>
+                <a href="biznes-lanchi.html" class="nav-link">Бизнес-ланчи</a>
+                <a href="index.html#promo" class="nav-link">Акции</a>
                 <a href="index.html#services" class="nav-link">Банкеты</a>
                 <a href="index.html#contacts" class="nav-link">Контакты</a>
-                <a href="bronirovaniestola.html" class="nav-link btn-booking">Забронировать</a>
+                <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
-            <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
+            <div class="header-side">
+                <span class="header-address">Пушкинская, 223</span>
+                <a href="https://vk.com/rspub" class="vk-link" target="_blank" rel="noopener">VK</a>
+            </div>
+            <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
+        <nav class="mobile-nav" id="mobileNav" hidden>
+            <a href="index.html#card-afisha">Афиша</a>
+            <a href="menu.html">Меню</a>
+            <a href="biznes-lanchi.html">Бизнес-ланчи</a>
+            <a href="index.html#promo">Акции</a>
+            <a href="index.html#services">Банкеты</a>
+            <a href="index.html#contacts">Контакты</a>
+        </nav>
     </header>
 
     <main class="page-booking">
@@ -61,5 +76,26 @@
         <a href="bronirovaniestola.html" class="mobile-dock-primary">Бронь</a>
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
+    <script>
+    // Мобильное меню (бургер)
+    (function () {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('mobileNav');
+        if (!burger || !nav) return;
+
+        function setOpen(open) {
+            nav.hidden = !open;
+            burger.classList.toggle('is-open', open);
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        burger.addEventListener('click', function () { setOpen(nav.hidden); });
+        nav.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') setOpen(false);
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 860 && !nav.hidden) setOpen(false);
+        });
+    })();
+    </script>
 </body>
 </html>

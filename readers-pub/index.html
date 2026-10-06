@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20260919-15">
+    <link rel="stylesheet" href="styles.css?v=20261001-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -19,11 +19,11 @@
             <nav class="nav">
                 <a href="#card-afisha" class="nav-link">Афиша</a>
                 <a href="menu.html" class="nav-link">Меню</a>
-                <a href="menu.html" class="nav-link">Бизнес-ланчи</a>
+                <a href="biznes-lanchi.html" class="nav-link">Бизнес-ланчи</a>
                 <a href="#promo" class="nav-link">Акции</a>
                 <a href="#services" class="nav-link">Банкеты</a>
                 <a href="#contacts" class="nav-link">Контакты</a>
-                <a href="#contacts" class="nav-link">Сертификаты</a>
+                <a href="bronirovaniestola.html" class="nav-cta">Забронировать стол</a>
             </nav>
             <div class="header-side">
                 <span class="header-address">Пушкинская, 223</span>
@@ -36,7 +36,7 @@
         <nav class="mobile-nav" id="mobileNav" hidden>
             <a href="#card-afisha">Афиша</a>
             <a href="menu.html">Меню</a>
-            <a href="menu.html">Бизнес-ланчи</a>
+            <a href="biznes-lanchi.html">Бизнес-ланчи</a>
             <a href="#promo">Акции</a>
             <a href="#services">Банкеты</a>
             <a href="#contacts">Контакты</a>
@@ -57,7 +57,7 @@
                  1) прогнать исходник: python3 tools/make-hero-crops.py фото.jpg --name hero-1
                  2) раскомментировать блок <picture> ниже (по одному на баннер).
                  ============================================================ -->
-            <div class="hero-photos" id="heroPhotos" aria-hidden="true">
+            <div class="hero-photos" id="heroPhotos" data-photo="hero" aria-hidden="true">
                 <!--
                 <picture class="hero-photo is-active">
                     <source media="(max-width: 640px)" srcset="assets/hero/hero-1-mobile.webp">
@@ -74,7 +74,7 @@
                 <nav class="hero-mobile-nav" aria-label="Разделы">
                     <a href="#card-afisha">Афиша</a>
                     <a href="menu.html">Меню</a>
-                    <a href="menu.html">Бизнес-ланчи</a>
+                    <a href="biznes-lanchi.html">Бизнес-ланчи</a>
                     <a href="#promo">Акции</a>
                     <a href="#services">Банкеты</a>
                     <a href="#contacts">Контакты</a>
@@ -94,7 +94,7 @@
                             <div class="hero-slides" id="heroSlides">
 
                                 <article class="hero-slide is-active" role="group" aria-roledescription="слайд" aria-label="Искусство вкуса">
-                                    <p class="hero-script">Искусство вкуса</p>
+                                    <p class="hero-script" data-content="home.hero.script">Искусство вкуса</p>
                                     <h1 class="hero-title hero-title--caps" data-content="home.hero.title">в каждой детали</h1>
                                     <p class="hero-description" data-content="home.hero.subtitle">Пространство с атмосферой старинной библиотеки и уютной гостиной: европейская кухня, авторский бар и вечера, куда хочется возвращаться.</p>
                                     <div class="hero-actions">
@@ -172,22 +172,22 @@
             <div class="container">
                 <div class="strip-grid">
                     <a class="strip-card" id="card-afisha" href="standup.html">
-                        <div class="strip-card-media strip-card-media--navy">
+                        <div class="strip-card-media strip-card-media--navy" data-photo="card-afisha">
                             <span class="strip-card-btn">Афиша</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-menu" href="menu.html">
-                        <div class="strip-card-media strip-card-media--wine">
+                        <div class="strip-card-media strip-card-media--wine" data-photo="card-menu">
                             <span class="strip-card-btn">Меню</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-bankety" href="#services">
-                        <div class="strip-card-media strip-card-media--navy">
+                        <div class="strip-card-media strip-card-media--navy" data-photo="card-bankety">
                             <span class="strip-card-btn">Банкеты</span>
                         </div>
                     </a>
                     <a class="strip-card" id="card-promo" href="#promo">
-                        <div class="strip-card-media strip-card-media--wine">
+                        <div class="strip-card-media strip-card-media--wine" data-photo="card-promo">
                             <span class="strip-card-btn">Акции</span>
                         </div>
                     </a>
@@ -197,14 +197,14 @@
 
         <section id="afisha-feed" class="afisha-feed section-shell">
             <div class="container afisha-feed-head">
-                <p class="section-eyebrow">Афиша</p>
-                <h2 class="display-title">Ближайшие события</h2>
+                <p class="section-eyebrow" data-content="home.feed.eyebrow">Афиша</p>
+                <h2 class="display-title" data-content="home.feed.title">Ближайшие события</h2>
             </div>
             <div class="feed-viewport container">
                 <div class="feed-track" id="feedTrack">
 
                     <article class="feed-card">
-                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-media feed-card-media--navy" data-photo="event-1"></div>
                         <div class="feed-card-body">
                             <span class="feed-date">Пт · 12 сентября · 20:00</span>
                             <h3 class="feed-title">Стендап-вечер</h3>
@@ -213,7 +213,7 @@
                     </article>
 
                     <article class="feed-card">
-                        <div class="feed-card-media feed-card-media--wine"></div>
+                        <div class="feed-card-media feed-card-media--wine" data-photo="event-2"></div>
                         <div class="feed-card-body">
                             <span class="feed-date">Сб · 13 сентября · 21:00</span>
                             <h3 class="feed-title">Живая музыка</h3>
@@ -222,7 +222,7 @@
                     </article>
 
                     <article class="feed-card">
-                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-media feed-card-media--navy" data-photo="event-3"></div>
                         <div class="feed-card-body">
                             <span class="feed-date">Чт · 18 сентября · 19:30</span>
                             <h3 class="feed-title">Квиз «Читатели»</h3>
@@ -231,7 +231,7 @@
                     </article>
 
                     <article class="feed-card">
-                        <div class="feed-card-media feed-card-media--wine"></div>
+                        <div class="feed-card-media feed-card-media--wine" data-photo="event-4"></div>
                         <div class="feed-card-body">
                             <span class="feed-date">Пт · 19 сентября · 20:00</span>
                             <h3 class="feed-title">Винный вечер</h3>
@@ -240,7 +240,7 @@
                     </article>
 
                     <article class="feed-card">
-                        <div class="feed-card-media feed-card-media--navy"></div>
+                        <div class="feed-card-media feed-card-media--navy" data-photo="event-5"></div>
                         <div class="feed-card-body">
                             <span class="feed-date">Сб · 20 сентября · 21:00</span>
                             <h3 class="feed-title">Джем-сейшн</h3>
@@ -270,7 +270,7 @@
              Нужна ссылка с баннера — обернуть <picture> в <a href="...">.
              ============================================================ -->
         <section id="promo" class="promo-banner" aria-label="Акции">
-            <div class="promo-banner-media">
+            <div class="promo-banner-media" data-photo="promo">
                 <!--
                 <picture>
                     <source media="(max-width: 860px)" srcset="assets/promo/promo-mobile.webp">
@@ -285,9 +285,9 @@
             <div class="container">
                 <div class="cta-card cta-card--wine cta-card--tall">
                     <div class="cta-card-copy">
-                        <p class="section-eyebrow">Бронирование</p>
-                        <h2 class="display-title">Забронируйте вечер, а не просто стол</h2>
-                        <p class="lead-text">Оставьте заявку онлайн — подготовим комфортную посадку для встречи, свидания, компании или вечера после работы.</p>
+                        <p class="section-eyebrow" data-content="home.booking.eyebrow">Бронирование</p>
+                        <h2 class="display-title" data-content="home.booking.title">Забронируйте вечер, а не просто стол</h2>
+                        <p class="lead-text" data-content="home.booking.text">Оставьте заявку онлайн — подготовим комфортную посадку для встречи, свидания, компании или вечера после работы.</p>
                         <div class="cta-card-meta">
                             <div class="cta-meta-item"><span>Вс–Чт</span><strong>12:00–00:00</strong></div>
                             <div class="cta-meta-item"><span>Пт–Сб</span><strong>12:00–02:00</strong></div>
@@ -324,11 +324,11 @@
             <div class="container">
                 <div class="cta-card cta-card--navy cta-card--split">
                     <div class="cta-card-copy">
-                        <p class="section-eyebrow">Меню</p>
-                        <h2 class="display-title">Кухня и барная карта</h2>
+                        <p class="section-eyebrow" data-content="home.menu.eyebrow">Меню</p>
+                        <h2 class="display-title" data-content="home.menu.title">Кухня и барная карта</h2>
                         <p class="lead-text">
-                            <span class="desktop-copy">Европейская кухня с локальными акцентами, пицца и закуски к пиву, авторский бар — вино, коктейли и крепкий алкоголь.</span>
-                            <span class="mobile-copy">Европейская кухня, пицца и закуски к пиву. Бар — вино, коктейли, крепкое.</span>
+                            <span class="desktop-copy" data-content="home.menu.text">Европейская кухня с локальными акцентами, пицца и закуски к пиву, авторский бар — вино, коктейли и крепкий алкоголь.</span>
+                            <span class="mobile-copy" data-content="home.menu.text_mobile">Европейская кухня, пицца и закуски к пиву. Бар — вино, коктейли, крепкое.</span>
                         </p>
                         <div class="cta-card-tags">
                             <span>Горячее</span>
@@ -342,7 +342,7 @@
                             <a href="menu.html" class="btn-primary">Открыть меню</a>
                         </div>
                     </div>
-                    <div class="cta-card-photo" aria-hidden="true"></div>
+                    <div class="cta-card-photo" data-photo="menu" aria-hidden="true"></div>
                 </div>
             </div>
         </section>
@@ -351,8 +351,8 @@
             <div class="container gallery-grid">
                 <div class="mobile-section-panel">
                     <div class="gallery-copy">
-                        <p class="section-eyebrow">Атмосфера пространства</p>
-                        <h2 class="display-title">Свет, дерево, посадка и настроение вечернего паба.</h2>
+                        <p class="section-eyebrow" data-content="home.gallery.eyebrow">Атмосфера пространства</p>
+                        <h2 class="display-title" data-content="home.gallery.title">Свет, дерево, посадка и настроение вечернего паба.</h2>
                         <p class="lead-text">
                             <span class="desktop-copy">
                                 Интерьер должен не спорить с людьми, а усиливать их вечер. Поэтому здесь работает комбинация
@@ -369,14 +369,14 @@
                         </div>
                     </div>
                     <div class="gallery-stack">
-                        <article class="gallery-photo gallery-photo-main">
+                        <article class="gallery-photo gallery-photo-main" data-photo="gallery-1">
                             <div class="photo-caption">Атмосферный зал</div>
                         </article>
                         <div class="gallery-side">
-                            <article class="gallery-photo gallery-photo-secondary">
+                            <article class="gallery-photo gallery-photo-secondary" data-photo="gallery-2">
                                 <div class="photo-caption">Уютный свет</div>
                             </article>
-                            <article class="gallery-photo gallery-photo-tertiary">
+                            <article class="gallery-photo gallery-photo-tertiary" data-photo="gallery-3">
                                 <div class="photo-caption">Веранда</div>
                             </article>
                         </div>
@@ -389,16 +389,14 @@
             <div class="container banquet-grid">
                 <div class="mobile-section-panel">
                     <div class="banquet-copy">
-                        <p class="section-eyebrow">Частные события и банкеты</p>
-                        <h2 class="display-title">Банкетный зал для ваших событий</h2>
+                        <p class="section-eyebrow" data-content="home.banquet.eyebrow">Частные события и банкеты</p>
+                        <h2 class="display-title" data-content="home.banquet.title">Банкетный зал для ваших событий</h2>
                         <p class="lead-text">
                             <span class="desktop-copy">
                                 Бар Читателей подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других
                                 вечеров, где важно совместить атмосферу, сервис и понятную организацию.
                             </span>
-                            <span class="mobile-copy">
-                                Подходит для дней рождения, корпоративов и камерных частных событий.
-                            </span>
+                            <span class="mobile-copy" data-content="home.banquet.text_mobile">Подходит для дней рождения, корпоративов и камерных частных событий.</span>
                         </p>
                         <div class="banquet-benefits">
                             <div class="benefit-pill">Корпоративы</div>
@@ -414,7 +412,7 @@
                         </div>
                     </div>
                     <div class="banquet-form-shell surface-card">
-                        <div class="banquet-visual">
+                        <div class="banquet-visual" data-photo="banquet">
                             <img src="assets/banquet-event-hall.webp?v=20260329-16" alt="Банкетный зал Бара Читателей">
                         </div>
                         <p class="form-shell-title">Оставить заявку на мероприятие</p>
@@ -525,7 +523,7 @@
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
 
-    <script src="content-loader.js?v=20260710-1"></script>
+    <script src="content-loader.js?v=20261001-4"></script>
     <script src="hero-slider.js?v=20260901-1"></script>
     <script src="script.js?v=20260405-28"></script>
     <script>
