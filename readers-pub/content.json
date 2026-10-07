@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "updated_at": "2026-10-07T13:05:55.141777",
+    "updated_at": "2026-10-07T10:53:32.671006",
     "updated_by": "",
     "note": "Контент сайта «Бар Читателей». Правится через админку (/admin), читается сайтом через content-loader.js (атрибуты data-content). НЕ редактируйте вручную, если пользуетесь админкой."
   },
@@ -11,7 +11,7 @@
     "address": "Пушкинская, 223, Ижевск",
     "hours_weekday": "Вс–Чт: 12:00–00:00",
     "hours_weekend": "Пт–Сб: 12:00–02:00",
-    "vk_url": "https://vk.com/rspub",
+    "vk_url": "https://vk.ru/barchitatelei",
     "yandex_form_id": "",
     "yandex_maps_query": "Ижевск, Пушкинская 223",
     "lunch_hours": "Будни: 12:00–16:00",
