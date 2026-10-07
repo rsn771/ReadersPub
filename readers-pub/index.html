@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20261007-4">
+    <link rel="stylesheet" href="styles.css?v=20261007-6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -46,25 +46,14 @@
     <main>
         <section id="hero" class="hero hero-layout">
             <!-- ============================================================
-                 БАННЕРЫ ГЛАВНОЙ СТРАНИЦЫ — пока пусто (серый фон-заглушка).
-
-                 Форматы для маркетолога (подробно — README, раздел «Баннеры»):
-                   ПК       1920 × 1080   (16:9)
-                   Планшет  1536 × 2048   (3:4)
-                   Мобилка  1080 × 1920   (9:16)
-
-                 Как добавить баннер:
-                 1) прогнать исходник: python3 tools/make-hero-crops.py фото.jpg --name hero-1
-                 2) раскомментировать блок <picture> ниже (по одному на баннер).
+                 БАННЕРЫ ГЛАВНОГО ЭКРАНА — по одному на каждый слайд.
+                 Меняются из админки: «Редактор страницы» → клик по баннеру.
+                 Формат: ПК 1920 × 1080 (16:9), телефон 1080 × 1920 (9:16).
                  ============================================================ -->
-            <div class="hero-photos" id="heroPhotos" data-photo="hero" aria-hidden="true">
-                <!--
-                <picture class="hero-photo is-active">
-                    <source media="(max-width: 640px)" srcset="assets/hero/hero-1-mobile.webp">
-                    <source media="(max-width: 1024px)" srcset="assets/hero/hero-1-tablet.webp">
-                    <img src="assets/hero/hero-1-desktop.webp" alt="" fetchpriority="high" decoding="async">
-                </picture>
-                -->
+            <div class="hero-photos" id="heroPhotos">
+                <div class="hero-photo is-active" data-photo="hero-1" aria-hidden="true"></div>
+                <div class="hero-photo" data-photo="hero-2" aria-hidden="true"></div>
+                <div class="hero-photo" data-photo="hero-3" aria-hidden="true"></div>
             </div>
             <div class="hero-scrim"></div>
 

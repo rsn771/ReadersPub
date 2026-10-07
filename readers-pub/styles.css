@@ -487,7 +487,6 @@ main {
     position: absolute;
     inset: 0;
     overflow: hidden;
-    background: #6e727b;
 }
 .hero-photo {
     position: absolute;
@@ -3934,3 +3933,50 @@ main > section[id],
 .rp-editor .hero-edge,
 .rp-editor .hero-dots { display: none !important; }
 .rp-editor .hero { min-height: 0; padding-bottom: 40px; }
+
+
+/* Баннеры первого экрана в режиме редактора: три плитки, по одной на слайд.
+   На сайте они лежат фоном за текстом и по ним не кликнуть — здесь
+   раскладываем их в ряд и подписываем. */
+/* .hero — флекс-контейнер, поэтому полоса баннеров сжималась по содержимому:
+   задаём ей всю ширину и отправляем первой строкой */
+.rp-editor .hero { flex-wrap: wrap; }
+.rp-editor .hero-photos {
+    flex: 0 0 100%;
+    width: 100%;
+    order: -1;
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding: 14px 24px 0;
+    overflow: visible;
+    counter-reset: rp-banner;
+}
+.rp-editor .hero-photo {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-sm);
+    border: 1px dashed rgba(149, 212, 242, 0.5);
+    overflow: hidden;
+}
+.rp-editor .hero-photo::before {
+    display: block !important;
+    content: "Баннер " counter(rp-banner);
+    counter-increment: rp-banner;
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    top: 10px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(35, 40, 69, 0.88);
+    color: var(--accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.rp-editor .hero-scrim { display: none; }
+.rp-editor .hero { padding-top: 90px; }
