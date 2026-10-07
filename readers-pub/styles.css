@@ -3899,3 +3899,38 @@ main > section[id],
     background: var(--photo-placeholder) !important;
 }
 .kitchen-showcase-media { visibility: hidden; }
+
+
+/* ===================================================================
+   РЕЖИМ РЕДАКТОРА АДМИНКИ (?editor=1)
+   Слайды первого экрана обычно показываются по одному и скрыты
+   через opacity: 0 — кликнуть по ним в редакторе невозможно.
+   Здесь раскладываем их друг под другом и делаем доступными.
+   =================================================================== */
+.rp-editor .hero-slides { display: block !important; }
+.rp-editor .hero-slide {
+    grid-area: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative;
+    padding: 18px 0;
+    border-top: 1px dashed rgba(149, 212, 242, 0.45);
+}
+.rp-editor .hero-slide:first-child { border-top: 0; }
+.rp-editor .hero-slide::before {
+    content: "Слайд " counter(rp-slide);
+    counter-increment: rp-slide;
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(149, 212, 242, 0.18);
+    color: var(--accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.rp-editor .hero-slides { counter-reset: rp-slide; }
+.rp-editor .hero-edge,
+.rp-editor .hero-dots { display: none !important; }
+.rp-editor .hero { min-height: 0; padding-bottom: 40px; }

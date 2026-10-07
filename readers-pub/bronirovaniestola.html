@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Забронировать стол — Бар Читателей</title>
     <meta name="description" content="Онлайн-бронирование столов в Бар Читателей. Выберите дату и время, а мы подтвердим ваш вечер.">
-    <link rel="stylesheet" href="styles.css?v=20261007-3">
+    <link rel="stylesheet" href="styles.css?v=20261007-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
                     <div data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</div>
                     <div data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</div>
                     <div data-content="settings.address">Пушкинская, 223, Ижевск</div>
-                    <div><a href="tel:+73412693001" class="text-link">+7 3412 693-001</a></div>
+                    <div><a href="tel:+73412693001" class="text-link" data-content="settings.phone_label">+7 3412 693-001</a></div>
                 </div>
             </section>
 
@@ -71,8 +71,8 @@
                 <div class="yandex-form" id="yandexForm" data-form-id=""></div>
 
                 <p class="booking-fallback">
-                    Форма не открывается? Позвоните:
-                    <a href="tel:+73412693001" class="text-link">+7 3412 693-001</a>
+                    <span data-content="booking.fallback">Форма не открывается? Позвоните:</span>
+                    <a href="tel:+73412693001" class="text-link" data-content="settings.phone_label">+7 3412 693-001</a>
                     &nbsp;·&nbsp;
                     <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">ВКонтакте</a>
                 </p>
@@ -137,6 +137,6 @@
         });
     })();
     </script>
-    <script src="content-loader.js?v=20261007-3"></script>
+    <script src="content-loader.js?v=20261007-4"></script>
 </body>
 </html>

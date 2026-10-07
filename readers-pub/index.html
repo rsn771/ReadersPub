@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20261007-3">
+    <link rel="stylesheet" href="styles.css?v=20261007-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -98,8 +98,8 @@
                                     <h1 class="hero-title hero-title--caps" data-content="home.hero.title">в каждой детали</h1>
                                     <p class="hero-description" data-content="home.hero.subtitle">Пространство с атмосферой старинной библиотеки и уютной гостиной: европейская кухня, авторский бар и вечера, куда хочется возвращаться.</p>
                                     <div class="hero-actions">
-                                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-                                        <a href="menu.html" class="btn-secondary">Посмотреть меню</a>
+                                        <a href="bronirovaniestola.html" class="btn-primary" data-content="home.hero.btn1">Забронировать стол</a>
+                                        <a href="menu.html" class="btn-secondary" data-content="home.hero.btn2">Посмотреть меню</a>
                                     </div>
                                 </article>
 
@@ -108,8 +108,8 @@
                                     <h2 class="hero-title hero-title--caps" data-content="home.hero2.title">старинной библиотеки</h2>
                                     <p class="hero-description" data-content="home.hero2.subtitle">Мягкий свет, дерево и книги, уютная посадка и негромкая музыка — место, где вечер идёт в своём ритме.</p>
                                     <div class="hero-actions">
-                                        <a href="#card-afisha" class="btn-primary">Смотреть афишу</a>
-                                        <a href="#contacts" class="btn-secondary">Как нас найти</a>
+                                        <a href="#card-afisha" class="btn-primary" data-content="home.hero2.btn1">Смотреть афишу</a>
+                                        <a href="#contacts" class="btn-secondary" data-content="home.hero2.btn2">Как нас найти</a>
                                     </div>
                                 </article>
 
@@ -118,8 +118,8 @@
                                     <h2 class="hero-title hero-title--caps" data-content="home.hero3.title">куда хочется возвращаться</h2>
                                     <p class="hero-description" data-content="home.hero3.subtitle">Ужин вдвоём, встреча с компанией или частное событие — соберём вечер под ваш повод и настроение.</p>
                                     <div class="hero-actions">
-                                        <a href="bronirovaniestola.html" class="btn-primary">Забронировать стол</a>
-                                        <a href="#services" class="btn-secondary">Банкеты и события</a>
+                                        <a href="bronirovaniestola.html" class="btn-primary" data-content="home.hero3.btn1">Забронировать стол</a>
+                                        <a href="#services" class="btn-secondary" data-content="home.hero3.btn2">Банкеты и события</a>
                                     </div>
                                 </article>
 
@@ -132,19 +132,19 @@
                     <div class="hero-highlights">
                         <div class="highlight-chip">
                             <span class="highlight-value" data-content="settings.hours_weekday_short">12:00–00:00</span>
-                            <span class="highlight-note">Вс–Чт</span>
+                            <span class="highlight-note" data-content="home.chips.note1">Вс–Чт</span>
                         </div>
                         <div class="highlight-chip">
                             <span class="highlight-value" data-content="settings.hours_weekend_short">12:00–02:00</span>
-                            <span class="highlight-note">Пт–Сб</span>
+                            <span class="highlight-note" data-content="home.chips.note2">Пт–Сб</span>
                         </div>
                         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="highlight-chip" target="_blank" rel="noopener">
                             <span class="highlight-value" data-content="settings.address_short">Пушкинская, 223</span>
-                            <span class="highlight-note">Легко найти</span>
+                            <span class="highlight-note" data-content="home.chips.note3">Легко найти</span>
                         </a>
                         <a href="tel:+73412693001" class="highlight-chip">
-                            <span class="highlight-value">+7 3412 693-001</span>
-                            <span class="highlight-note">Быстрая бронь</span>
+                            <span class="highlight-value" data-content="settings.phone_label">+7 3412 693-001</span>
+                            <span class="highlight-note" data-content="home.chips.note4">Быстрая бронь</span>
                         </a>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
                 </div>
             </div>
             <div class="container afisha-feed-foot">
-                <a href="standup.html" class="btn-secondary afisha-feed-all">Смотреть всю афишу</a>
+                <a href="standup.html" class="btn-secondary afisha-feed-all" data-content="home.feed.btn">Смотреть всю афишу</a>
             </div>
         </section>
 
@@ -289,12 +289,12 @@
                         <h2 class="display-title" data-content="home.booking.title">Забронируйте вечер, а не просто стол</h2>
                         <p class="lead-text" data-content="home.booking.text">Оставьте заявку онлайн — подготовим комфортную посадку для встречи, свидания, компании или вечера после работы.</p>
                         <div class="cta-card-meta">
-                            <div class="cta-meta-item"><span>Вс–Чт</span><strong data-content="settings.hours_weekday_short">12:00–00:00</strong></div>
-                            <div class="cta-meta-item"><span>Пт–Сб</span><strong data-content="settings.hours_weekend_short">12:00–02:00</strong></div>
-                            <div class="cta-meta-item"><span>Адрес</span><strong data-content="settings.address_short">Пушкинская, 223</strong></div>
+                            <div class="cta-meta-item"><span data-content="home.booking.meta_hours1">Вс–Чт</span><strong data-content="settings.hours_weekday_short">12:00–00:00</strong></div>
+                            <div class="cta-meta-item"><span data-content="home.booking.meta_hours2">Пт–Сб</span><strong data-content="settings.hours_weekend_short">12:00–02:00</strong></div>
+                            <div class="cta-meta-item"><span data-content="home.booking.meta_addr">Адрес</span><strong data-content="settings.address_short">Пушкинская, 223</strong></div>
                         </div>
                         <div class="cta-card-actions">
-                            <a href="tel:+73412693001" class="btn-secondary">Позвонить</a>
+                            <a href="tel:+73412693001" class="btn-secondary" data-content="home.booking.btn_call">Позвонить</a>
                         </div>
                     </div>
 
@@ -312,7 +312,7 @@
                             <label for="qb-phone">Телефон</label>
                             <input type="tel" id="qb-phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
                         </div>
-                        <button type="submit" class="btn-primary booking-quick-submit">Отправить заявку</button>
+                        <button type="submit" class="btn-primary booking-quick-submit" data-content="home.booking.btn_submit">Отправить заявку</button>
                         <p class="booking-quick-status" id="quickBookingStatus" aria-live="polite"></p>
                         <p class="booking-quick-note" data-content="home.booking.form_note">Мы перезвоним, чтобы подтвердить время и количество гостей.</p>
                     </form>
@@ -339,7 +339,7 @@
                             <span data-content="home.menu.tag6">Пиво</span>
                         </div>
                         <div class="cta-card-actions">
-                            <a href="menu.html" class="btn-primary">Открыть меню</a>
+                            <a href="menu.html" class="btn-primary" data-content="home.menu.btn">Открыть меню</a>
                         </div>
                     </div>
                     <div class="cta-card-photo" data-photo="menu" aria-hidden="true"></div>
@@ -354,13 +354,8 @@
                         <p class="section-eyebrow" data-content="home.gallery.eyebrow">Атмосфера пространства</p>
                         <h2 class="display-title" data-content="home.gallery.title">Свет, дерево, посадка и настроение вечернего паба.</h2>
                         <p class="lead-text">
-                            <span class="desktop-copy">
-                                Интерьер должен не спорить с людьми, а усиливать их вечер. Поэтому здесь работает комбинация
-                                спокойных глубоких оттенков, мягкого света и открытого зала для общения и событий.
-                            </span>
-                            <span class="mobile-copy">
-                                Тёплый свет, удобная посадка и ощущение взрослого уютного паба.
-                            </span>
+                            <span class="desktop-copy" data-content="home.gallery.text">Интерьер должен не спорить с людьми, а усиливать их вечер. Поэтому здесь работает комбинация спокойных глубоких оттенков, мягкого света и открытого зала для общения и событий.</span>
+                            <span class="mobile-copy" data-content="home.gallery.text_mobile">Тёплый свет, удобная посадка и ощущение взрослого уютного паба.</span>
                         </p>
                         <div class="gallery-points">
                             <div class="gallery-point" data-content="home.gallery.point1">Удобная посадка для компаний и долгих ужинов</div>
@@ -392,10 +387,7 @@
                         <p class="section-eyebrow" data-content="home.banquet.eyebrow">Частные события и банкеты</p>
                         <h2 class="display-title" data-content="home.banquet.title">Банкетный зал для ваших событий</h2>
                         <p class="lead-text">
-                            <span class="desktop-copy">
-                                Бар Читателей подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других
-                                вечеров, где важно совместить атмосферу, сервис и понятную организацию.
-                            </span>
+                            <span class="desktop-copy" data-content="home.banquet.text">Бар Читателей подходит для дней рождения, корпоративов, выпускных, камерных свадеб и других вечеров, где важно совместить атмосферу, сервис и понятную организацию.</span>
                             <span class="mobile-copy" data-content="home.banquet.text_mobile">Подходит для дней рождения, корпоративов и камерных частных событий.</span>
                         </p>
                         <div class="banquet-benefits">
@@ -408,7 +400,7 @@
                         </div>
                         <div class="banquet-contact">
                             <p data-content="home.banquet.contact_label">Для быстрого обсуждения банкета:</p>
-                            <a href="tel:+79821217375" class="contact-cta">+7 982 121 73 75</a>
+                            <a href="tel:+79821217375" class="contact-cta" data-content="settings.phone_banquet">+7 982 121 73 75</a>
                         </div>
                     </div>
                     <div class="banquet-form-shell surface-card">
@@ -443,7 +435,7 @@
                                 </label>
                             </div>
                             <div class="form-status" id="banquetFormStatus" aria-live="polite"></div>
-                            <button type="submit" class="btn-primary">Отправить заявку</button>
+                            <button type="submit" class="btn-primary" data-content="home.banquet.btn_submit">Отправить заявку</button>
                         </form>
                         <a href="privacy.html" class="privacy-link">Политика конфиденциальности и обработки персональных данных</a>
                     </div>
@@ -458,15 +450,15 @@
                     <h2 class="display-title" data-content="home.contacts.title">Приехать, позвонить, написать.</h2>
                     <div class="contacts-content">
                         <p data-content="settings.address">Пушкинская, 223, Ижевск</p>
-                        <p>Бронирование: <a href="tel:+73412693001">+7 3412 693-001</a></p>
-                        <p>Банкеты: <a href="tel:+79821217375">+7 982 121 73 75</a></p>
-                        <p>Email: <a href="mailto:banket-izhevsk@amaks-hotels.ru">banket-izhevsk@amaks-hotels.ru</a></p>
+                        <p><span data-content="home.contacts.phone_label">Бронирование:</span> <a href="tel:+73412693001" data-content="settings.phone_label">+7 3412 693-001</a></p>
+                        <p><span data-content="home.contacts.phone_banquet_label">Банкеты:</span> <a href="tel:+79821217375" data-content="settings.phone_banquet">+7 982 121 73 75</a></p>
+                        <p><span data-content="home.contacts.email_label">Email:</span> <a href="mailto:banket-izhevsk@amaks-hotels.ru" data-content="settings.email">banket-izhevsk@amaks-hotels.ru</a></p>
                         <p data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</p>
                         <p data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</p>
                     </div>
                     <div class="contact-actions">
-                        <a href="tel:+73412693001" class="btn-primary">Позвонить</a>
-                        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="btn-secondary" target="_blank" rel="noopener">Построить маршрут</a>
+                        <a href="tel:+73412693001" class="btn-primary" data-content="home.contacts.btn_call">Позвонить</a>
+                        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="btn-secondary" target="_blank" rel="noopener" data-content="home.contacts.btn_route">Построить маршрут</a>
                     </div>
                 </div>
                 <div class="contacts-map surface-card">
@@ -474,7 +466,7 @@
                         <div class="map-copy">
                             <p class="map-label" data-content="home.contacts.map_title">Бар Читателей</p>
                             <p class="map-address" data-content="home.contacts.map_text">Центр города, понятная локация и быстрый доступ для вечерней встречи.</p>
-                            <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener">Открыть VK сообщества</a>
+                            <a href="https://vk.com/rspub" class="text-link" target="_blank" rel="noopener" data-content="home.contacts.vk_label">Открыть VK сообщества</a>
                         </div>
                     </div>
                 </div>
@@ -505,7 +497,7 @@
             </div>
             <div class="footer-col">
                 <p class="footer-col-title">Контакты</p>
-                <a href="tel:+73412693001">+7 3412 693-001</a>
+                <a href="tel:+73412693001" data-content="settings.phone_label">+7 3412 693-001</a>
                 <span data-content="settings.address">Пушкинская, 223, Ижевск</span>
                 <span data-content="settings.hours_weekday">Вс–Чт: 12:00–00:00</span>
                 <span data-content="settings.hours_weekend">Пт–Сб: 12:00–02:00</span>
@@ -523,8 +515,8 @@
         <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" target="_blank" rel="noopener">Маршрут</a>
     </div>
 
-    <script src="content-loader.js?v=20261007-3"></script>
-    <script src="hero-slider.js?v=20260901-1"></script>
+    <script src="content-loader.js?v=20261007-4"></script>
+    <script src="hero-slider.js?v=20261007-4"></script>
     <script src="script.js?v=20260405-28"></script>
     <script>
     // Быстрая заявка на бронь из секции «Бронирование» → /api/booking (Telegram)

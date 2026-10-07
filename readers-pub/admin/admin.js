@@ -213,7 +213,40 @@
         "booking.title":      "Бронь — заголовок",
         "booking.text":       "Бронь — описание",
         "booking.form_title": "Бронь — заголовок формы",
-        "booking.form_hint":  "Бронь — подсказка над формой"
+        "booking.form_hint":  "Бронь — подсказка над формой",
+        "settings.phone_label":          "Телефон брони (во всех местах сайта)",
+        "settings.phone_banquet":        "Телефон банкетов (во всех местах сайта)",
+        "settings.email":                "Email (во всех местах сайта)",
+        "home.hero.btn1":                "Слайд 1 — кнопка слева",
+        "home.hero.btn2":                "Слайд 1 — кнопка справа",
+        "home.hero2.btn1":               "Слайд 2 — кнопка слева",
+        "home.hero2.btn2":               "Слайд 2 — кнопка справа",
+        "home.hero3.btn1":               "Слайд 3 — кнопка слева",
+        "home.hero3.btn2":               "Слайд 3 — кнопка справа",
+        "home.chips.note1":              "Плашка 1 — подпись под часами Вс–Чт",
+        "home.chips.note2":              "Плашка 2 — подпись под часами Пт–Сб",
+        "home.chips.note3":              "Плашка 3 — подпись под адресом",
+        "home.chips.note4":              "Плашка 4 — подпись под телефоном",
+        "home.feed.btn":                 "Афиша — кнопка «Смотреть всю афишу»",
+        "home.booking.meta_hours1":      "Бронирование — подпись «Вс–Чт»",
+        "home.booking.meta_hours2":      "Бронирование — подпись «Пт–Сб»",
+        "home.booking.meta_addr":        "Бронирование — подпись «Адрес»",
+        "home.booking.btn_call":         "Бронирование — кнопка «Позвонить»",
+        "home.booking.btn_submit":       "Бронирование — кнопка отправки формы",
+        "home.menu.btn":                 "Блок «Меню» — кнопка «Открыть меню»",
+        "home.gallery.text":             "Атмосфера — описание (ПК)",
+        "home.gallery.text_mobile":      "Атмосфера — описание (телефон)",
+        "home.banquet.text":             "Банкеты — описание (ПК)",
+        "home.banquet.btn_submit":       "Банкеты — кнопка отправки формы",
+        "home.contacts.phone_label":     "Контакты — подпись «Бронирование:»",
+        "home.contacts.phone_banquet_label": "Контакты — подпись «Банкеты:»",
+        "home.contacts.email_label":     "Контакты — подпись «Email:»",
+        "home.contacts.btn_call":        "Контакты — кнопка «Позвонить»",
+        "home.contacts.btn_route":       "Контакты — кнопка «Построить маршрут»",
+        "home.contacts.vk_label":        "Контакты — ссылка на VK",
+        "lunch.btn_menu":                "Бизнес-ланчи — кнопка «Основное меню»",
+        "lunch.btn_book":                "Бизнес-ланчи — кнопка брони",
+        "booking.fallback":              "Бронь — текст, если форма не открылась"
     };
 
     const MENU_SCANS = [
@@ -552,7 +585,7 @@
                         </div>
                         <div class="editor-frame-box" data-device-box="desktop">
                             <div class="editor-viewport" id="siteViewport">
-                                <iframe id="siteFrame" src="/index.html" title="Предпросмотр сайта"></iframe>
+                                <iframe id="siteFrame" src="/index.html?editor=1" title="Предпросмотр сайта"></iframe>
                             </div>
                         </div>
                     </div>
@@ -581,7 +614,8 @@
                     ["Атмосфера",           /^home\.gallery\./],
                     ["Банкеты",             /^home\.banquet\./],
                     ["Контакты",            /^home\.contacts\./],
-                    ["Общее: адрес и часы", /^settings\.(address|hours)/],
+                    ["Плашки первого экрана", /^home\.chips\./],
+                    ["Общее: контакты, адрес, часы", /^settings\.(address|hours|phone|email)/],
                     ["Подвал",              /^footer\./],
                     ["Страница «Меню»",     /^menu\./],
                     ["Страница «Бизнес-ланчи»", /^lunch\./],
@@ -820,13 +854,13 @@
                 b.classList.add("is-active");
                 currentPage = b.dataset.page;
                 $("#openSite").href = "/" + currentPage;
-                frame.src = "/" + currentPage;
+                frame.src = "/" + currentPage + "?editor=1";
                 openEmpty();
             });
         });
 
         function reloadFrame() {
-            frame.contentWindow.location.replace("/" + currentPage);
+            frame.contentWindow.location.replace("/" + currentPage + "?editor=1");
         }
 
         /* Разметка подсветки внутри предпросмотра */

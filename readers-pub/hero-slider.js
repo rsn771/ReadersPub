@@ -5,6 +5,13 @@
 (function () {
     "use strict";
 
+    // Внутри редактора админки (?editor=1) слайдер не запускаем: все слайды
+    // показываются сразу и каждый доступен для клика (правила в styles.css).
+    if (new URLSearchParams(location.search).get("editor") === "1") {
+        document.documentElement.classList.add("rp-editor");
+        return;
+    }
+
     var slider = document.getElementById("heroSlider");
     if (!slider) return;
     var slides = Array.prototype.slice.call(slider.querySelectorAll(".hero-slide"));
