@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "updated_at": "2026-10-08T12:10:23.828233",
+    "updated_at": "2026-10-08T12:10:40.066893",
     "updated_by": "",
     "note": "Контент сайта «Бар Читателей». Правится через админку (/admin), читается сайтом через content-loader.js (атрибуты data-content). НЕ редактируйте вручную, если пользуетесь админкой."
   },
@@ -193,7 +193,8 @@
   ],
   "photos": {
     "hero-1": "assets/uploads/hero-1.jpg?v=1791461403",
-    "hero-2": "assets/uploads/hero-2.jpg?v=1791461420"
+    "hero-2": "assets/uploads/hero-2.jpg?v=1791461420",
+    "hero-3": "assets/uploads/hero-3.jpg?v=1791461437"
   },
   "menu": {
     "group_food": "Кухня",
