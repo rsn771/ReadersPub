@@ -1,3 +1,20 @@
+/* Точная высота фиксированной шапки → в переменную --header-h.
+   Подгонять числом нельзя: на разных ширинах шапка разной высоты,
+   и даже пара пикселей расхождения даёт просвет под ней. */
+(function () {
+    "use strict";
+    var header = document.querySelector(".header");
+    if (!header) return;
+    function sync() {
+        var h = Math.round(header.getBoundingClientRect().height);
+        document.documentElement.style.setProperty("--header-h", h + "px");
+    }
+    sync();
+    window.addEventListener("resize", sync);
+    window.addEventListener("load", sync);
+    if (window.ResizeObserver) new ResizeObserver(sync).observe(header);
+})();
+
 /* Readers Pub — hero-слайдер главной.
  * Авто-смена слайдов каждые 2 сек, стрелки ‹ ›, точки, пауза при наведении,
  * свайп на тач-устройствах, стрелки клавиатуры и синхронизация с верхним меню.
