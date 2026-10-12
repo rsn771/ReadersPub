@@ -3958,7 +3958,15 @@ main > section[id],
    Режим работы и контакты переехали в полосу .hero-facts ниже.
    =================================================================== */
 @media (min-width: 641px) {
-    .hero { min-height: min(72vh, 760px); padding: 0; align-items: stretch; }
+    /* Высота секции = пропорции баннера (16:9), иначе кадр обрезается:
+       при фиксированной высоте верх и низ макета уходили за край. */
+    .hero {
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        padding: 0;
+        align-items: stretch;
+    }
     .hero-scrim { display: none; }
     .hero-photos { position: absolute; inset: 0; }
 
