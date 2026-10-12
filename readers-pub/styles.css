@@ -3902,39 +3902,9 @@ main > section[id],
 
 /* ===================================================================
    РЕЖИМ РЕДАКТОРА АДМИНКИ (?editor=1)
-   Слайды первого экрана обычно показываются по одному и скрыты
-   через opacity: 0 — кликнуть по ним в редакторе невозможно.
-   Здесь раскладываем их друг под другом и делаем доступными.
+   Баннеры первого экрана лежат фоном и по ним не кликнуть —
+   раскладываем их в ряд плитками (правила ниже).
    =================================================================== */
-.rp-editor .hero-slides { display: block !important; }
-.rp-editor .hero-slide {
-    grid-area: auto !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    position: relative;
-    padding: 18px 0;
-    border-top: 1px dashed rgba(149, 212, 242, 0.45);
-}
-.rp-editor .hero-slide:first-child { border-top: 0; }
-.rp-editor .hero-slide::before {
-    content: "Слайд " counter(rp-slide);
-    counter-increment: rp-slide;
-    display: inline-block;
-    margin-bottom: 8px;
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: rgba(149, 212, 242, 0.18);
-    color: var(--accent);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-.rp-editor .hero-slides { counter-reset: rp-slide; }
-.rp-editor .hero-edge,
-.rp-editor .hero-dots { display: none !important; }
-.rp-editor .hero { min-height: 0; padding-bottom: 40px; }
-
-
 /* Баннеры первого экрана в режиме редактора: три плитки, по одной на слайд.
    На сайте они лежат фоном за текстом и по ним не кликнуть — здесь
    раскладываем их в ряд и подписываем. */
@@ -3980,3 +3950,45 @@ main > section[id],
 }
 .rp-editor .hero-scrim { display: none; }
 .rp-editor .hero { padding-top: 90px; }
+
+/* ===================================================================
+   ГЛАВНЫЙ ЭКРАН — только баннеры (ПК)
+   Текст и кнопки убраны: всё сообщение несёт сам баннер.
+   Поэтому затемнение снимаем — иначе кадр выглядит мутным.
+   Режим работы и контакты переехали в полосу .hero-facts ниже.
+   =================================================================== */
+@media (min-width: 641px) {
+    .hero { min-height: min(72vh, 760px); padding: 0; align-items: stretch; }
+    .hero-scrim { display: none; }
+    .hero-photos { position: absolute; inset: 0; }
+
+    /* точки — поверх баннера снизу по центру */
+    .hero-controls {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        bottom: 22px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Полоса с режимом работы и контактами — под главным экраном */
+.hero-facts {
+    padding: 22px 0;
+    background: rgba(35, 40, 69, 0.55);
+    border-bottom: 1px solid var(--border);
+}
+.hero-facts .hero-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    max-width: none;
+}
+
+/* на телефоне первый экран свой (лого и меню в столбик), полосу не показываем */
+@media (max-width: 640px) {
+    .hero-facts { display: none; }
+}

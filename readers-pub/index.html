@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20261007-6">
+    <link rel="stylesheet" href="styles.css?v=20261012-2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -56,6 +56,9 @@
                 <div class="hero-photo" data-photo="hero-3" aria-hidden="true"></div>
             </div>
             <div class="hero-scrim"></div>
+            <div class="hero-controls" id="heroSlider" tabindex="0" aria-roledescription="карусель" aria-label="Баннеры">
+                <div class="hero-dots" id="heroDots" role="tablist" aria-label="Выбор баннера"></div>
+            </div>
 
             <!-- Мобильный первый экран: лого + навигация в столбик (вместо слайдера) -->
             <div class="hero-mobile">
@@ -76,67 +79,27 @@
             <button type="button" class="hero-edge hero-edge--next" id="heroNext" aria-label="Следующий слайд">
                 <span class="hero-edge-ico" aria-hidden="true">›</span>
             </button>
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-slider" id="heroSlider" tabindex="0" aria-roledescription="карусель" aria-label="Разделы Бара Читателей">
-                        <div class="hero-viewport">
-                            <div class="hero-slides" id="heroSlides">
+        </section>
 
-                                <article class="hero-slide is-active" role="group" aria-roledescription="слайд" aria-label="Искусство вкуса">
-                                    <p class="hero-script" data-content="home.hero.script">Искусство вкуса</p>
-                                    <h1 class="hero-title hero-title--caps" data-content="home.hero.title">в каждой детали</h1>
-                                    <p class="hero-description" data-content="home.hero.subtitle">Пространство с атмосферой старинной библиотеки и уютной гостиной: европейская кухня, авторский бар и вечера, куда хочется возвращаться.</p>
-                                    <div class="hero-actions">
-                                        <a href="bronirovaniestola.html" class="btn-primary" data-content="home.hero.btn1">Забронировать стол</a>
-                                        <a href="menu.html" class="btn-secondary" data-content="home.hero.btn2">Посмотреть меню</a>
-                                    </div>
-                                </article>
-
-                                <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Атмосфера">
-                                    <p class="hero-script" data-content="home.hero2.script">Атмосфера</p>
-                                    <h2 class="hero-title hero-title--caps" data-content="home.hero2.title">старинной библиотеки</h2>
-                                    <p class="hero-description" data-content="home.hero2.subtitle">Мягкий свет, дерево и книги, уютная посадка и негромкая музыка — место, где вечер идёт в своём ритме.</p>
-                                    <div class="hero-actions">
-                                        <a href="#card-afisha" class="btn-primary" data-content="home.hero2.btn1">Смотреть афишу</a>
-                                        <a href="#contacts" class="btn-secondary" data-content="home.hero2.btn2">Как нас найти</a>
-                                    </div>
-                                </article>
-
-                                <article class="hero-slide" role="group" aria-roledescription="слайд" aria-label="Вечера">
-                                    <p class="hero-script" data-content="home.hero3.script">Вечера,</p>
-                                    <h2 class="hero-title hero-title--caps" data-content="home.hero3.title">куда хочется возвращаться</h2>
-                                    <p class="hero-description" data-content="home.hero3.subtitle">Ужин вдвоём, встреча с компанией или частное событие — соберём вечер под ваш повод и настроение.</p>
-                                    <div class="hero-actions">
-                                        <a href="bronirovaniestola.html" class="btn-primary" data-content="home.hero3.btn1">Забронировать стол</a>
-                                        <a href="#services" class="btn-secondary" data-content="home.hero3.btn2">Банкеты и события</a>
-                                    </div>
-                                </article>
-
-                            </div>
-                        </div>
-                        <div class="hero-controls">
-                            <div class="hero-dots" id="heroDots" role="tablist" aria-label="Выбор слайда"></div>
-                        </div>
-                    </div>
-                    <div class="hero-highlights">
-                        <div class="highlight-chip">
-                            <span class="highlight-value" data-content="settings.hours_weekday_short">12:00–00:00</span>
-                            <span class="highlight-note" data-content="home.chips.note1">Вс–Чт</span>
-                        </div>
-                        <div class="highlight-chip">
-                            <span class="highlight-value" data-content="settings.hours_weekend_short">12:00–02:00</span>
-                            <span class="highlight-note" data-content="home.chips.note2">Пт–Сб</span>
-                        </div>
-                        <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="highlight-chip" target="_blank" rel="noopener">
-                            <span class="highlight-value" data-content="settings.address_short">Пушкинская, 223</span>
-                            <span class="highlight-note" data-content="home.chips.note3">Легко найти</span>
-                        </a>
-                        <a href="tel:+73412693001" class="highlight-chip">
-                            <span class="highlight-value" data-content="settings.phone_label">+7 3412 693-001</span>
-                            <span class="highlight-note" data-content="home.chips.note4">Быстрая бронь</span>
-                        </a>
-                    </div>
+        <!-- Режим работы, адрес и телефон — отдельной полосой под баннером -->
+        <section class="hero-facts" aria-label="Режим работы и контакты">
+            <div class="container hero-highlights">
+                <div class="highlight-chip">
+                    <span class="highlight-value" data-content="settings.hours_weekday_short">12:00–00:00</span>
+                    <span class="highlight-note" data-content="home.chips.note1">Вс–Чт</span>
                 </div>
+                <div class="highlight-chip">
+                    <span class="highlight-value" data-content="settings.hours_weekend_short">12:00–02:00</span>
+                    <span class="highlight-note" data-content="home.chips.note2">Пт–Сб</span>
+                </div>
+                <a href="https://yandex.ru/maps/?text=Ижевск%2C%20Пушкинская%20223" class="highlight-chip" target="_blank" rel="noopener">
+                    <span class="highlight-value" data-content="settings.address_short">Пушкинская, 223</span>
+                    <span class="highlight-note" data-content="home.chips.note3">Легко найти</span>
+                </a>
+                <a href="tel:+73412693001" class="highlight-chip">
+                    <span class="highlight-value" data-content="settings.phone_label">+7 3412 693-001</span>
+                    <span class="highlight-note" data-content="home.chips.note4">Быстрая бронь</span>
+                </a>
             </div>
         </section>
 
@@ -505,7 +468,7 @@
     </div>
 
     <script src="content-loader.js?v=20261007-4"></script>
-    <script src="hero-slider.js?v=20261007-4"></script>
+    <script src="hero-slider.js?v=20261012-1"></script>
     <script src="script.js?v=20260405-28"></script>
     <script>
     // Быстрая заявка на бронь из секции «Бронирование» → /api/booking (Telegram)

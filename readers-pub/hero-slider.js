@@ -14,66 +14,46 @@
 
     var slider = document.getElementById("heroSlider");
     if (!slider) return;
-    var slides = Array.prototype.slice.call(slider.querySelectorAll(".hero-slide"));
-    if (slides.length < 2) return;
+    // На главном экране только баннеры: слайдер крутит их.
+    var photos = Array.prototype.slice.call(document.querySelectorAll(".hero-photo"));
+    if (photos.length < 2) return;
 
     var dotsWrap = document.getElementById("heroDots");
     var prevBtn = document.getElementById("heroPrev");
     var nextBtn = document.getElementById("heroNext");
-    var slidesEl = document.getElementById("heroSlides");
-    var INTERVAL = 2000;
-    var FADE = 300;            // мс, синхронно с transition в CSS (.hero-slides)
+    var INTERVAL = 5000;   // баннер держится дольше, чем строка текста
     var index = 0;
     var timer = null;
-    var fadeTimer = null;
 
     // точки навигации
-    var dots = slides.map(function (slide, i) {
+    var dots = photos.map(function (photo, i) {
         var dot = document.createElement("button");
         dot.type = "button";
         dot.className = "hero-dot";
         dot.setAttribute("role", "tab");
-        var label = slide.getAttribute("aria-label") || ("Слайд " + (i + 1));
+        var label = "Баннер " + (i + 1);
         dot.setAttribute("aria-label", label);
         dot.addEventListener("click", function () { go(i); restart(); });
         if (dotsWrap) dotsWrap.appendChild(dot);
         return dot;
     });
 
-    var photos = Array.prototype.slice.call(document.querySelectorAll(".hero-photo"));
-
     function render() {
-        slides.forEach(function (slide, i) {
-            var active = i === index;
-            slide.classList.toggle("is-active", active);
-            slide.setAttribute("aria-hidden", active ? "false" : "true");
+        photos.forEach(function (photo, i) {
+            photo.classList.toggle("is-active", i === index);
         });
         dots.forEach(function (dot, i) {
             var active = i === index;
             dot.classList.toggle("is-active", active);
             dot.setAttribute("aria-selected", active ? "true" : "false");
         });
-        // фото меняется вместе со слайдом (если кадров меньше — идут по кругу)
-        if (photos.length) {
-            var photoIndex = index % photos.length;
-            photos.forEach(function (photo, i) {
-                photo.classList.toggle("is-active", i === photoIndex);
-            });
-        }
     }
 
     function go(i) {
-        var target = ((i % slides.length) + slides.length) % slides.length;
+        var target = ((i % photos.length) + photos.length) % photos.length;
         if (target === index) return;
-        if (fadeTimer) window.clearTimeout(fadeTimer);
-        // погасить контейнер → подменить активный слайд, пока он невидим → проявить
-        if (slidesEl) slidesEl.classList.add("is-fading");
-        fadeTimer = window.setTimeout(function () {
-            index = target;
-            render();
-            if (slidesEl) slidesEl.classList.remove("is-fading");
-            fadeTimer = null;
-        }, FADE);
+        index = target;
+        render();   // слои сами перетекают друг в друга (transition в CSS)
     }
     function next() { go(index + 1); }
     function prev() { go(index - 1); }
