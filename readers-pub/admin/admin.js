@@ -27,9 +27,10 @@
 
     /* Человеческие названия позиций — показываются в предпросмотре */
     const PHOTO_LABELS = {
-        "hero-1":       "Баннер 1 — за первым слайдом",
-        "hero-2":       "Баннер 2 — за вторым слайдом",
-        "hero-3":       "Баннер 3 — за третьим слайдом",
+        "hero-1":       "Баннер 1 на ПК — за первым слайдом",
+        "hero-2":       "Баннер 2 на ПК — за вторым слайдом",
+        "hero-3":       "Баннер 3 на ПК — за третьим слайдом",
+        "hero-mobile":  "Баннер для телефона (вертикальный)",
         "promo":        "Баннер акций",
         "card-afisha":  "Карточка «Афиша»",
         "card-menu":    "Карточка «Меню»",
@@ -65,6 +66,8 @@
                           note: "Фон за вторым слайдом." },
         "hero-3":       { ratio: "16:9 (горизонтальное)", size: "1920×1080",
                           note: "Фон за третьим слайдом." },
+        "hero-mobile":  { ratio: "9:16 (вертикальное)", size: "1080×1920",
+                          note: "Главный экран на телефоне. Баннер один, не листается; поверх него логотип и меню в столбик, поэтому центр кадра держите спокойным." },
         "promo":        { ratio: "4:3 (горизонтальное)",  size: "1920×1440",
                           note: "Для телефона нужен отдельный вертикальный макет 1080×1440 (3:4)." },
         "card-afisha":  { ratio: "3:4 (вертикальное)",    size: "900×1200" },
@@ -677,7 +680,7 @@
                 }).join("");
                 const photos = content.photos || {};
                 const GROUPS = [
-                    { page: "Главная", slots: ["hero-1", "hero-2", "hero-3", "promo", "card-afisha", "card-menu", "card-bankety", "card-promo",
+                    { page: "Главная", slots: ["hero-1", "hero-2", "hero-3", "hero-mobile", "promo", "card-afisha", "card-menu", "card-bankety", "card-promo",
                                                "event-1", "event-2", "event-3", "event-4", "event-5",
                                                "menu", "gallery-1", "gallery-2", "gallery-3", "banquet"] },
                     { page: "Меню", slots: ["scan-food-1", "scan-food-2", "scan-drinks-1", "scan-drinks-2",

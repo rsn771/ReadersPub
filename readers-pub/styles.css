@@ -495,6 +495,9 @@ main {
     transition: opacity 0.8s ease;
 }
 .hero-photo.is-active { opacity: 1; }
+
+/* Вертикальный баннер телефона — отдельная позиция, на ПК не показывается */
+.hero-photo-mobile { display: none; }
 .hero-photo img {
     width: 100%;
     height: 100%;
@@ -3332,11 +3335,17 @@ main {
         align-items: center;
     }
 
-    /* фон — размытое фото: читаемо и не спорит с навигацией */
-    .hero-photo img {
-        filter: blur(7px) saturate(1.05);
-        transform: scale(1.12);          /* убирает светлые края от блюра */
+    /* На телефоне свой вертикальный баннер вместо трёх горизонтальных */
+    .hero-photo { display: none; }
+    .hero-photo-mobile {
+        display: block;
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
     }
+    /* фон слегка размыт: читаемо и не спорит с навигацией поверх */
+    .hero-photo-mobile.has-photo { filter: blur(5px) saturate(1.05); transform: scale(1.1); }
     .hero-scrim {
         background: linear-gradient(180deg,
             rgba(10, 12, 22, 0.62) 0%,
@@ -3917,7 +3926,8 @@ main > section[id],
     order: -1;
     position: static;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) 150px;
+    align-items: start;
     gap: 12px;
     padding: 14px 24px 0;
     overflow: visible;
@@ -4003,4 +4013,35 @@ main > section[id],
 /* на телефоне первый экран свой (лого и меню в столбик), полосу не показываем */
 @media (max-width: 640px) {
     .hero-facts { display: none; }
+}
+
+
+/* Вертикальный баннер телефона — четвёртой плиткой в той же полосе.
+   На сайте он показывается только на телефоне, в редакторе доступен всегда. */
+.rp-editor .hero-photo-mobile {
+    display: block;
+    position: relative;
+    inset: auto;
+    filter: none;
+    transform: none;
+    opacity: 1 !important;
+    aspect-ratio: 9 / 16;
+    border-radius: var(--radius-sm);
+    border: 1px dashed rgba(119, 51, 69, 0.75);
+    overflow: hidden;
+}
+.rp-editor .hero-photo-mobile::before {
+    display: block !important;
+    content: "Телефон";
+    position: absolute;
+    z-index: 2;
+    left: 8px;
+    top: 8px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(119, 51, 69, 0.92);
+    color: var(--cream);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }

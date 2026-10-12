@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бар Читателей — атмосферный паб в центре Ижевска</title>
     <meta name="description" content="Бар Читателей — ресторан-паб в центре Ижевска: европейская кухня, удмуртские акценты, импортное пиво, веранда и удобная бронь столов.">
-    <link rel="stylesheet" href="styles.css?v=20261012-5">
+    <link rel="stylesheet" href="styles.css?v=20261013-1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -48,12 +48,15 @@
             <!-- ============================================================
                  БАННЕРЫ ГЛАВНОГО ЭКРАНА — по одному на каждый слайд.
                  Меняются из админки: «Редактор страницы» → клик по баннеру.
-                 Формат: ПК 1920 × 1080 (16:9), телефон 1080 × 1920 (9:16).
+                 ПК: три баннера 1920 × 1080 (16:9), листаются.
+                 Телефон: отдельный вертикальный баннер 1080 × 1920 (9:16), один.
                  ============================================================ -->
             <div class="hero-photos" id="heroPhotos">
                 <div class="hero-photo is-active" data-photo="hero-1" aria-hidden="true"></div>
                 <div class="hero-photo" data-photo="hero-2" aria-hidden="true"></div>
                 <div class="hero-photo" data-photo="hero-3" aria-hidden="true"></div>
+                <!-- Телефон: свой вертикальный баннер, один, не листается -->
+                <div class="hero-photo-mobile" data-photo="hero-mobile" aria-hidden="true"></div>
             </div>
             <div class="hero-scrim"></div>
             <div class="hero-controls" id="heroSlider" tabindex="0" aria-roledescription="карусель" aria-label="Баннеры">
