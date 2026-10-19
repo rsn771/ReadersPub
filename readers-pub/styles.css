@@ -1786,7 +1786,7 @@ main {
     gap: 32px;
 }
 .footer-col { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
-.footer-logo { height: 54px; width: auto; margin-bottom: 8px; }
+.footer-logo { height: 36px; width: auto; margin-bottom: 10px; }
 .footer-brand p { color: var(--text-muted); font-size: 0.9rem; max-width: 260px; }
 .footer-social { color: var(--sky); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
 .footer-social:hover { color: var(--accent-soft); }
@@ -3368,9 +3368,9 @@ main {
         gap: 26px;
     }
     .hero-mobile-logo {
-        /* полный знак со щитом вертикальный — задаём высоту, а не ширину */
-        height: min(190px, 26vh);
-        width: auto;
+        /* полный знак со щитом — задаём по ширине, он шире прежнего */
+        width: min(250px, 66vw);
+        height: auto;
         filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.45));
     }
     /* навигация — чистый текст без плашек, основной шрифт бренда (Inter) */

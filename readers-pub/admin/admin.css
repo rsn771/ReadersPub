@@ -475,7 +475,7 @@ code {
 /* ---------- Логотип в админке ---------- */
 .login-brand-logo {
     display: block;
-    height: 58px;
+    height: 40px;
     width: auto;
     margin: 0 auto 14px;
 }
