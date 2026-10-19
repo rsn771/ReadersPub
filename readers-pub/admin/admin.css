@@ -471,3 +471,12 @@ code {
 .content-publish { padding-top: 18px; padding-bottom: 0; }
 .content-publish:empty { display: none; }
 .content-publish .publish-bar { margin-bottom: 0; }
+
+/* ---------- Логотип в админке ---------- */
+.login-brand-logo {
+    display: block;
+    height: 58px;
+    width: auto;
+    margin: 0 auto 14px;
+}
+.sidebar-brand-logo { display: block; height: 26px; width: auto; }

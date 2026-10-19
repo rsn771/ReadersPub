@@ -152,15 +152,15 @@
     },
     {
       "id": "logo-white",
-      "file": "assets/logo-chitateley-white.png",
+      "file": "assets/logo-readers-full-white.png",
       "title": "Логотип светлый",
-      "alt": "Фирменный знак, не меняется"
+      "alt": "Для тёмного фона, не меняется"
     },
     {
       "id": "logo-dark",
-      "file": "assets/logo-chitateley-dark.png",
+      "file": "assets/logo-readers-full-dark.png",
       "title": "Логотип тёмный",
-      "alt": "Фирменный знак, не меняется"
+      "alt": "Для светлого фона, не меняется"
     },
     {
       "id": "pattern",
